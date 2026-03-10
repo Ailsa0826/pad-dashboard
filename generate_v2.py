@@ -380,9 +380,16 @@ html_content += """
 
 # 店铺Mix饼图 - 使用客户细分2（渠道）
 store_data = df.groupby('客户细分2')['TTL SO'].sum().reset_index().sort_values('TTL SO', ascending=False)
-fig1 = px.pie(store_data, values='TTL SO', names='客户细分2', 
-              color_discrete_sequence=['#1890ff', '#52c41a', '#faad14', '#f5222d', '#722ed1'])
-fig1.update_traces(textposition='inside', textinfo='percent+label', textfont_size=11)
+# 计算百分比
+store_data['占比'] = store_data['TTL SO'] / store_data['TTL SO'].sum() * 100
+fig1 = go.Figure(data=[go.Pie(
+    labels=store_data['客户细分2'],
+    values=store_data['TTL SO'],
+    textinfo='label+percent',
+    textposition='inside',
+    textfont_size=11,
+    marker_colors=['#1890ff', '#52c41a', '#faad14', '#f5222d', '#722ed1']
+)])
 fig1.update_layout(showlegend=False, margin=dict(l=0, r=0, t=0, b=0), height=200)
 html_content += f"<script>var fig1 = {fig1.to_json()}; Plotly.newPlot('store-mix-chart', fig1.data, fig1.layout);</script>"
 
