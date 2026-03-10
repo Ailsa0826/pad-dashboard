@@ -380,15 +380,18 @@ html_content += """
 
 # 店铺Mix饼图 - 使用客户细分2（渠道）
 store_data = df.groupby('客户细分2')['TTL SO'].sum().reset_index().sort_values('TTL SO', ascending=False)
-# 计算百分比
-store_data['占比'] = store_data['TTL SO'] / store_data['TTL SO'].sum() * 100
+# 手动计算百分比并创建标签
+total = store_data['TTL SO'].sum()
+store_data['百分比'] = (store_data['TTL SO'] / total * 100).round(0).astype(int)
+store_data['标签'] = store_data['客户细分2'] + '<br>' + store_data['百分比'].astype(str) + '%'
 fig1 = go.Figure(data=[go.Pie(
-    labels=store_data['客户细分2'],
+    labels=store_data['标签'],
     values=store_data['TTL SO'],
-    textinfo='label+percent',
+    textinfo='label',
     textposition='inside',
-    textfont_size=11,
-    marker_colors=['#1890ff', '#52c41a', '#faad14', '#f5222d', '#722ed1']
+    textfont_size=10,
+    marker_colors=['#1890ff', '#52c41a', '#faad14', '#f5222d', '#722ed1'],
+    hovertemplate='%{label}<br>销量: %{value}<extra></extra>'
 )])
 fig1.update_layout(showlegend=False, margin=dict(l=0, r=0, t=0, b=0), height=200)
 html_content += f"<script>var fig1 = {fig1.to_json()}; Plotly.newPlot('store-mix-chart', fig1.data, fig1.layout);</script>"
