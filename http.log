@@ -1,0 +1,4 @@
+::1 - - [10/Mar/2026 14:15:38] "GET / HTTP/1.1" 200 -
+::1 - - [10/Mar/2026 14:15:38] "GET /pad_dashboard.html HTTP/1.1" 200 -
+::1 - - [10/Mar/2026 14:15:40] code 404, message File not found
+::1 - - [10/Mar/2026 14:15:40] "GET /favicon.ico HTTP/1.1" 404 -
