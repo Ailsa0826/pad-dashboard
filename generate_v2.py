@@ -326,7 +326,11 @@ html_content = """
 channel_data = []
 for channel, target in targets.items():
     if channel != '总目标':
-        actual = channel_sales.get(channel, 0)
+        # 抖快需要加上国代的销量
+        if channel == '抖快':
+            actual = channel_sales.get(channel, 0) + channel_sales.get('国代', 0)
+        else:
+            actual = channel_sales.get(channel, 0)
         rate = (actual / target) * 100 if target > 0 else 0
         channel_data.append((channel, rate, actual, target))
         html_content += f"""
