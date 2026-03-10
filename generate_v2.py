@@ -200,6 +200,21 @@ html_content = """
             background: #1890ff;
             border-radius: 4px;
         }
+        .channel-numbers {
+            display: flex;
+            justify-content: center;
+            gap: 4px;
+            font-size: 12px;
+            color: #666;
+            margin-top: 8px;
+        }
+        .channel-current {
+            color: #1890ff;
+            font-weight: 500;
+        }
+        .channel-target {
+            color: #999;
+        }
         
         /* 图表区域 */
         .chart-row {
@@ -316,10 +331,15 @@ for channel, target in targets.items():
         channel_data.append((channel, rate, actual, target))
         html_content += f"""
             <div class="channel-card">
-                <div class="channel-name">FY26 1月{channel}</div>
+                <div class="channel-name">FY26 1月{channel}PO</div>
                 <div class="channel-percent">{rate:.0f}%</div>
                 <div class="channel-bar">
                     <div class="channel-bar-fill" style="width: {min(rate, 100)}%;"></div>
+                </div>
+                <div class="channel-numbers">
+                    <span class="channel-current">{actual*1000:,.0f}</span>
+                    <span>|</span>
+                    <span class="channel-target">{target*1000:,.0f}</span>
                 </div>
             </div>
 """
@@ -358,10 +378,20 @@ html_content += """
         </div>
 """
 
-# 店铺Mix饼图
-store_data = df.groupby('客户细分4')['TTL SO'].sum().reset_index().sort_values('TTL SO', ascending=False).head(6)
+# 店铺Mix饼图 - 只显示占比>5%的店铺，其他合并为"其他"
+store_data_raw = df.groupby('客户细分4')['TTL SO'].sum().reset_index()
+store_data_raw['占比'] = store_data_raw['TTL SO'] / store_data_raw['TTL SO'].sum()
+# 分离主要店铺和其他
+main_stores = store_data_raw[store_data_raw['占比'] > 0.05].copy()
+other_sales = store_data_raw[store_data_raw['占比'] <= 0.05]['TTL SO'].sum()
+if other_sales > 0:
+    other_row = pd.DataFrame({'客户细分4': ['其他'], 'TTL SO': [other_sales], '占比': [other_sales/store_data_raw['TTL SO'].sum()]})
+    store_data = pd.concat([main_stores, other_row], ignore_index=True)
+else:
+    store_data = main_stores
+store_data = store_data.sort_values('TTL SO', ascending=False)
 fig1 = px.pie(store_data, values='TTL SO', names='客户细分4', 
-              color_discrete_sequence=['#1890ff', '#52c41a', '#faad14', '#f5222d', '#722ed1', '#13c2c2'])
+              color_discrete_sequence=['#1890ff', '#52c41a', '#faad14', '#f5222d', '#722ed1', '#13c2c2', '#fa8c16'])
 fig1.update_traces(textposition='inside', textinfo='percent+label', textfont_size=11)
 fig1.update_layout(showlegend=False, margin=dict(l=0, r=0, t=0, b=0), height=200)
 html_content += f"<script>var fig1 = {fig1.to_json()}; Plotly.newPlot('store-mix-chart', fig1.data, fig1.layout);</script>"
