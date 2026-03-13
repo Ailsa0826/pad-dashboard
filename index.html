@@ -261,17 +261,17 @@
             </div>
             
             <!-- 总达成进度 -->
-            <div class="card">
+            <div class="card" id="total-progress-card">
                 <div class="card-title" style="text-align: center;">FY26 1月直营PO达成进度</div>
                 <div class="achievement-big">
-                    <div class="achievement-percent">57%</div>
+                    <div class="achievement-percent" id="total-percent">57%</div>
                     <div class="achievement-bar">
-                        <div class="achievement-bar-fill" style="width: 57.04842105263158%;"></div>
+                        <div class="achievement-bar-fill" id="total-bar" style="width: 57.04842105263158%;"></div>
                     </div>
                     <div class="achievement-numbers">
                         <span class="achievement-current">当前 27.1K</span>
                         <span>|</span>
-                        <span class="achievement-target">目标 47.5K</span>
+                        <span>目标 <input type="number" id="total-target" value="47500" min="0" style="width: 70px; border: 1px solid #ddd; border-radius: 4px; padding: 2px 4px; text-align: center; font-size: 14px;"></span>
                     </div>
                 </div>
             </div>
@@ -653,10 +653,65 @@ Plotly.newPlot('xiaoxin-daily-chart', xiaoxinData.data, xiaoxinData.layout);
             });
         }
         
+        // 总目标数据配置
+        const totalData = { current: 27098, defaultTarget: 47500 };
+        
+        // 从 localStorage 加载保存的总目标值
+        function loadSavedTotalTarget() {
+            const savedTarget = localStorage.getItem('target_total');
+            if (savedTarget !== null) {
+                document.getElementById('total-target').value = savedTarget;
+            }
+        }
+        
+        // 更新总达成率
+        function updateTotalProgress() {
+            const targetInput = document.getElementById('total-target');
+            const target = parseInt(targetInput.value) || totalData.defaultTarget;
+            const current = totalData.current;
+            const percent = Math.min(100, Math.round((current / target) * 100));
+            
+            // 更新百分比显示
+            document.getElementById('total-percent').textContent = percent + '%';
+            // 更新进度条
+            document.getElementById('total-bar').style.width = percent + '%';
+            
+            // 保存到 localStorage
+            localStorage.setItem('target_total', target);
+        }
+        
+        // 初始化总目标输入框
+        function initTotalTarget() {
+            const targetInput = document.getElementById('total-target');
+            
+            // 输入时实时更新
+            targetInput.addEventListener('input', function() {
+                updateTotalProgress();
+            });
+            
+            // 失去焦点时更新
+            targetInput.addEventListener('blur', function() {
+                updateTotalProgress();
+            });
+            
+            // 回车键更新
+            targetInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    updateTotalProgress();
+                    this.blur();
+                }
+            });
+            
+            // 初始更新
+            updateTotalProgress();
+        }
+        
         // 页面加载时执行
         document.addEventListener('DOMContentLoaded', function() {
             loadSavedTargets();
             initChannels();
+            loadSavedTotalTarget();
+            initTotalTarget();
         });
     </script>
 </body>
