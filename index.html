@@ -13,7 +13,39 @@
             padding: 20px;
         }
         .container { max-width: 1400px; margin: 0 auto; }
-        
+
+        /* 月份切片器 */
+        .month-selector {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 20px;
+            padding: 16px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        .month-btn {
+            padding: 10px 24px;
+            border: 2px solid #e0e0e0;
+            background: white;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            color: #666;
+            transition: all 0.3s ease;
+        }
+        .month-btn:hover {
+            border-color: #1890ff;
+            color: #1890ff;
+        }
+        .month-btn.active {
+            background: #1890ff;
+            border-color: #1890ff;
+            color: white;
+        }
+
         /* 顶部横幅 */
         .header-banner {
             background: linear-gradient(135deg, #ff9500 0%, #ff7700 100%);
@@ -231,10 +263,18 @@
 </head>
 <body>
     <div class="container">
+        <!-- 月份切片器 -->
+        <div class="month-selector">
+            <button class="month-btn active" data-month="2026-01">1月</button>
+            <button class="month-btn" data-month="2026-02">2月</button>
+            <button class="month-btn" data-month="2026-03">3月</button>
+            <button class="month-btn" data-month="2025-Q4">FY25Q4</button>
+        </div>
+
         <!-- 顶部横幅 -->
         <div class="header-banner">
-            <h1>1月直营平板销售</h1>
-            <p>数据时间：2026年1月 | 生成时间：2026-03-10 19:00</p>
+            <h1 id="page-title">1月直营平板销售</h1>
+            <p id="page-subtitle">数据时间：2026年1月 | 生成时间：2026-03-10 19:00</p>
         </div>
         
         <!-- 第一行：倒计时 + 总达成 + 店铺Mix -->
@@ -706,12 +746,119 @@ Plotly.newPlot('xiaoxin-daily-chart', xiaoxinData.data, xiaoxinData.layout);
             updateTotalProgress();
         }
         
+        // 月份数据配置（预留结构，后续填充各月份数据）
+        const monthData = {
+            '2026-01': {
+                title: '1月直营平板销售',
+                subtitle: '数据时间：2026年1月 | 生成时间：2026-03-10 19:00',
+                totalCurrent: 27098,
+                totalTarget: 47500,
+                channels: {
+                    guanwang: { current: 5906, target: 7000 },
+                    tianmao: { current: 9879, target: 23500 },
+                    jingdong: { current: 2469, target: 5000 },
+                    doukuai: { current: 8844, target: 12000 }
+                }
+            },
+            '2026-02': {
+                title: '2月直营平板销售',
+                subtitle: '数据时间：2026年2月 | 生成时间：待更新',
+                totalCurrent: 0,
+                totalTarget: 0,
+                channels: {
+                    guanwang: { current: 0, target: 0 },
+                    tianmao: { current: 0, target: 0 },
+                    jingdong: { current: 0, target: 0 },
+                    doukuai: { current: 0, target: 0 }
+                }
+            },
+            '2026-03': {
+                title: '3月直营平板销售',
+                subtitle: '数据时间：2026年3月 | 生成时间：待更新',
+                totalCurrent: 0,
+                totalTarget: 0,
+                channels: {
+                    guanwang: { current: 0, target: 0 },
+                    tianmao: { current: 0, target: 0 },
+                    jingdong: { current: 0, target: 0 },
+                    doukuai: { current: 0, target: 0 }
+                }
+            },
+            '2025-Q4': {
+                title: 'FY25Q4季度直营平板销售',
+                subtitle: '数据时间：2025年Q4 | 生成时间：待更新',
+                totalCurrent: 0,
+                totalTarget: 0,
+                channels: {
+                    guanwang: { current: 0, target: 0 },
+                    tianmao: { current: 0, target: 0 },
+                    jingdong: { current: 0, target: 0 },
+                    doukuai: { current: 0, target: 0 }
+                }
+            }
+        };
+
+        // 当前选中的月份
+        let currentMonth = '2026-01';
+
+        // 切换月份
+        function switchMonth(month) {
+            currentMonth = month;
+            const data = monthData[month];
+
+            // 更新页面标题
+            document.getElementById('page-title').textContent = data.title;
+            document.getElementById('page-subtitle').textContent = data.subtitle;
+
+            // 更新按钮状态
+            document.querySelectorAll('.month-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.dataset.month === month) {
+                    btn.classList.add('active');
+                }
+            });
+
+            // 更新总进度数据
+            totalData.current = data.totalCurrent;
+            totalData.defaultTarget = data.totalTarget;
+            document.getElementById('total-target').value = data.totalTarget;
+            updateTotalProgress();
+
+            // 更新各渠道数据
+            Object.keys(data.channels).forEach(channel => {
+                channelData[channel].current = data.channels[channel].current;
+                channelData[channel].defaultTarget = data.channels[channel].target;
+                document.getElementById(`${channel}-target`).value = data.channels[channel].target;
+                updateChannel(channel);
+            });
+
+            // 保存当前月份到localStorage
+            localStorage.setItem('currentMonth', month);
+        }
+
+        // 初始化月份切片器
+        function initMonthSelector() {
+            const buttons = document.querySelectorAll('.month-btn');
+            buttons.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    switchMonth(this.dataset.month);
+                });
+            });
+
+            // 加载上次选中的月份
+            const savedMonth = localStorage.getItem('currentMonth');
+            if (savedMonth && monthData[savedMonth]) {
+                switchMonth(savedMonth);
+            }
+        }
+
         // 页面加载时执行
         document.addEventListener('DOMContentLoaded', function() {
             loadSavedTargets();
             initChannels();
             loadSavedTotalTarget();
             initTotalTarget();
+            initMonthSelector();
         });
     </script>
 </body>
