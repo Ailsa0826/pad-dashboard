@@ -1034,13 +1034,28 @@ Plotly.newPlot('product-daily-chart', productData.data, productData.layout);
             loadSavedTotalTarget();
             initTotalTarget();
             initMonthSelector();
-            
-            // 渲染四个店铺的重点机型分布图表
-            Plotly.newPlot('jd-model-mix-chart', jdModelMixData.data, jdModelMixData.layout);
-            Plotly.newPlot('gw-model-mix-chart', gwModelMixData.data, gwModelMixData.layout);
-            Plotly.newPlot('tm-model-mix-chart', tmModelMixData.data, tmModelMixData.layout);
-            Plotly.newPlot('dk-model-mix-chart', dkModelMixData.data, dkModelMixData.layout);
         });
+    </script>
+    
+    <!-- 店铺重点机型分布图表渲染 -->
+    <script>
+        // 确保DOM加载完成后渲染图表
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', renderModelMixCharts);
+        } else {
+            renderModelMixCharts();
+        }
+        
+        function renderModelMixCharts() {
+            try {
+                Plotly.newPlot('jd-model-mix-chart', jdModelMixData.data, jdModelMixData.layout);
+                Plotly.newPlot('gw-model-mix-chart', gwModelMixData.data, gwModelMixData.layout);
+                Plotly.newPlot('tm-model-mix-chart', tmModelMixData.data, tmModelMixData.layout);
+                Plotly.newPlot('dk-model-mix-chart', dkModelMixData.data, dkModelMixData.layout);
+            } catch (e) {
+                console.error('Error rendering model mix charts:', e);
+            }
+        }
     </script>
 </body>
 </html>
