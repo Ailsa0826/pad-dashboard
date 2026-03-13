@@ -286,55 +286,55 @@
         <!-- 渠道达成卡片 -->
         <div class="channel-row">
 
-            <div class="channel-card">
+            <div class="channel-card" data-channel="guanwang">
                 <div class="channel-name">FY26 1月官网PO</div>
-                <div class="channel-percent">84%</div>
+                <div class="channel-percent" id="guanwang-percent">84%</div>
                 <div class="channel-bar">
-                    <div class="channel-bar-fill" style="width: 84.37142857142857%;"></div>
+                    <div class="channel-bar-fill" id="guanwang-bar" style="width: 84.37142857142857%;"></div>
                 </div>
                 <div class="channel-numbers">
                     <span class="channel-current">5,906</span>
                     <span>|</span>
-                    <span class="channel-target">7,000</span>
+                    <span>目标 <input type="number" class="target-input" id="guanwang-target" value="7000" min="0" style="width: 60px; border: 1px solid #ddd; border-radius: 4px; padding: 2px 4px; text-align: center;"></span>
                 </div>
             </div>
 
-            <div class="channel-card">
+            <div class="channel-card" data-channel="tianmao">
                 <div class="channel-name">FY26 1月天猫PO</div>
-                <div class="channel-percent">42%</div>
+                <div class="channel-percent" id="tianmao-percent">42%</div>
                 <div class="channel-bar">
-                    <div class="channel-bar-fill" style="width: 42.03829787234042%;"></div>
+                    <div class="channel-bar-fill" id="tianmao-bar" style="width: 42.03829787234042%;"></div>
                 </div>
                 <div class="channel-numbers">
                     <span class="channel-current">9,879</span>
                     <span>|</span>
-                    <span class="channel-target">23,500</span>
+                    <span>目标 <input type="number" class="target-input" id="tianmao-target" value="23500" min="0" style="width: 60px; border: 1px solid #ddd; border-radius: 4px; padding: 2px 4px; text-align: center;"></span>
                 </div>
             </div>
 
-            <div class="channel-card">
+            <div class="channel-card" data-channel="jingdong">
                 <div class="channel-name">FY26 1月京东官旗PO</div>
-                <div class="channel-percent">49%</div>
+                <div class="channel-percent" id="jingdong-percent">49%</div>
                 <div class="channel-bar">
-                    <div class="channel-bar-fill" style="width: 49.379999999999995%;"></div>
+                    <div class="channel-bar-fill" id="jingdong-bar" style="width: 49.379999999999995%;"></div>
                 </div>
                 <div class="channel-numbers">
                     <span class="channel-current">2,469</span>
                     <span>|</span>
-                    <span class="channel-target">5,000</span>
+                    <span>目标 <input type="number" class="target-input" id="jingdong-target" value="5000" min="0" style="width: 60px; border: 1px solid #ddd; border-radius: 4px; padding: 2px 4px; text-align: center;"></span>
                 </div>
             </div>
 
-            <div class="channel-card">
+            <div class="channel-card" data-channel="doukuai">
                 <div class="channel-name">FY26 1月抖快PO</div>
-                <div class="channel-percent">74%</div>
+                <div class="channel-percent" id="doukuai-percent">74%</div>
                 <div class="channel-bar">
-                    <div class="channel-bar-fill" style="width: 73.70000000000002%;"></div>
+                    <div class="channel-bar-fill" id="doukuai-bar" style="width: 73.70000000000002%;"></div>
                 </div>
                 <div class="channel-numbers">
                     <span class="channel-current">8,844</span>
                     <span>|</span>
-                    <span class="channel-target">12,000</span>
+                    <span>目标 <input type="number" class="target-input" id="doukuai-target" value="12000" min="0" style="width: 60px; border: 1px solid #ddd; border-radius: 4px; padding: 2px 4px; text-align: center;"></span>
                 </div>
             </div>
 
@@ -528,5 +528,75 @@
             </table>
         </div>
     </div>
+    
+    <script>
+        // 渠道数据配置
+        const channelData = {
+            guanwang: { current: 5906, defaultTarget: 7000 },
+            tianmao: { current: 9879, defaultTarget: 23500 },
+            jingdong: { current: 2469, defaultTarget: 5000 },
+            doukuai: { current: 8844, defaultTarget: 12000 }
+        };
+        
+        // 从 localStorage 加载保存的目标值
+        function loadSavedTargets() {
+            Object.keys(channelData).forEach(channel => {
+                const savedTarget = localStorage.getItem(`target_${channel}`);
+                if (savedTarget !== null) {
+                    document.getElementById(`${channel}-target`).value = savedTarget;
+                }
+            });
+        }
+        
+        // 更新渠道达成率
+        function updateChannel(channel) {
+            const targetInput = document.getElementById(`${channel}-target`);
+            const target = parseInt(targetInput.value) || channelData[channel].defaultTarget;
+            const current = channelData[channel].current;
+            const percent = Math.min(100, Math.round((current / target) * 100));
+            
+            // 更新百分比显示
+            document.getElementById(`${channel}-percent`).textContent = percent + '%';
+            // 更新进度条
+            document.getElementById(`${channel}-bar`).style.width = percent + '%';
+            
+            // 保存到 localStorage
+            localStorage.setItem(`target_${channel}`, target);
+        }
+        
+        // 初始化所有渠道
+        function initChannels() {
+            Object.keys(channelData).forEach(channel => {
+                const targetInput = document.getElementById(`${channel}-target`);
+                
+                // 输入时实时更新
+                targetInput.addEventListener('input', function() {
+                    updateChannel(channel);
+                });
+                
+                // 失去焦点时更新
+                targetInput.addEventListener('blur', function() {
+                    updateChannel(channel);
+                });
+                
+                // 回车键更新
+                targetInput.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        updateChannel(channel);
+                        this.blur();
+                    }
+                });
+                
+                // 初始更新
+                updateChannel(channel);
+            });
+        }
+        
+        // 页面加载时执行
+        document.addEventListener('DOMContentLoaded', function() {
+            loadSavedTargets();
+            initChannels();
+        });
+    </script>
 </body>
 </html>
