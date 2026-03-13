@@ -761,9 +761,47 @@ Plotly.newPlot('product-daily-chart', productData.data, productData.layout);
                 </tbody>
             </table>
         </div>
+
+        <!-- 各店铺重点机型分布 -->
+        <div class="chart-row">
+            <div class="chart-card">
+                <div class="chart-title">京东官旗重点机型分布Mix</div>
+                <div id="jd-model-mix-chart"></div>
+            </div>
+            <div class="chart-card">
+                <div class="chart-title">官网重点机型分布Mix</div>
+                <div id="gw-model-mix-chart"></div>
+            </div>
+        </div>
+        <div class="chart-row">
+            <div class="chart-card">
+                <div class="chart-title">天猫重点机型分布Mix</div>
+                <div id="tm-model-mix-chart"></div>
+            </div>
+            <div class="chart-card">
+                <div class="chart-title">抖快重点机型分布Mix</div>
+                <div id="dk-model-mix-chart"></div>
+            </div>
+        </div>
     </div>
     
     <script>
+        // 京东官旗重点机型分布
+        var jdModelMixData = {"data":[{"domain":{"x":[0.0,1.0],"y":[0.0,1.0]},"hole":0.4,"hovertemplate":"重点机型=%{label}<br>TTL SO=%{value}<extra></extra>","labels":["小新平板11","PadProGT","拯救者Y700 4代","小新平板12.1","PadPro12.7"],"legendgroup":"","name":"","showlegend":true,"values":[1788,534,44,41,40],"type":"pie","textinfo":"percent+label","textposition":"inside","marker":{"colors":["#38bdf8","#6366f1","#a855f7","#ec4899","#f97316"]}}],"layout":{"template":{"data":{"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","legend":{"tracegroupgap":0},"margin":{"t":60},"height":350,"plot_bgcolor":"white","paper_bgcolor":"white"}}};
+        Plotly.newPlot('jd-model-mix-chart', jdModelMixData.data, jdModelMixData.layout);
+
+        // 官网重点机型分布
+        var gwModelMixData = {"data":[{"domain":{"x":[0.0,1.0],"y":[0.0,1.0]},"hole":0.4,"hovertemplate":"重点机型=%{label}<br>TTL SO=%{value}<extra></extra>","labels":["小新平板11","PadProGT","拯救者Y700 4代","PadPro12.7","小新平板12.1"],"legendgroup":"","name":"","showlegend":true,"values":[4841,418,306,50,11],"type":"pie","textinfo":"percent+label","textposition":"inside","marker":{"colors":["#38bdf8","#6366f1","#a855f7","#f97316","#ec4899"]}}],"layout":{"template":{"data":{"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","legend":{"tracegroupgap":0},"margin":{"t":60},"height":350,"plot_bgcolor":"white","paper_bgcolor":"white"}}};
+        Plotly.newPlot('gw-model-mix-chart', gwModelMixData.data, gwModelMixData.layout);
+
+        // 天猫重点机型分布
+        var tmModelMixData = {"data":[{"domain":{"x":[0.0,1.0],"y":[0.0,1.0]},"hole":0.4,"hovertemplate":"重点机型=%{label}<br>TTL SO=%{value}<extra></extra>","labels":["小新平板11","PadPro12.7","PadProGT","拯救者Y700 4代","小新平板12.1"],"legendgroup":"","name":"","showlegend":true,"values":[6924,932,876,699,408],"type":"pie","textinfo":"percent+label","textposition":"inside","marker":{"colors":["#38bdf8","#f97316","#6366f1","#a855f7","#ec4899"]}}],"layout":{"template":{"data":{"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","legend":{"tracegroupgap":0},"margin":{"t":60},"height":350,"plot_bgcolor":"white","paper_bgcolor":"white"}}};
+        Plotly.newPlot('tm-model-mix-chart', tmModelMixData.data, tmModelMixData.layout);
+
+        // 抖快重点机型分布
+        var dkModelMixData = {"data":[{"domain":{"x":[0.0,1.0],"y":[0.0,1.0]},"hole":0.4,"hovertemplate":"重点机型=%{label}<br>TTL SO=%{value}<extra></extra>","labels":["拯救者Y700 4代","小新平板11","PadProGT","PadPro12.7","小新平板12.1"],"legendgroup":"","name":"","showlegend":true,"values":[5029,1905,1419,404,24],"type":"pie","textinfo":"percent+label","textposition":"inside","marker":{"colors":["#a855f7","#38bdf8","#6366f1","#f97316","#ec4899"]}}],"layout":{"template":{"data":{"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","legend":{"tracegroupgap":0},"margin":{"t":60},"height":350,"plot_bgcolor":"white","paper_bgcolor":"white"}}};
+        Plotly.newPlot('dk-model-mix-chart', dkModelMixData.data, dkModelMixData.layout);
+
         // 渠道数据配置
         const channelData = {
             guanwang: { current: 5906, defaultTarget: 7000 },
