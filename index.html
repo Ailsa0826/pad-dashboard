@@ -630,257 +630,110 @@ Plotly.newPlot('product-daily-chart', productData.data, productData.layout);
         </div>
     </div>
     
+
     <script>
         // 京东官旗重点机型分布
-        var jdModelMixData = {"data":[{"domain":{"x":[0.0,1.0],"y":[0.0,1.0]},"hole":0.4,"hovertemplate":"重点机型=%{label}<br>TTL SO=%{value}<extra></extra>","labels":["小新平板11","PadProGT","拯救者Y700 4代","小新平板12.1","PadPro12.7"],"legendgroup":"","name":"","showlegend":true,"values":[1788,534,44,41,40],"type":"pie","textinfo":"percent+label","textposition":"inside","marker":{"colors":["#38bdf8","#6366f1","#a855f7","#ec4899","#f97316"]}}],"layout":{"template":{"data":{"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","legend":{"tracegroupgap":0},"margin":{"t":60},"height":350,"plot_bgcolor":"white","paper_bgcolor":"white"}}};
+        var jdModelMixData = {
+            data: [{
+                values: [1788, 534, 44, 41, 40],
+                labels: ['小新平板11', 'PadProGT', '拯救者Y700 4代', '小新平板12.1', 'PadPro12.7'],
+                domain: {column: 0},
+                name: '京东官旗',
+                hoverinfo: 'label+percent+value',
+                hole: 0.4,
+                type: 'pie',
+                marker: {
+                    colors: ['#38bdf8', '#6366f1', '#a855f7', '#ec4899', '#f97316']
+                },
+                textinfo: 'percent',
+                textposition: 'inside'
+            }],
+            layout: {
+                height: 350,
+                margin: {t: 60, b: 20, l: 20, r: 20},
+                showlegend: true,
+                legend: {orientation: 'h', y: -0.1}
+            }
+        };
 
         // 官网重点机型分布
-        var gwModelMixData = {"data":[{"domain":{"x":[0.0,1.0],"y":[0.0,1.0]},"hole":0.4,"hovertemplate":"重点机型=%{label}<br>TTL SO=%{value}<extra></extra>","labels":["小新平板11","PadProGT","拯救者Y700 4代","PadPro12.7","小新平板12.1"],"legendgroup":"","name":"","showlegend":true,"values":[4841,418,306,50,11],"type":"pie","textinfo":"percent+label","textposition":"inside","marker":{"colors":["#38bdf8","#6366f1","#a855f7","#f97316","#ec4899"]}}],"layout":{"template":{"data":{"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","legend":{"tracegroupgap":0},"margin":{"t":60},"height":350,"plot_bgcolor":"white","paper_bgcolor":"white"}}};
+        var gwModelMixData = {
+            data: [{
+                values: [4841, 418, 306, 50, 11],
+                labels: ['小新平板11', 'PadProGT', '拯救者Y700 4代', 'PadPro12.7', '小新平板12.1'],
+                domain: {column: 0},
+                name: '官网',
+                hoverinfo: 'label+percent+value',
+                hole: 0.4,
+                type: 'pie',
+                marker: {
+                    colors: ['#38bdf8', '#6366f1', '#a855f7', '#f97316', '#ec4899']
+                },
+                textinfo: 'percent',
+                textposition: 'inside'
+            }],
+            layout: {
+                height: 350,
+                margin: {t: 60, b: 20, l: 20, r: 20},
+                showlegend: true,
+                legend: {orientation: 'h', y: -0.1}
+            }
+        };
 
         // 天猫重点机型分布
-        var tmModelMixData = {"data":[{"domain":{"x":[0.0,1.0],"y":[0.0,1.0]},"hole":0.4,"hovertemplate":"重点机型=%{label}<br>TTL SO=%{value}<extra></extra>","labels":["小新平板11","PadPro12.7","PadProGT","拯救者Y700 4代","小新平板12.1"],"legendgroup":"","name":"","showlegend":true,"values":[6924,932,876,699,408],"type":"pie","textinfo":"percent+label","textposition":"inside","marker":{"colors":["#38bdf8","#f97316","#6366f1","#a855f7","#ec4899"]}}],"layout":{"template":{"data":{"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","legend":{"tracegroupgap":0},"margin":{"t":60},"height":350,"plot_bgcolor":"white","paper_bgcolor":"white"}}};
+        var tmModelMixData = {
+            data: [{
+                values: [6924, 932, 876, 699, 408],
+                labels: ['小新平板11', 'PadPro12.7', 'PadProGT', '拯救者Y700 4代', '小新平板12.1'],
+                domain: {column: 0},
+                name: '天猫',
+                hoverinfo: 'label+percent+value',
+                hole: 0.4,
+                type: 'pie',
+                marker: {
+                    colors: ['#38bdf8', '#f97316', '#6366f1', '#a855f7', '#ec4899']
+                },
+                textinfo: 'percent',
+                textposition: 'inside'
+            }],
+            layout: {
+                height: 350,
+                margin: {t: 60, b: 20, l: 20, r: 20},
+                showlegend: true,
+                legend: {orientation: 'h', y: -0.1}
+            }
+        };
 
         // 抖快重点机型分布
-        var dkModelMixData = {"data":[{"domain":{"x":[0.0,1.0],"y":[0.0,1.0]},"hole":0.4,"hovertemplate":"重点机型=%{label}<br>TTL SO=%{value}<extra></extra>","labels":["拯救者Y700 4代","小新平板11","PadProGT","PadPro12.7","小新平板12.1"],"legendgroup":"","name":"","showlegend":true,"values":[5029,1905,1419,404,24],"type":"pie","textinfo":"percent+label","textposition":"inside","marker":{"colors":["#a855f7","#38bdf8","#6366f1","#f97316","#ec4899"]}}],"layout":{"template":{"data":{"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","legend":{"tracegroupgap":0},"margin":{"t":60},"height":350,"plot_bgcolor":"white","paper_bgcolor":"white"}}};
-
-        // 渠道数据配置
-        const channelData = {
-            guanwang: { current: 5906, defaultTarget: 7000 },
-            tianmao: { current: 9879, defaultTarget: 23500 },
-            jingdong: { current: 2469, defaultTarget: 5000 },
-            doukuai: { current: 8844, defaultTarget: 12000 }
-        };
-        
-        // 从 localStorage 加载保存的目标值
-        function loadSavedTargets() {
-            Object.keys(channelData).forEach(channel => {
-                const savedTarget = localStorage.getItem(`target_${channel}`);
-                if (savedTarget !== null) {
-                    document.getElementById(`${channel}-target`).value = savedTarget;
-                }
-            });
-        }
-        
-        // 更新渠道达成率
-        function updateChannel(channel) {
-            const targetInput = document.getElementById(`${channel}-target`);
-            const target = parseInt(targetInput.value) || channelData[channel].defaultTarget;
-            const current = channelData[channel].current;
-            const percent = Math.min(100, Math.round((current / target) * 100));
-            
-            // 更新百分比显示
-            document.getElementById(`${channel}-percent`).textContent = percent + '%';
-            // 更新进度条
-            document.getElementById(`${channel}-bar`).style.width = percent + '%';
-            
-            // 保存到 localStorage
-            localStorage.setItem(`target_${channel}`, target);
-        }
-        
-        // 初始化所有渠道
-        function initChannels() {
-            Object.keys(channelData).forEach(channel => {
-                const targetInput = document.getElementById(`${channel}-target`);
-                
-                // 输入时实时更新
-                targetInput.addEventListener('input', function() {
-                    updateChannel(channel);
-                });
-                
-                // 失去焦点时更新
-                targetInput.addEventListener('blur', function() {
-                    updateChannel(channel);
-                });
-                
-                // 回车键更新
-                targetInput.addEventListener('keypress', function(e) {
-                    if (e.key === 'Enter') {
-                        updateChannel(channel);
-                        this.blur();
-                    }
-                });
-                
-                // 初始更新
-                updateChannel(channel);
-            });
-        }
-        
-        // 总目标数据配置
-        const totalData = { current: 27098, defaultTarget: 47500 };
-        
-        // 从 localStorage 加载保存的总目标值
-        function loadSavedTotalTarget() {
-            const savedTarget = localStorage.getItem('target_total');
-            if (savedTarget !== null) {
-                document.getElementById('total-target').value = savedTarget;
-            }
-        }
-        
-        // 更新总达成率
-        function updateTotalProgress() {
-            const targetInput = document.getElementById('total-target');
-            const target = parseInt(targetInput.value) || totalData.defaultTarget;
-            const current = totalData.current;
-            const percent = Math.min(100, Math.round((current / target) * 100));
-            
-            // 更新百分比显示
-            document.getElementById('total-percent').textContent = percent + '%';
-            // 更新进度条
-            document.getElementById('total-bar').style.width = percent + '%';
-            
-            // 保存到 localStorage
-            localStorage.setItem('target_total', target);
-        }
-        
-        // 初始化总目标输入框
-        function initTotalTarget() {
-            const targetInput = document.getElementById('total-target');
-            
-            // 输入时实时更新
-            targetInput.addEventListener('input', function() {
-                updateTotalProgress();
-            });
-            
-            // 失去焦点时更新
-            targetInput.addEventListener('blur', function() {
-                updateTotalProgress();
-            });
-            
-            // 回车键更新
-            targetInput.addEventListener('keypress', function(e) {
-                if (e.key === 'Enter') {
-                    updateTotalProgress();
-                    this.blur();
-                }
-            });
-            
-            // 初始更新
-            updateTotalProgress();
-        }
-        
-        // 月份数据配置（预留结构，后续填充各月份数据）
-        const monthData = {
-            '2026-01': {
-                title: '1月直营平板销售',
-                subtitle: '数据时间：2026年1月 | 生成时间：2026-03-10 19:00',
-                totalCurrent: 27098,
-                totalTarget: 47500,
-                channels: {
-                    guanwang: { current: 5906, target: 7000 },
-                    tianmao: { current: 9879, target: 23500 },
-                    jingdong: { current: 2469, target: 5000 },
-                    doukuai: { current: 8844, target: 12000 }
-                }
-            },
-            '2026-02': {
-                title: '2月直营平板销售',
-                subtitle: '数据时间：2026年2月 | 生成时间：待更新',
-                totalCurrent: 0,
-                totalTarget: 0,
-                channels: {
-                    guanwang: { current: 0, target: 0 },
-                    tianmao: { current: 0, target: 0 },
-                    jingdong: { current: 0, target: 0 },
-                    doukuai: { current: 0, target: 0 }
-                }
-            },
-            '2026-03': {
-                title: '3月直营平板销售',
-                subtitle: '数据时间：2026年3月 | 生成时间：待更新',
-                totalCurrent: 0,
-                totalTarget: 0,
-                channels: {
-                    guanwang: { current: 0, target: 0 },
-                    tianmao: { current: 0, target: 0 },
-                    jingdong: { current: 0, target: 0 },
-                    doukuai: { current: 0, target: 0 }
-                }
-            },
-            '2025-Q4': {
-                title: 'FY25Q4季度直营平板销售',
-                subtitle: '数据时间：2025年Q4 | 生成时间：待更新',
-                totalCurrent: 0,
-                totalTarget: 0,
-                channels: {
-                    guanwang: { current: 0, target: 0 },
-                    tianmao: { current: 0, target: 0 },
-                    jingdong: { current: 0, target: 0 },
-                    doukuai: { current: 0, target: 0 }
-                }
+        var dkModelMixData = {
+            data: [{
+                values: [5029, 1905, 1419, 404, 24],
+                labels: ['拯救者Y700 4代', '小新平板11', 'PadProGT', 'PadPro12.7', '小新平板12.1'],
+                domain: {column: 0},
+                name: '抖快',
+                hoverinfo: 'label+percent+value',
+                hole: 0.4,
+                type: 'pie',
+                marker: {
+                    colors: ['#a855f7', '#38bdf8', '#6366f1', '#f97316', '#ec4899']
+                },
+                textinfo: 'percent',
+                textposition: 'inside'
+            }],
+            layout: {
+                height: 350,
+                margin: {t: 60, b: 20, l: 20, r: 20},
+                showlegend: true,
+                legend: {orientation: 'h', y: -0.1}
             }
         };
 
-        // 当前选中的月份
-        let currentMonth = '2026-01';
-
-        // 切换月份
-        function switchMonth(month) {
-            currentMonth = month;
-            const data = monthData[month];
-
-            // 更新页面标题
-            document.getElementById('page-title').textContent = data.title;
-            document.getElementById('page-subtitle').textContent = data.subtitle;
-
-            // 更新按钮状态
-            document.querySelectorAll('.month-btn').forEach(btn => {
-                btn.classList.remove('active');
-                if (btn.dataset.month === month) {
-                    btn.classList.add('active');
-                }
-            });
-
-            // 更新总进度数据
-            totalData.current = data.totalCurrent;
-            totalData.defaultTarget = data.totalTarget;
-            document.getElementById('total-target').value = data.totalTarget;
-            updateTotalProgress();
-
-            // 更新各渠道数据
-            Object.keys(data.channels).forEach(channel => {
-                channelData[channel].current = data.channels[channel].current;
-                channelData[channel].defaultTarget = data.channels[channel].target;
-                document.getElementById(`${channel}-target`).value = data.channels[channel].target;
-                updateChannel(channel);
-            });
-
-            // 保存当前月份到localStorage
-            localStorage.setItem('currentMonth', month);
-        }
-
-        // 初始化月份切片器
-        function initMonthSelector() {
-            const buttons = document.querySelectorAll('.month-btn');
-            buttons.forEach(btn => {
-                btn.addEventListener('click', function() {
-                    switchMonth(this.dataset.month);
-                });
-            });
-
-            // 加载上次选中的月份
-            const savedMonth = localStorage.getItem('currentMonth');
-            if (savedMonth && monthData[savedMonth]) {
-                switchMonth(savedMonth);
-            }
-        }
-
-        // 页面加载时执行
+        // 页面加载完成后渲染图表
         document.addEventListener('DOMContentLoaded', function() {
-            // 渲染四个重点机型分布图表 - 修复版v2
-            try {
-                Plotly.newPlot('jd-model-mix-chart', jdModelMixData.data, jdModelMixData.layout);
-                Plotly.newPlot('gw-model-mix-chart', gwModelMixData.data, gwModelMixData.layout);
-                Plotly.newPlot('tm-model-mix-chart', tmModelMixData.data, tmModelMixData.layout);
-                Plotly.newPlot('dk-model-mix-chart', dkModelMixData.data, dkModelMixData.layout);
-            } catch (e) {
-                console.error('Error rendering model mix charts:', e);
-            }
-
-            loadSavedTargets();
-            initChannels();
-            loadSavedTotalTarget();
-            initTotalTarget();
-            initMonthSelector();
+            Plotly.newPlot('jd-model-mix-chart', jdModelMixData.data, jdModelMixData.layout);
+            Plotly.newPlot('gw-model-mix-chart', gwModelMixData.data, gwModelMixData.layout);
+            Plotly.newPlot('tm-model-mix-chart', tmModelMixData.data, tmModelMixData.layout);
+            Plotly.newPlot('dk-model-mix-chart', dkModelMixData.data, dkModelMixData.layout);
         });
     </script>
 </body>
