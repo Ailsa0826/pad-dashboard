@@ -632,11 +632,11 @@ Plotly.newPlot('product-daily-chart', productData.data, productData.layout);
     
 
     <script>
-        // 京东官旗重点机型分布
+        // 京东官旗重点机型分布（2月数据）
         var jdModelMixData = {
             data: [{
-                values: [1788, 534, 44, 41, 40],
-                labels: ['小新平板11', 'PadProGT', '拯救者Y700 4代', '小新平板12.1', 'PadPro12.7'],
+                values: [2134, 835, 107, 53, 25],
+                labels: ['小新平板11', 'PadProGT', '小新平板12.1', 'PadPro12.7', '拯救者Y700 4代'],
                 domain: {column: 0},
                 name: '京东官旗',
                 hoverinfo: 'label+percent+value',
@@ -656,11 +656,11 @@ Plotly.newPlot('product-daily-chart', productData.data, productData.layout);
             }
         };
 
-        // 官网重点机型分布
+        // 官网重点机型分布（2月数据）
         var gwModelMixData = {
             data: [{
-                values: [4841, 418, 306, 50, 11],
-                labels: ['小新平板11', 'PadProGT', '拯救者Y700 4代', 'PadPro12.7', '小新平板12.1'],
+                values: [2626, 906, 781, 143, 63],
+                labels: ['小新平板11', 'PadProGT', '拯救者Y700 4代', '小新pad 2023', 'PadPro12.7'],
                 domain: {column: 0},
                 name: '官网',
                 hoverinfo: 'label+percent+value',
@@ -680,10 +680,10 @@ Plotly.newPlot('product-daily-chart', productData.data, productData.layout);
             }
         };
 
-        // 天猫重点机型分布
+        // 天猫重点机型分布（2月数据）
         var tmModelMixData = {
             data: [{
-                values: [6924, 932, 876, 699, 408],
+                values: [3245, 1463, 970, 711, 552],
                 labels: ['小新平板11', 'PadPro12.7', 'PadProGT', '拯救者Y700 4代', '小新平板12.1'],
                 domain: {column: 0},
                 name: '天猫',
@@ -704,11 +704,11 @@ Plotly.newPlot('product-daily-chart', productData.data, productData.layout);
             }
         };
 
-        // 抖快重点机型分布
+        // 抖快重点机型分布（2月数据：已包含国代）
         var dkModelMixData = {
             data: [{
-                values: [5029, 1905, 1419, 404, 24],
-                labels: ['拯救者Y700 4代', '小新平板11', 'PadProGT', 'PadPro12.7', '小新平板12.1'],
+                values: [1326, 872, 754, 598, 31],
+                labels: ['拯救者Y700 4代', 'PadPro12.7', 'PadProGT', '小新平板11', '小新平板12.1'],
                 domain: {column: 0},
                 name: '抖快',
                 hoverinfo: 'label+percent+value',
