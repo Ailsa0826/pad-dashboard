@@ -163,11 +163,15 @@
         .info-target {
             color: #999;
         }
-        .info-target span {
+        .info-target input {
             border: 1px solid #d9d9d9;
             padding: 2px 8px;
             border-radius: 4px;
             margin-left: 4px;
+            width: 60px;
+            text-align: center;
+            font-size: 14px;
+            color: #333;
         }
         
         /* 第二行：4个渠道卡片 */
@@ -222,11 +226,15 @@
         .value-target {
             color: #999;
         }
-        .value-target span {
+        .value-target input {
             border: 1px solid #d9d9d9;
             padding: 2px 6px;
             border-radius: 4px;
             margin-left: 4px;
+            width: 50px;
+            text-align: center;
+            font-size: 13px;
+            color: #333;
         }
         
         /* 图表行 */
@@ -320,7 +328,7 @@
                     <div class="achievement-info">
                         <span class="info-current">当前 <span id="currentSales">27.1</span>K</span>
                         <span style="color: #999;">|</span>
-                        <span class="info-target">目标 <span id="targetSales">47500</span></span>
+                        <span class="info-target">目标 <input type="text" id="targetSales" value="47500" onchange="updateTarget(this.value)"></span>
                     </div>
                 </div>
             </div>
@@ -461,7 +469,7 @@
                     <div class="channel-values">
                         <span class="value-current">${(actual * 1000).toLocaleString()}</span>
                         <span style="color: #ccc;">|</span>
-                        <span class="value-target">目标 <span>${(target * 1000).toLocaleString()}</span></span>
+                        <span class="value-target">目标 <input type="text" value="${(target * 1000).toLocaleString()}" onchange="updateChannelTarget('${ch}', this.value)"></span>
                     </div>
                 `;
                 container.appendChild(card);
@@ -553,6 +561,28 @@
                 paper_bgcolor: 'rgba(0,0,0,0)',
                 plot_bgcolor: 'rgba(0,0,0,0)'
             }, {responsive: true});
+        }
+        
+        // 更新总目标
+        function updateTarget(value) {
+            const numValue = parseFloat(value);
+            if (numValue > 0) {
+                dashboardData[currentMonth].targets['总目标'] = numValue / 1000;
+                // 重新计算达成率
+                const actual = dashboardData[currentMonth].actual_total;
+                const newRate = (actual / (numValue / 1000)) * 100;
+                dashboardData[currentMonth].achievement_rate = Math.round(newRate * 10) / 10;
+                updateDashboard(currentMonth);
+            }
+        }
+        
+        // 更新渠道目标
+        function updateChannelTarget(channel, value) {
+            const numValue = parseFloat(value);
+            if (numValue > 0) {
+                dashboardData[currentMonth].channel_targets[channel] = numValue / 1000;
+                updateDashboard(currentMonth);
+            }
         }
         
         init();
