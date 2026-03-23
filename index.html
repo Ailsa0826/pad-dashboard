@@ -1239,9 +1239,9 @@
 
             // 为每个机型分配固定颜色
             const defaultColors = ['#1890ff', '#52c41a', '#722ed1', '#faad14', '#f5222d', '#13c2c2', '#eb2f96', '#fa8c16', '#a0d911', '#ff4d4f', '#40a9ff', '#73d13d'];
-            const modelColors = {};
+            const modelColorAssignments = {};
             Array.from(allModels).forEach((model, idx) => {
-                modelColors[model] = modelColorMap[model] || defaultColors[idx % defaultColors.length];
+                modelColorAssignments[model] = modelColorMap[model] || defaultColors[idx % defaultColors.length];
             });
 
             // 渲染渠道机型分布图的函数
@@ -1264,7 +1264,7 @@
                     type: 'pie',
                     hole: 0.5,
                     marker: {
-                        colors: labels.map(label => modelColors[label] || '#999')
+                        colors: labels.map(label => modelColorAssignments[label] || '#999')
                     },
                     textinfo: 'percent',
                     textposition: 'inside',
@@ -1318,4 +1318,3 @@
     </script>
 </body>
 </html>
-# Cache bust Mon Mar 23 16:02:58 CST 2026
