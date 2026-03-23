@@ -394,6 +394,38 @@
                 <div id="gw-bayday-chart" style="height: 300px;"></div>
             </div>
         </div>
+        
+        <!-- 第六行：天猫、抖音Bay Day -->
+        <div class="chart-row">
+            <div class="chart-card">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+                    <div class="chart-title" style="margin-bottom: 0;">天猫Bay Day销售情况</div>
+                    <div>
+                        <div style="font-size: 13px; color: #666; text-align: right;">月均日销: <span style="color: #1890ff; font-weight: bold;" id="tm-monthly-avg">0</span></div>
+                        <div style="font-size: 13px; color: #666; text-align: right;">近7日销: <span style="color: #52c41a; font-weight: bold;" id="tm-last7-avg">0</span></div>
+                    </div>
+                </div>
+                <div id="tm-bayday-chart" style="height: 300px;"></div>
+            </div>
+            <div class="chart-card">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+                    <div class="chart-title" style="margin-bottom: 0;">抖音Bay Day销售情况</div>
+                    <div>
+                        <div style="font-size: 13px; color: #666; text-align: right;">月均日销: <span style="color: #1890ff; font-weight: bold;" id="dy-monthly-avg">0</span></div>
+                        <div style="font-size: 13px; color: #666; text-align: right;">近7日销: <span style="color: #52c41a; font-weight: bold;" id="dy-last7-avg">0</span></div>
+                    </div>
+                </div>
+                <div id="dy-bayday-chart" style="height: 300px;"></div>
+            </div>
+        </div>
+        
+        <!-- 第七行：重点产品分天销售走势 -->
+        <div class="chart-row">
+            <div class="chart-card full-width">
+                <div class="chart-title">重点产品分天销售走势</div>
+                <div id="product-trend-chart" style="height: 400px;"></div>
+            </div>
+        </div>
     </div>
 
     <script>
@@ -675,6 +707,124 @@
                 paper_bgcolor: 'rgba(0,0,0,0)',
                 plot_bgcolor: 'rgba(0,0,0,0)',
                 showlegend: false
+            }, {responsive: true});
+            
+            // 第六行：天猫Bay Day
+            const tmDaily = data.channel_daily['天猫'];
+            const tmDates = Object.keys(tmDaily);
+            const tmValues = Object.values(tmDaily);
+            const tmMonthlyAvg = Math.round(tmValues.reduce((a, b) => a + b, 0) / tmValues.length);
+            const tmLast7Avg = Math.round(tmValues.slice(-7).reduce((a, b) => a + b, 0) / Math.min(7, tmValues.length));
+            
+            document.getElementById('tm-monthly-avg').textContent = tmMonthlyAvg;
+            document.getElementById('tm-last7-avg').textContent = tmLast7Avg;
+            
+            const tmBayData = [{
+                x: tmDates.map(formatDate),
+                y: tmValues,
+                type: 'scatter',
+                mode: 'lines+markers+text',
+                line: { color: '#faad14', width: 2 },
+                marker: { size: 6, color: '#faad14' },
+                text: tmValues.map((v, i) => i % 3 === 0 || i === tmValues.length - 1 ? v : ''),
+                textposition: 'top center',
+                hovertemplate: '%{x}<br>销量: %{y}台<extra></extra>'
+            }];
+            Plotly.newPlot('tm-bayday-chart', tmBayData, {
+                margin: { l: 50, r: 20, t: 30, b: 80 },
+                height: 310,
+                xaxis: {
+                    tickangle: -45,
+                    showgrid: false,
+                    tickmode: 'linear',
+                    dtick: 2,
+                    tickfont: { size: 10 }
+                },
+                yaxis: { showgrid: false },
+                paper_bgcolor: 'rgba(0,0,0,0)',
+                plot_bgcolor: 'rgba(0,0,0,0)',
+                showlegend: false
+            }, {responsive: true});
+            
+            // 第六行：抖音Bay Day
+            const dyDaily = data.channel_daily['抖快'];
+            const dyDates = Object.keys(dyDaily);
+            const dyValues = Object.values(dyDaily);
+            const dyMonthlyAvg = Math.round(dyValues.reduce((a, b) => a + b, 0) / dyValues.length);
+            const dyLast7Avg = Math.round(dyValues.slice(-7).reduce((a, b) => a + b, 0) / Math.min(7, dyValues.length));
+            
+            document.getElementById('dy-monthly-avg').textContent = dyMonthlyAvg;
+            document.getElementById('dy-last7-avg').textContent = dyLast7Avg;
+            
+            const dyBayData = [{
+                x: dyDates.map(formatDate),
+                y: dyValues,
+                type: 'scatter',
+                mode: 'lines+markers+text',
+                line: { color: '#f5222d', width: 2 },
+                marker: { size: 6, color: '#f5222d' },
+                text: dyValues.map((v, i) => i % 3 === 0 || i === dyValues.length - 1 ? v : ''),
+                textposition: 'top center',
+                hovertemplate: '%{x}<br>销量: %{y}台<extra></extra>'
+            }];
+            Plotly.newPlot('dy-bayday-chart', dyBayData, {
+                margin: { l: 50, r: 20, t: 30, b: 80 },
+                height: 310,
+                xaxis: {
+                    tickangle: -45,
+                    showgrid: false,
+                    tickmode: 'linear',
+                    dtick: 2,
+                    tickfont: { size: 10 }
+                },
+                yaxis: { showgrid: false },
+                paper_bgcolor: 'rgba(0,0,0,0)',
+                plot_bgcolor: 'rgba(0,0,0,0)',
+                showlegend: false
+            }, {responsive: true});
+            
+            // 第七行：重点产品分天销售走势
+            const topProducts = Object.keys(data.models.key_models).slice(0, 5);
+            const productColors = ['#1890ff', '#52c41a', '#722ed1', '#faad14', '#f5222d'];
+            const productTrendData = topProducts.map((prod, idx) => {
+                const prodSales = data.daily;
+                const dates = Object.keys(prodSales);
+                // 按机型占比分配每日销量
+                const totalKeyModels = Object.values(data.models.key_models).reduce((a, b) => a + b, 0);
+                const prodRatio = data.models.key_models[prod] / totalKeyModels;
+                const values = Object.values(prodSales).map(v => Math.round(v * prodRatio));
+                
+                return {
+                    x: dates.map(formatDate),
+                    y: values,
+                    type: 'scatter',
+                    mode: 'lines',
+                    name: prod,
+                    line: { color: productColors[idx], width: 2 }
+                };
+            });
+            
+            Plotly.newPlot('product-trend-chart', productTrendData, {
+                margin: { l: 60, r: 20, t: 40, b: 80 },
+                height: 400,
+                xaxis: {
+                    tickangle: -45,
+                    showgrid: false,
+                    title: '日期',
+                    tickfont: { size: 10 }
+                },
+                yaxis: { 
+                    showgrid: false,
+                    title: '销量（台）'
+                },
+                legend: {
+                    orientation: 'h',
+                    y: 1.1,
+                    x: 0.5,
+                    xanchor: 'center'
+                },
+                paper_bgcolor: 'rgba(0,0,0,0)',
+                plot_bgcolor: 'rgba(0,0,0,0)'
             }, {responsive: true});
         }
         
