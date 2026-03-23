@@ -617,12 +617,12 @@
                 marker: { color: '#1890ff' },
                 text: dailyValues.map(v => v.toString()),
                 textposition: 'outside',
-                textfont: { size: 9, color: '#666' },
+                textfont: { size: 11, color: '#333', family: 'Arial, sans-serif' },
                 hovertemplate: '%{x}<br>销量: %{y}台<extra></extra>'
             }];
             Plotly.newPlot('daily-chart', dailyData, {
-                margin: { l: 60, r: 20, t: 50, b: 80 },
-                height: 340,
+                margin: { l: 60, r: 20, t: 60, b: 80 },
+                height: 360,
                 xaxis: {
                     tickangle: -45,
                     showgrid: false,
@@ -630,7 +630,7 @@
                     dtick: 1,
                     tickfont: { size: 10 }
                 },
-                yaxis: { title: '销量（台）', showgrid: false },
+                yaxis: { title: '销量（台）', showgrid: false, range: [0, Math.max(...dailyValues) * 1.15] },
                 paper_bgcolor: 'rgba(0,0,0,0)',
                 plot_bgcolor: 'rgba(0,0,0,0)'
             }, {responsive: true});
