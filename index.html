@@ -645,6 +645,7 @@
             document.getElementById('jd-monthly-avg').textContent = jdMonthlyAvg;
             document.getElementById('jd-last7-avg').textContent = jdLast7Avg;
             
+            const jdMax = Math.max(...jdValues);
             const jdBayData = [{
                 x: jdDates.map(formatDate),
                 y: jdValues,
@@ -654,11 +655,12 @@
                 marker: { size: 6, color: '#1890ff' },
                 text: jdValues.map((v, i) => i % 3 === 0 || i === jdValues.length - 1 ? v : ''),
                 textposition: 'top center',
+                textfont: { size: 10 },
                 hovertemplate: '%{x}<br>销量: %{y}台<extra></extra>'
             }];
             Plotly.newPlot('jd-bayday-chart', jdBayData, {
-                margin: { l: 50, r: 20, t: 30, b: 80 },
-                height: 310,
+                margin: { l: 50, r: 20, t: 50, b: 80 },
+                height: 330,
                 xaxis: {
                     tickangle: -45,
                     showgrid: false,
@@ -666,7 +668,7 @@
                     dtick: 2,
                     tickfont: { size: 10 }
                 },
-                yaxis: { showgrid: false },
+                yaxis: { showgrid: false, range: [0, jdMax * 1.2] },
                 paper_bgcolor: 'rgba(0,0,0,0)',
                 plot_bgcolor: 'rgba(0,0,0,0)',
                 showlegend: false
@@ -682,6 +684,7 @@
             document.getElementById('gw-monthly-avg').textContent = gwMonthlyAvg;
             document.getElementById('gw-last7-avg').textContent = gwLast7Avg;
             
+            const gwMax = Math.max(...gwValues);
             const gwBayData = [{
                 x: gwDates.map(formatDate),
                 y: gwValues,
@@ -691,11 +694,12 @@
                 marker: { size: 6, color: '#52c41a' },
                 text: gwValues.map((v, i) => i % 3 === 0 || i === gwValues.length - 1 ? v : ''),
                 textposition: 'top center',
+                textfont: { size: 10 },
                 hovertemplate: '%{x}<br>销量: %{y}台<extra></extra>'
             }];
             Plotly.newPlot('gw-bayday-chart', gwBayData, {
-                margin: { l: 50, r: 20, t: 30, b: 80 },
-                height: 310,
+                margin: { l: 50, r: 20, t: 50, b: 80 },
+                height: 330,
                 xaxis: {
                     tickangle: -45,
                     showgrid: false,
@@ -703,7 +707,7 @@
                     dtick: 2,
                     tickfont: { size: 10 }
                 },
-                yaxis: { showgrid: false },
+                yaxis: { showgrid: false, range: [0, gwMax * 1.2] },
                 paper_bgcolor: 'rgba(0,0,0,0)',
                 plot_bgcolor: 'rgba(0,0,0,0)',
                 showlegend: false
@@ -719,6 +723,7 @@
             document.getElementById('tm-monthly-avg').textContent = tmMonthlyAvg;
             document.getElementById('tm-last7-avg').textContent = tmLast7Avg;
             
+            const tmMax = Math.max(...tmValues);
             const tmBayData = [{
                 x: tmDates.map(formatDate),
                 y: tmValues,
@@ -728,11 +733,12 @@
                 marker: { size: 6, color: '#faad14' },
                 text: tmValues.map((v, i) => i % 3 === 0 || i === tmValues.length - 1 ? v : ''),
                 textposition: 'top center',
+                textfont: { size: 10 },
                 hovertemplate: '%{x}<br>销量: %{y}台<extra></extra>'
             }];
             Plotly.newPlot('tm-bayday-chart', tmBayData, {
-                margin: { l: 50, r: 20, t: 30, b: 80 },
-                height: 310,
+                margin: { l: 50, r: 20, t: 50, b: 80 },
+                height: 330,
                 xaxis: {
                     tickangle: -45,
                     showgrid: false,
@@ -740,7 +746,7 @@
                     dtick: 2,
                     tickfont: { size: 10 }
                 },
-                yaxis: { showgrid: false },
+                yaxis: { showgrid: false, range: [0, tmMax * 1.2] },
                 paper_bgcolor: 'rgba(0,0,0,0)',
                 plot_bgcolor: 'rgba(0,0,0,0)',
                 showlegend: false
@@ -756,6 +762,7 @@
             document.getElementById('dy-monthly-avg').textContent = dyMonthlyAvg;
             document.getElementById('dy-last7-avg').textContent = dyLast7Avg;
             
+            const dyMax = Math.max(...dyValues);
             const dyBayData = [{
                 x: dyDates.map(formatDate),
                 y: dyValues,
@@ -765,11 +772,12 @@
                 marker: { size: 6, color: '#f5222d' },
                 text: dyValues.map((v, i) => i % 3 === 0 || i === dyValues.length - 1 ? v : ''),
                 textposition: 'top center',
+                textfont: { size: 10 },
                 hovertemplate: '%{x}<br>销量: %{y}台<extra></extra>'
             }];
             Plotly.newPlot('dy-bayday-chart', dyBayData, {
-                margin: { l: 50, r: 20, t: 30, b: 80 },
-                height: 310,
+                margin: { l: 50, r: 20, t: 50, b: 80 },
+                height: 330,
                 xaxis: {
                     tickangle: -45,
                     showgrid: false,
@@ -777,7 +785,7 @@
                     dtick: 2,
                     tickfont: { size: 10 }
                 },
-                yaxis: { showgrid: false },
+                yaxis: { showgrid: false, range: [0, dyMax * 1.2] },
                 paper_bgcolor: 'rgba(0,0,0,0)',
                 plot_bgcolor: 'rgba(0,0,0,0)',
                 showlegend: false
