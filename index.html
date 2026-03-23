@@ -581,22 +581,42 @@
         function updateCountdown(monthNum, lastDay) {
             const now = new Date();
             const currentYear = now.getFullYear();
-            const endDate = new Date(currentYear, monthNum, lastDay, 23, 59, 59);
+            const currentMonth = now.getMonth() + 1; // 1-12
 
-            const diff = endDate - now;
-
-            if (diff > 0) {
-                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-                const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-
-                document.getElementById('cd-months').textContent = 0;
-                document.getElementById('cd-days').textContent = days;
-                document.getElementById('cd-hours').textContent = String(hours).padStart(2, '0');
-            } else {
+            // 如果当前月份大于目标月份，说明该月已结束
+            if (currentMonth > monthNum) {
                 document.getElementById('cd-months').textContent = 0;
                 document.getElementById('cd-days').textContent = 0;
                 document.getElementById('cd-hours').textContent = '00';
+                return;
             }
+
+            // 如果当前月份等于目标月份，计算到月底的剩余时间
+            if (currentMonth === monthNum) {
+                const endDate = new Date(currentYear, monthNum, lastDay, 23, 59, 59);
+                const diff = endDate - now;
+
+                if (diff > 0) {
+                    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+
+                    document.getElementById('cd-months').textContent = 0;
+                    document.getElementById('cd-days').textContent = days;
+                    document.getElementById('cd-hours').textContent = String(hours).padStart(2, '0');
+                } else {
+                    // 已到月底最后一天之后
+                    document.getElementById('cd-months').textContent = 0;
+                    document.getElementById('cd-days').textContent = 0;
+                    document.getElementById('cd-hours').textContent = '00';
+                }
+                return;
+            }
+
+            // 如果当前月份小于目标月份（未来月份），显示该月总天数
+            // 这种情况通常不会发生，因为数据是历史的
+            document.getElementById('cd-months').textContent = 0;
+            document.getElementById('cd-days').textContent = lastDay;
+            document.getElementById('cd-hours').textContent = '00';
         }
 
         function renderChannelCards(data) {
