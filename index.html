@@ -342,61 +342,7 @@
         
         <!-- 第二行：4个渠道 -->
         <div class="channel-row" id="channelRow">
-            <!-- 官网 -->
-            <div class="channel-card" data-channel="guanwang">
-                <div class="channel-title">FY26 <span class="month-num">1</span>月官网PO</div>
-                <div class="channel-percent" id="guanwang-percent">84%</div>
-                <div class="channel-progress">
-                    <div class="channel-progress-fill" id="guanwang-bar" style="width: 84%"></div>
-                </div>
-                <div class="channel-values">
-                    <span class="value-current" id="guanwang-current">5,906</span>
-                    <span style="color: #ccc;">|</span>
-                    <span class="value-target">目标 <input type="number" id="guanwang-target" value="7000" min="0" style="width: 60px; border: 1px solid #ddd; border-radius: 4px; padding: 2px 4px; text-align: center; font-size: 13px;" onchange="updateChannelTarget('guanwang')"></span>
-                </div>
-            </div>
-            
-            <!-- 天猫 -->
-            <div class="channel-card" data-channel="tianmao">
-                <div class="channel-title">FY26 <span class="month-num">1</span>月天猫PO</div>
-                <div class="channel-percent" id="tianmao-percent">42%</div>
-                <div class="channel-progress">
-                    <div class="channel-progress-fill" id="tianmao-bar" style="width: 42%"></div>
-                </div>
-                <div class="channel-values">
-                    <span class="value-current" id="tianmao-current">9,879</span>
-                    <span style="color: #ccc;">|</span>
-                    <span class="value-target">目标 <input type="number" id="tianmao-target" value="23500" min="0" style="width: 60px; border: 1px solid #ddd; border-radius: 4px; padding: 2px 4px; text-align: center; font-size: 13px;" onchange="updateChannelTarget('tianmao')"></span>
-                </div>
-            </div>
-            
-            <!-- 京东官旗 -->
-            <div class="channel-card" data-channel="jingdong">
-                <div class="channel-title">FY26 <span class="month-num">1</span>月京东官旗PO</div>
-                <div class="channel-percent" id="jingdong-percent">49%</div>
-                <div class="channel-progress">
-                    <div class="channel-progress-fill" id="jingdong-bar" style="width: 49%"></div>
-                </div>
-                <div class="channel-values">
-                    <span class="value-current" id="jingdong-current">2,469</span>
-                    <span style="color: #ccc;">|</span>
-                    <span class="value-target">目标 <input type="number" id="jingdong-target" value="5000" min="0" style="width: 60px; border: 1px solid #ddd; border-radius: 4px; padding: 2px 4px; text-align: center; font-size: 13px;" onchange="updateChannelTarget('jingdong')"></span>
-                </div>
-            </div>
-            
-            <!-- 抖快 -->
-            <div class="channel-card" data-channel="doukuai">
-                <div class="channel-title">FY26 <span class="month-num">1</span>月抖快PO</div>
-                <div class="channel-percent" id="doukuai-percent">74%</div>
-                <div class="channel-progress">
-                    <div class="channel-progress-fill" id="doukuai-bar" style="width: 74%"></div>
-                </div>
-                <div class="channel-values">
-                    <span class="value-current" id="doukuai-current">8,844</span>
-                    <span style="color: #ccc;">|</span>
-                    <span class="value-target">目标 <input type="number" id="doukuai-target" value="12000" min="0" style="width: 60px; border: 1px solid #ddd; border-radius: 4px; padding: 2px 4px; text-align: center; font-size: 13px;" onchange="updateChannelTarget('doukuai')"></span>
-                </div>
-            </div>
+            <!-- 动态生成 -->
         </div>
         
         <!-- 第三行：机型图表 -->
@@ -458,57 +404,29 @@
             renderMonthSlicer();
             updateDashboard(currentMonth);
             
-            // 动态加载月份数据函数
-            function loadMonthData(month) {
-                const monthFiles = {
-                    '2026-01': 'index.html',
-                    '2026-02': '2026-02.html',
-                    '2026-03': '2026-03.html',
-                    '2025-Q4': 'fy25q4.html'
-                };
-                
-                const targetFile = monthFiles[month];
-                if (targetFile && targetFile !== 'index.html') {
-                    window.location.href = targetFile;
-                }
-            }
-            
-            // 月份切片器点击事件
-            const monthBtns = document.querySelectorAll('.month-btn');
-            monthBtns.forEach(btn => {
-                btn.addEventListener('click', function() {
-                    // 移除所有按钮的 active 类
-                    monthBtns.forEach(b => b.classList.remove('active'));
-                    // 给当前按钮添加 active 类
-                    this.classList.add('active');
-                    
-                    const selectedMonth = this.getAttribute('data-month');
-                    console.log('切换到月份:', selectedMonth);
-                    
-                    // 更新页面标题
-                    const monthNames = {
-                        '2026-01': '1月直营平板销售',
-                        '2026-02': '2月直营平板销售',
-                        '2026-03': '3月直营平板销售',
-                        '2025-Q4': 'FY25Q4直营平板销售'
-                    };
-                    document.getElementById('page-title').textContent = monthNames[selectedMonth] || '直营平板销售';
-                    
-                    // 加载对应月份数据
-                    if (selectedMonth !== '2026-01') {
-                        loadMonthData(selectedMonth);
-                    } else {
-                        // 1月数据是当前页面默认数据，刷新页面即可
-                        location.reload();
-                    }
-                });
-            });
-            
+            const now = new Date();
+            document.getElementById('genTime').textContent = 
+                now.getFullYear() + '-' + String(now.getMonth() + 1).padStart(2, '0') + '-' + 
+                String(now.getDate()).padStart(2, '0') + ' ' + 
+                String(now.getHours()).padStart(2, '0') + ':' + String(now.getMinutes()).padStart(2, '0');
         }
         
         function renderMonthSlicer() {
-            // 月份切片器已在HTML中静态定义，这里不需要动态创建
-            console.log('月份切片器已初始化');
+            const container = document.getElementById('monthSlicer');
+            container.innerHTML = '';
+            
+            Object.keys(dashboardData).forEach(month => {
+                const btn = document.createElement('button');
+                btn.className = 'month-btn' + (month === currentMonth ? ' active' : '');
+                btn.textContent = month;
+                btn.onclick = () => {
+                    currentMonth = month;
+                    document.querySelectorAll('.month-btn').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    updateDashboard(month);
+                };
+                container.appendChild(btn);
+            });
         }
         
         function updateDashboard(month) {
@@ -556,63 +474,32 @@
         }
         
         function renderChannelCards(data) {
-            // 更新静态渠道卡片的数据
-            const channelMap = {
-                'guanwang': '官网',
-                'tianmao': '天猫',
-                'jingdong': '京东官旗',
-                'doukuai': '抖快'
-            };
+            const container = document.getElementById('channelRow');
+            container.innerHTML = '';
             
-            Object.entries(channelMap).forEach(([id, chName]) => {
-                const actual = data.channels[chName] || 0;
-                const target = data.channel_targets[chName];
+            const channels = ['官网', '天猫', '京东官旗', '抖快'];
+            
+            channels.forEach(ch => {
+                const actual = data.channels[ch] || 0;
+                const target = data.channel_targets[ch];
                 const rate = target > 0 ? Math.round((actual / target) * 100) : 0;
                 
-                // 更新百分比
-                const percentEl = document.getElementById(id + '-percent');
-                if (percentEl) percentEl.textContent = rate + '%';
-                
-                // 更新进度条
-                const barEl = document.getElementById(id + '-bar');
-                if (barEl) barEl.style.width = Math.min(rate, 100) + '%';
-                
-                // 更新当前值
-                const currentEl = document.getElementById(id + '-current');
-                if (currentEl) currentEl.textContent = (actual * 1000).toLocaleString();
-                
-                // 更新目标输入框（如果用户没有手动修改过）
-                const targetInput = document.getElementById(id + '-target');
-                if (targetInput && !targetInput.dataset.userModified) {
-                    targetInput.value = (target * 1000);
-                }
+                const card = document.createElement('div');
+                card.className = 'channel-card';
+                card.innerHTML = `
+                    <div class="channel-title">FY26 ${data.month_num}月${ch}PO</div>
+                    <div class="channel-percent">${rate}%</div>
+                    <div class="channel-progress">
+                        <div class="channel-progress-fill" style="width: ${Math.min(rate, 100)}%"></div>
+                    </div>
+                    <div class="channel-values">
+                        <span class="value-current">${(actual * 1000).toLocaleString()}</span>
+                        <span style="color: #ccc;">|</span>
+                        <span class="value-target">目标 <input type="text" value="${(target * 1000).toLocaleString()}" onchange="updateChannelTarget('${ch}', this.value)"></span>
+                    </div>
+                `;
+                container.appendChild(card);
             });
-        }
-        
-        function updateChannelTarget(channel) {
-            const input = document.getElementById(channel + '-target');
-            if (!input) return;
-            
-            // 标记为用户已修改
-            input.dataset.userModified = 'true';
-            
-            const target = parseFloat(input.value) || 0;
-            const currentText = document.getElementById(channel + '-current').textContent;
-            const current = parseFloat(currentText.replace(/,/g, '')) || 0;
-            const rate = target > 0 ? Math.round((current / target) * 100) : 0;
-            
-            document.getElementById(channel + '-percent').textContent = rate + '%';
-            document.getElementById(channel + '-bar').style.width = Math.min(rate, 100) + '%';
-        }
-        
-        function updateTarget(value) {
-            const target = parseFloat(value) || 47500;
-            const currentText = document.getElementById('currentSales').textContent;
-            const current = parseFloat(currentText) * 1000 || 27100;
-            const rate = target > 0 ? ((current / target) * 100).toFixed(1) : 0;
-            
-            document.getElementById('achievementRate').textContent = rate + '%';
-            document.getElementById('progressBar').style.width = Math.min(rate, 100) + '%';
         }
         
         function renderCharts(data) {
@@ -685,17 +572,29 @@
             
             const dailyDates = Object.keys(data.daily);
             const dailyValues = Object.values(data.daily);
+            // 格式化日期为 2026/1/1 格式
+            const formatDate = (d) => {
+                const parts = d.split('-');
+                return parts[0] + '/' + parseInt(parts[1]) + '/' + parseInt(parts[2]);
+            };
+            
             const dailyData = [{
-                x: dailyDates.map(d => d.slice(5)),
+                x: dailyDates.map(formatDate),
                 y: dailyValues,
                 type: 'bar',
                 marker: { color: '#1890ff' },
                 hovertemplate: '%{x}<br>销量: %{y}台<extra></extra>'
             }];
             Plotly.newPlot('daily-chart', dailyData, { 
-                margin: { l: 60, r: 20, t: 20, b: 60 }, 
+                margin: { l: 60, r: 20, t: 20, b: 80 }, 
                 height: 300,
-                xaxis: { tickangle: -45, gridcolor: '#f0f0f0' },
+                xaxis: { 
+                    tickangle: -45, 
+                    gridcolor: '#f0f0f0',
+                    tickmode: 'linear',
+                    dtick: 1,
+                    tickfont: { size: 10 }
+                },
                 yaxis: { title: '销量（台）', gridcolor: '#f0f0f0' },
                 paper_bgcolor: 'rgba(0,0,0,0)',
                 plot_bgcolor: 'rgba(0,0,0,0)'
@@ -712,7 +611,7 @@
             document.getElementById('jd-last7-avg').textContent = jdLast7Avg;
             
             const jdBayData = [{
-                x: jdDates.map(d => d.slice(5)),
+                x: jdDates.map(formatDate),
                 y: jdValues,
                 type: 'scatter',
                 mode: 'lines+markers+text',
@@ -723,9 +622,15 @@
                 hovertemplate: '%{x}<br>销量: %{y}台<extra></extra>'
             }];
             Plotly.newPlot('jd-bayday-chart', jdBayData, {
-                margin: { l: 50, r: 20, t: 20, b: 60 },
+                margin: { l: 50, r: 20, t: 20, b: 80 },
                 height: 300,
-                xaxis: { tickangle: -45, gridcolor: '#f0f0f0', nticks: 10 },
+                xaxis: { 
+                    tickangle: -45, 
+                    gridcolor: '#f0f0f0', 
+                    tickmode: 'linear',
+                    dtick: 2,
+                    tickfont: { size: 10 }
+                },
                 yaxis: { gridcolor: '#f0f0f0' },
                 paper_bgcolor: 'rgba(0,0,0,0)',
                 plot_bgcolor: 'rgba(0,0,0,0)',
@@ -743,7 +648,7 @@
             document.getElementById('gw-last7-avg').textContent = gwLast7Avg;
             
             const gwBayData = [{
-                x: gwDates.map(d => d.slice(5)),
+                x: gwDates.map(formatDate),
                 y: gwValues,
                 type: 'scatter',
                 mode: 'lines+markers+text',
@@ -754,9 +659,15 @@
                 hovertemplate: '%{x}<br>销量: %{y}台<extra></extra>'
             }];
             Plotly.newPlot('gw-bayday-chart', gwBayData, {
-                margin: { l: 50, r: 20, t: 20, b: 60 },
+                margin: { l: 50, r: 20, t: 20, b: 80 },
                 height: 300,
-                xaxis: { tickangle: -45, gridcolor: '#f0f0f0', nticks: 10 },
+                xaxis: {
+                    tickangle: -45,
+                    gridcolor: '#f0f0f0',
+                    tickmode: 'linear',
+                    dtick: 2,
+                    tickfont: { size: 10 }
+                },
                 yaxis: { gridcolor: '#f0f0f0' },
                 paper_bgcolor: 'rgba(0,0,0,0)',
                 plot_bgcolor: 'rgba(0,0,0,0)',
