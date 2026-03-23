@@ -583,13 +583,16 @@
                 y: dailyValues,
                 type: 'bar',
                 marker: { color: '#1890ff' },
+                text: dailyValues.map(v => v.toString()),
+                textposition: 'outside',
+                textfont: { size: 9, color: '#666' },
                 hovertemplate: '%{x}<br>销量: %{y}台<extra></extra>'
             }];
-            Plotly.newPlot('daily-chart', dailyData, { 
-                margin: { l: 60, r: 20, t: 20, b: 80 }, 
-                height: 300,
-                xaxis: { 
-                    tickangle: -45, 
+            Plotly.newPlot('daily-chart', dailyData, {
+                margin: { l: 60, r: 20, t: 40, b: 80 },
+                height: 320,
+                xaxis: {
+                    tickangle: -45,
                     gridcolor: '#f0f0f0',
                     tickmode: 'linear',
                     dtick: 1,
