@@ -1186,14 +1186,46 @@
 
             // 第十三行和第十四行：各渠道重点机型分布Mix（甜甜圈图）
             const channelModelMix = data.channel_model_mix || {};
-            const mixColors = ['#1890ff', '#52c41a', '#722ed1', '#faad14', '#f5222d', '#13c2c2', '#eb2f96', '#fa8c16'];
+
+            // 机型固定颜色映射
+            const modelColorMap = {
+                '小新平板11': '#1890ff',
+                '小新Pad11': '#1890ff',
+                '小新平板12.1': '#52c41a',
+                'PadPro12.7': '#722ed1',
+                'PadProGT': '#faad14',
+                '拯救者Y700 4代': '#f5222d',
+                'Y700 4代': '#f5222d',
+                '小新pad 2023': '#13c2c2',
+                '小新pad 2024': '#eb2f96',
+                'YogaPadPro 14.5': '#fa8c16',
+                'Pad 2024 舒视智学版': '#a0d911',
+                '拯救者Y700 3代': '#52c41a',
+                'Pad Studio': '#722ed1',
+                '小新pad plus 2023': '#faad14',
+                'Y700 2代': '#f5222d',
+                'YogaPadPro 12.7': '#13c2c2',
+                'Pad Pro12.7 类纸屏': '#eb2f96'
+            };
+
+            // 获取所有出现过的机型
+            const allModels = new Set();
+            Object.values(channelModelMix).forEach(mix => {
+                Object.keys(mix).forEach(model => allModels.add(model));
+            });
+
+            // 为每个机型分配固定颜色
+            const defaultColors = ['#1890ff', '#52c41a', '#722ed1', '#faad14', '#f5222d', '#13c2c2', '#eb2f96', '#fa8c16', '#a0d911', '#ff4d4f', '#40a9ff', '#73d13d'];
+            const modelColors = {};
+            Array.from(allModels).forEach((model, idx) => {
+                modelColors[model] = modelColorMap[model] || defaultColors[idx % defaultColors.length];
+            });
 
             // 渲染渠道机型分布图的函数
             function renderChannelModelMix(chartId, channelName) {
                 const mixData = channelModelMix[channelName] || {};
                 const labels = Object.keys(mixData);
                 const values = Object.values(mixData);
-                const total = values.reduce((a, b) => a + b, 0);
 
                 if (labels.length === 0) {
                     Plotly.newPlot(chartId, [], {
@@ -1209,7 +1241,7 @@
                     type: 'pie',
                     hole: 0.5,
                     marker: {
-                        colors: mixColors.slice(0, labels.length)
+                        colors: labels.map(label => modelColors[label] || '#999')
                     },
                     textinfo: 'percent',
                     textposition: 'inside',
