@@ -589,16 +589,16 @@
                 hovertemplate: '%{x}<br>销量: %{y}台<extra></extra>'
             }];
             Plotly.newPlot('daily-chart', dailyData, {
-                margin: { l: 60, r: 20, t: 40, b: 80 },
-                height: 320,
+                margin: { l: 60, r: 20, t: 50, b: 80 },
+                height: 340,
                 xaxis: {
                     tickangle: -45,
-                    gridcolor: '#f0f0f0',
+                    showgrid: false,
                     tickmode: 'linear',
                     dtick: 1,
                     tickfont: { size: 10 }
                 },
-                yaxis: { title: '销量（台）', gridcolor: '#f0f0f0' },
+                yaxis: { title: '销量（台）', showgrid: false },
                 paper_bgcolor: 'rgba(0,0,0,0)',
                 plot_bgcolor: 'rgba(0,0,0,0)'
             }, {responsive: true});
@@ -625,16 +625,16 @@
                 hovertemplate: '%{x}<br>销量: %{y}台<extra></extra>'
             }];
             Plotly.newPlot('jd-bayday-chart', jdBayData, {
-                margin: { l: 50, r: 20, t: 20, b: 80 },
-                height: 300,
-                xaxis: { 
-                    tickangle: -45, 
-                    gridcolor: '#f0f0f0', 
+                margin: { l: 50, r: 20, t: 30, b: 80 },
+                height: 310,
+                xaxis: {
+                    tickangle: -45,
+                    showgrid: false,
                     tickmode: 'linear',
                     dtick: 2,
                     tickfont: { size: 10 }
                 },
-                yaxis: { gridcolor: '#f0f0f0' },
+                yaxis: { showgrid: false },
                 paper_bgcolor: 'rgba(0,0,0,0)',
                 plot_bgcolor: 'rgba(0,0,0,0)',
                 showlegend: false
@@ -662,16 +662,16 @@
                 hovertemplate: '%{x}<br>销量: %{y}台<extra></extra>'
             }];
             Plotly.newPlot('gw-bayday-chart', gwBayData, {
-                margin: { l: 50, r: 20, t: 20, b: 80 },
-                height: 300,
+                margin: { l: 50, r: 20, t: 30, b: 80 },
+                height: 310,
                 xaxis: {
                     tickangle: -45,
-                    gridcolor: '#f0f0f0',
+                    showgrid: false,
                     tickmode: 'linear',
                     dtick: 2,
                     tickfont: { size: 10 }
                 },
-                yaxis: { gridcolor: '#f0f0f0' },
+                yaxis: { showgrid: false },
                 paper_bgcolor: 'rgba(0,0,0,0)',
                 plot_bgcolor: 'rgba(0,0,0,0)',
                 showlegend: false
