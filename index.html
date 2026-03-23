@@ -718,11 +718,9 @@
 
             const dailyDates = Object.keys(data.daily);
             const dailyValues = Object.values(data.daily);
-            // 格式化日期为 2026/1/1 格式
-            const formatDate = (d) => {
-                const parts = d.split('-');
-                return parts[0] + '/' + parseInt(parts[1]) + '/' + parseInt(parts[2]);
-            };
+
+            // 渠道颜色映射（全局定义，供后续使用）
+            const channelColors = {'京东官旗': '#1890ff', '官网': '#52c41a', '天猫': '#faad14', '抖快': '#f5222d'};
 
             const dailyData = [{
                 x: dailyDates.map(formatDate),
@@ -953,7 +951,6 @@
             // 第八行：小新Pad11分天销售走势（按店铺）
             const pad11Data = data.model_channel_daily['小新Pad11'] || {};
             const pad11Dates = Object.keys(pad11Data).length > 0 ? Object.keys(Object.values(pad11Data)[0]) : [];
-            const channelColors = {'京东官旗': '#1890ff', '官网': '#52c41a', '天猫': '#faad14', '抖快': '#f5222d'};
 
             let pad11TotalSales = 0;
             let pad11Last7Total = 0;
