@@ -719,6 +719,12 @@
             const dailyDates = Object.keys(data.daily);
             const dailyValues = Object.values(data.daily);
 
+            // 格式化日期函数
+            const formatDate = (d) => {
+                const parts = d.split('-');
+                return parts[0] + '/' + parseInt(parts[1]) + '/' + parseInt(parts[2]);
+            };
+
             // 渠道颜色映射（全局定义，供后续使用）
             const channelColors = {'京东官旗': '#1890ff', '官网': '#52c41a', '天猫': '#faad14', '抖快': '#f5222d'};
 
