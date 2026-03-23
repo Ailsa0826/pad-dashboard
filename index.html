@@ -834,12 +834,13 @@
                     x: dates.map(formatDate),
                     y: values,
                     type: 'scatter',
-                    mode: 'lines',
+                    mode: 'lines+markers',
                     name: prod,
-                    line: { color: productColors[idx], width: 2 }
+                    line: { color: productColors[idx], width: 2 },
+                    marker: { size: 5, color: productColors[idx] }
                 };
             });
-            
+
             Plotly.newPlot('product-trend-chart', productTrendData, {
                 margin: { l: 60, r: 20, t: 40, b: 80 },
                 height: 400,
@@ -888,12 +889,13 @@
                     x: dates.map(formatDate),
                     y: values,
                     type: 'scatter',
-                    mode: 'lines',
+                    mode: 'lines+markers',
                     name: ch,
-                    line: { color: channelColors[ch], width: 2 }
+                    line: { color: channelColors[ch], width: 2 },
+                    marker: { size: 5, color: channelColors[ch] }
                 };
             });
-            
+
             document.getElementById('pad11-monthly-avg').textContent = pad11Count > 0 ? Math.round(pad11TotalSales / pad11Count) : 0;
             document.getElementById('pad11-last7-avg').textContent = pad11Count > 0 ? Math.round(pad11Last7Total / Math.min(7, pad11Count)) : 0;
             
@@ -937,12 +939,13 @@
                     x: dates.map(formatDate),
                     y: values,
                     type: 'scatter',
-                    mode: 'lines',
+                    mode: 'lines+markers',
                     name: ch,
-                    line: { color: channelColors[ch], width: 2 }
+                    line: { color: channelColors[ch], width: 2 },
+                    marker: { size: 5, color: channelColors[ch] }
                 };
             });
-            
+
             document.getElementById('pad121-monthly-avg').textContent = pad121Count > 0 ? Math.round(pad121TotalSales / pad121Count) : 0;
             document.getElementById('pad121-last7-avg').textContent = pad121Count > 0 ? Math.round(pad121Last7Total / Math.min(7, pad121Count)) : 0;
             
