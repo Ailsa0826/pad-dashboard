@@ -616,11 +616,8 @@
 
             // 更新渠道卡片
             renderChannelCards(data);
-
-            // 更新图表
-            renderCharts(data);
             
-            // Q4看板：隐藏第5-14行
+            // Q4看板：先隐藏第5-14行，再渲染图表
             if (month === 'FY25 Q4') {
                 const rows = document.querySelectorAll('.chart-row');
                 rows.forEach((row, index) => {
@@ -635,7 +632,19 @@
                 const xiaoxinPro13Row = document.getElementById('xiaoxin-pro13-row');
                 if (y7005thRow) y7005thRow.style.display = 'none';
                 if (xiaoxinPro13Row) xiaoxinPro13Row.style.display = 'none';
+            } else {
+                // 月度看板：显示所有行
+                const rows = document.querySelectorAll('.chart-row');
+                rows.forEach(row => row.style.display = 'grid');
+                // 3月显示新品行
+                const y7005thRow = document.getElementById('y700-5th-row');
+                const xiaoxinPro13Row = document.getElementById('xiaoxin-pro13-row');
+                if (y7005thRow) y7005thRow.style.display = month === '3月' ? 'grid' : 'none';
+                if (xiaoxinPro13Row) xiaoxinPro13Row.style.display = month === '3月' ? 'grid' : 'none';
             }
+
+            // 更新图表
+            renderCharts(data);
         }
 
         function updateCountdown(monthNum, lastDay) {
