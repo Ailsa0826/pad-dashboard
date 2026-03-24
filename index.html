@@ -575,8 +575,16 @@
             document.getElementById('progressBar').style.width = Math.min(data.achievement_rate, 100) + '%';
             document.getElementById('currentSales').textContent = data.actual_total;
 
-            // 更新目标输入框的值（当前月份的目标）
-            document.getElementById('targetSales').value = Math.round(data.targets['总目标'] * 1000).toLocaleString();
+            // 更新目标输入框的值（优先使用localStorage保存的值）
+            const savedTargets = localStorage.getItem('padDashboardTargets');
+            let targetValue = data.targets['总目标'];
+            if (savedTargets) {
+                const targetsData = JSON.parse(savedTargets);
+                if (targetsData[month] && targetsData[month].targets && targetsData[month].targets['总目标']) {
+                    targetValue = targetsData[month].targets['总目标'];
+                }
+            }
+            document.getElementById('targetSales').value = Math.round(targetValue * 1000).toLocaleString();
 
             // 更新渠道卡片
             renderChannelCards(data);
@@ -631,10 +639,24 @@
             container.innerHTML = '';
 
             const channels = ['官网', '天猫', '京东官旗', '抖快'];
+            
+            // 获取当前月份
+            const currentMonthKey = document.getElementById('headerTitle').textContent.replace('直营平板销售', '');
+            
+            // 从localStorage获取保存的目标值
+            let savedChannelTargets = {};
+            const saved = localStorage.getItem('padDashboardTargets');
+            if (saved) {
+                const targetsData = JSON.parse(saved);
+                if (targetsData[currentMonthKey] && targetsData[currentMonthKey].channel_targets) {
+                    savedChannelTargets = targetsData[currentMonthKey].channel_targets;
+                }
+            }
 
             channels.forEach(ch => {
                 const actual = data.channels[ch] || 0;
-                const target = data.channel_targets[ch];
+                // 优先使用localStorage保存的目标值
+                const target = savedChannelTargets[ch] !== undefined ? savedChannelTargets[ch] : data.channel_targets[ch];
                 const rate = target > 0 ? Math.round((actual / target) * 100) : 0;
 
                 const card = document.createElement('div');
