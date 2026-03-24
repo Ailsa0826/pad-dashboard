@@ -617,17 +617,22 @@
             // 更新渠道卡片
             renderChannelCards(data);
             
-            // Q4看板：先隐藏第5-14行，再渲染图表
+            // Q4看板：只显示前4行 + 最后2行（渠道机型分布Mix）
             if (month === 'FY25 Q4') {
-                const rows = document.querySelectorAll('.chart-row');
-                rows.forEach((row, index) => {
-                    if (index >= 4 && index < 14) {
-                        row.style.display = 'none';
-                    } else {
+                // 获取所有chart-row
+                const allRows = document.querySelectorAll('.chart-row');
+                const totalRows = allRows.length;
+                
+                allRows.forEach((row, index) => {
+                    // 显示前4行 (0-3) 和最后2行
+                    if (index < 4 || index >= totalRows - 2) {
                         row.style.display = 'grid';
+                    } else {
+                        row.style.display = 'none';
                     }
                 });
-                // 隐藏新品行
+                
+                // 确保新品行隐藏
                 const y7005thRow = document.getElementById('y700-5th-row');
                 const xiaoxinPro13Row = document.getElementById('xiaoxin-pro13-row');
                 if (y7005thRow) y7005thRow.style.display = 'none';
