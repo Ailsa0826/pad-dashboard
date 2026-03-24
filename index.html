@@ -597,7 +597,7 @@
 
             // 如果当前月份等于目标月份，计算到月底的剩余时间
             if (currentMonth === monthNum) {
-                const endDate = new Date(currentYear, monthNum, lastDay, 23, 59, 59);
+                const endDate = new Date(currentYear, monthNum - 1, lastDay, 23, 59, 59);
                 const diff = endDate - now;
 
                 if (diff > 0) {
