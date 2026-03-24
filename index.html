@@ -1297,6 +1297,36 @@
             renderChannelModelMix('dk-model-mix-chart', '抖快');
         }
 
+        // 保存目标到localStorage
+        function saveTargetsToStorage() {
+            const targetsData = {};
+            Object.keys(dashboardData).forEach(month => {
+                targetsData[month] = {
+                    targets: dashboardData[month].targets,
+                    channel_targets: dashboardData[month].channel_targets
+                };
+            });
+            localStorage.setItem('padDashboardTargets', JSON.stringify(targetsData));
+        }
+
+        // 从localStorage加载目标
+        function loadTargetsFromStorage() {
+            const saved = localStorage.getItem('padDashboardTargets');
+            if (saved) {
+                const targetsData = JSON.parse(saved);
+                Object.keys(targetsData).forEach(month => {
+                    if (dashboardData[month]) {
+                        dashboardData[month].targets = targetsData[month].targets;
+                        dashboardData[month].channel_targets = targetsData[month].channel_targets;
+                        // 重新计算达成率
+                        const actual = dashboardData[month].actual_total;
+                        const target = dashboardData[month].targets['总目标'];
+                        dashboardData[month].achievement_rate = Math.round((actual / target) * 100 * 10) / 10;
+                    }
+                });
+            }
+        }
+
         // 更新总目标
         function updateTarget(value) {
             const numValue = parseFloat(value);
@@ -1306,6 +1336,7 @@
                 const actual = dashboardData[currentMonth].actual_total;
                 const newRate = (actual / (numValue / 1000)) * 100;
                 dashboardData[currentMonth].achievement_rate = Math.round(newRate * 10) / 10;
+                saveTargetsToStorage();
                 updateDashboard(currentMonth);
             }
         }
@@ -1315,9 +1346,13 @@
             const numValue = parseFloat(value);
             if (numValue > 0) {
                 dashboardData[currentMonth].channel_targets[channel] = numValue / 1000;
+                saveTargetsToStorage();
                 updateDashboard(currentMonth);
             }
         }
+
+        // 页面加载时从localStorage加载保存的目标值
+        loadTargetsFromStorage();
 
         init();
     </script>
