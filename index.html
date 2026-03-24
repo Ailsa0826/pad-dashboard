@@ -575,6 +575,9 @@
             document.getElementById('progressBar').style.width = Math.min(data.achievement_rate, 100) + '%';
             document.getElementById('currentSales').textContent = data.actual_total;
 
+            // 更新目标输入框的值（当前月份的目标）
+            document.getElementById('targetSales').value = Math.round(data.targets['总目标'] * 1000).toLocaleString();
+
             // 更新渠道卡片
             renderChannelCards(data);
 
