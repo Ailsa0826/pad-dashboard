@@ -1264,7 +1264,8 @@
 
             // 第十三行（3月新品）：Y700 五代分天销售走势
             if (currentMonth === '3月' && data.model_channel_daily['Y700 五代']) {
-                document.getElementById('y700-5th-row').style.display = 'flex';
+                const y7005thRow = document.getElementById('y700-5th-row');
+                y7005thRow.style.display = 'flex';
                 const y7005thData = data.model_channel_daily['Y700 五代'];
                 let y7005thTotalSales = 0;
                 let y7005thLast7Total = 0;
@@ -1319,7 +1320,8 @@
 
             // 第十四行（3月新品）：小新Pro13分天销售走势
             if (currentMonth === '3月' && data.model_channel_daily['小新Pro13']) {
-                document.getElementById('xiaoxin-pro13-row').style.display = 'flex';
+                const xiaoxinPro13Row = document.getElementById('xiaoxin-pro13-row');
+                xiaoxinPro13Row.style.display = 'flex';
                 const xiaoxinPro13Data = data.model_channel_daily['小新Pro13'];
                 let xiaoxinPro13TotalSales = 0;
                 let xiaoxinPro13Last7Total = 0;
