@@ -619,6 +619,23 @@
 
             // 更新图表
             renderCharts(data);
+            
+            // Q4看板：隐藏第5-14行
+            if (month === 'FY25 Q4') {
+                const rows = document.querySelectorAll('.chart-row');
+                rows.forEach((row, index) => {
+                    if (index >= 4 && index < 14) {
+                        row.style.display = 'none';
+                    } else {
+                        row.style.display = 'grid';
+                    }
+                });
+                // 隐藏新品行
+                const y7005thRow = document.getElementById('y700-5th-row');
+                const xiaoxinPro13Row = document.getElementById('xiaoxin-pro13-row');
+                if (y7005thRow) y7005thRow.style.display = 'none';
+                if (xiaoxinPro13Row) xiaoxinPro13Row.style.display = 'none';
+            }
         }
 
         function updateCountdown(monthNum, lastDay) {
