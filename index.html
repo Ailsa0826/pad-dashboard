@@ -855,6 +855,10 @@
                 plot_bgcolor: 'rgba(0,0,0,0)'
             }, {responsive: true});
 
+            // Bay Day销售情况 - 只在有channel_daily数据时渲染
+            if (!data.channel_daily) {
+                console.log('No channel_daily data for', month, '- skipping Bay Day charts');
+            } else {
             // Bay Day销售情况 - 京东官旗
             const jdDaily = data.channel_daily['京东官旗'];
             const jdDates = Object.keys(jdDaily);
@@ -1010,6 +1014,7 @@
                 plot_bgcolor: 'rgba(0,0,0,0)',
                 showlegend: false
             }, {responsive: true});
+            } // end of if (data.channel_daily)
 
             // 第七行：重点产品分天销售走势
             const topProducts = Object.keys(data.models.key_models).slice(0, 5);
