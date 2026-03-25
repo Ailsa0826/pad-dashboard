@@ -588,6 +588,8 @@
         }
 
         function updateDashboard(month) {
+            // 更新全局 currentMonth 变量
+            currentMonth = month;
             const data = dashboardData[month];
 
             // 更新标题
