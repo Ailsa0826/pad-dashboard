@@ -578,9 +578,11 @@
                 btn.className = 'month-btn' + (month === currentMonth ? ' active' : '');
                 btn.textContent = month;
                 btn.onclick = () => {
+                    console.log('Button clicked for month:', month);
                     currentMonth = month;
                     document.querySelectorAll('.month-btn').forEach(b => b.classList.remove('active'));
                     btn.classList.add('active');
+                    console.log('Calling updateDashboard with:', month);
                     updateDashboard(month);
                 };
                 container.appendChild(btn);
@@ -588,8 +590,10 @@
         }
 
         function updateDashboard(month) {
+            console.log('updateDashboard called with month:', month);
             // 更新全局 currentMonth 变量
             currentMonth = month;
+            console.log('currentMonth updated to:', currentMonth);
             const data = dashboardData[month];
 
             // 更新标题
