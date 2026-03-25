@@ -1500,13 +1500,16 @@
             renderChannelModelMix('dk-model-mix-chart', '抖快');
 
             // FY25 Q4 看板：再次强制隐藏分店铺走势行
+            console.log('Current month in renderCharts:', currentMonth);
             if (currentMonth === 'FY25 Q4') {
-                document.querySelectorAll('.chart-row').forEach(row => {
+                console.log('Hiding Bay Day and 按店铺 rows for FY25 Q4');
+                document.querySelectorAll('.chart-row').forEach((row, index) => {
                     const title = row.querySelector('.chart-title');
                     if (title) {
                         const titleText = title.textContent;
                         // 隐藏包含"Bay Day"或"按店铺"的行
                         if (titleText.includes('Bay Day') || titleText.includes('按店铺')) {
+                            console.log('Hiding row', index, 'with title:', titleText);
                             row.style.display = 'none';
                         }
                     }
