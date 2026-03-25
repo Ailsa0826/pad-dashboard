@@ -658,8 +658,8 @@
                 if (xiaoxinPro13Row) xiaoxinPro13Row.style.display = month === '3月' ? 'grid' : 'none';
             }
 
-            // 更新图表
-            renderCharts(data);
+            // 更新图表，传入当前月份
+            renderCharts(data, month);
         }
 
         function updateCountdown(monthNum, lastDay) {
@@ -746,7 +746,7 @@
             });
         }
 
-        function renderCharts(data) {
+        function renderCharts(data, month) {
             // 店铺Mix饼图
             const storeColors = ['#1890ff', '#52c41a', '#faad14', '#f5222d', '#722ed1'];
             const storeData = [{
@@ -1502,8 +1502,8 @@
             renderChannelModelMix('dk-model-mix-chart', '抖快');
 
             // FY25 Q4 看板：再次强制隐藏分店铺走势行
-            console.log('Current month in renderCharts:', currentMonth);
-            if (currentMonth === 'FY25 Q4') {
+            console.log('Month parameter in renderCharts:', month);
+            if (month === 'FY25 Q4') {
                 console.log('Hiding Bay Day and 按店铺 rows for FY25 Q4');
                 document.querySelectorAll('.chart-row').forEach((row, index) => {
                     const title = row.querySelector('.chart-title');
