@@ -619,10 +619,10 @@
             
             // Q4看板：只显示前4行 + 最后2行（渠道机型分布Mix）
             if (month === 'FY25 Q4') {
-                // 获取所有chart-row
-                const allRows = document.querySelectorAll('.chart-row');
+                // 获取所有chart-row（排除新品行，它们有独立的ID控制）
+                const allRows = document.querySelectorAll('.chart-row:not(#y700-5th-row):not(#xiaoxin-pro13-row)');
                 const totalRows = allRows.length;
-                
+
                 allRows.forEach((row, index) => {
                     // 显示前4行 (0-3) 和最后2行
                     if (index < 4 || index >= totalRows - 2) {
@@ -631,7 +631,15 @@
                         row.style.display = 'none';
                     }
                 });
-                
+
+                // 强制隐藏分店铺走势行（通过标题内容识别）
+                document.querySelectorAll('.chart-row').forEach(row => {
+                    const title = row.querySelector('.chart-title');
+                    if (title && title.textContent.includes('按店铺')) {
+                        row.style.display = 'none';
+                    }
+                });
+
                 // 确保新品行隐藏
                 const y7005thRow = document.getElementById('y700-5th-row');
                 const xiaoxinPro13Row = document.getElementById('xiaoxin-pro13-row');
