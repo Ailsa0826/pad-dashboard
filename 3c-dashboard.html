@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3C行业周度咨询看板 - 2026年3月第4周</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .header .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        .tabs {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+        
+        .tab {
+            padding: 12px 30px;
+            background: rgba(255,255,255,0.2);
+            border: none;
+            border-radius: 25px;
+            color: white;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .tab.active {
+            background: white;
+            color: #667eea;
+            font-weight: 600;
+        }
+        
+        .tab:hover {
+            background: rgba(255,255,255,0.3);
+        }
+        
+        .tab.active:hover {
+            background: white;
+        }
+        
+        .content {
+            display: none;
+        }
+        
+        .content.active {
+            display: block;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 16px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+        
+        .card-title {
+            font-size: 1.3rem;
+            color: #333;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #667eea;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .card-title .icon {
+            font-size: 1.5rem;
+        }
+        
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .news-item {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ec 100%);
+            border-radius: 12px;
+            padding: 20px;
+            border-left: 4px solid #667eea;
+            transition: transform 0.2s ease;
+        }
+        
+        .news-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        .news-item.brand-apple {
+            border-left-color: #007AFF;
+        }
+        
+        .news-item.brand-huawei {
+            border-left-color: #FF0000;
+        }
+        
+        .news-item.brand-xiaomi {
+            border-left-color: #FF6900;
+        }
+        
+        .news-item.brand-lenovo {
+            border-left-color: #E2231A;
+        }
+        
+        .news-item.brand-oppo {
+            border-left-color: #1BAA52;
+        }
+        
+        .news-item.brand-vivo {
+            border-left-color: #415FFF;
+        }
+        
+        .news-item.brand-honor {
+            border-left-color: #00BFFF;
+        }
+        
+        .news-item.brand-asus {
+            border-left-color: #00539B;
+        }
+        
+        .news-brand {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #667eea;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+        
+        .news-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+        
+        .news-desc {
+            font-size: 0.95rem;
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        .news-tag {
+            display: inline-block;
+            padding: 4px 12px;
+            background: #667eea;
+            color: white;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            margin-top: 10px;
+            margin-right: 5px;
+        }
+        
+        .news-tag.new {
+            background: #FF6B6B;
+        }
+        
+        .news-tag.price {
+            background: #4ECDC4;
+        }
+        
+        .news-tag.tech {
+            background: #96CEB4;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .stat-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 12px;
+            padding: 20px;
+            color: white;
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        
+        .trend-list {
+            list-style: none;
+        }
+        
+        .trend-list li {
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+        
+        .trend-list li::before {
+            content: "▶";
+            color: #667eea;
+            font-size: 0.8rem;
+            margin-top: 3px;
+        }
+        
+        .trend-content {
+            flex: 1;
+        }
+        
+        .trend-title {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 5px;
+        }
+        
+        .trend-desc {
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        .highlight-box {
+            background: linear-gradient(135deg, #FF6B6B 0%, #FF8E53 100%);
+            border-radius: 12px;
+            padding: 20px;
+            color: white;
+            margin-bottom: 20px;
+        }
+        
+        .highlight-box.warning {
+            background: linear-gradient(135deg, #FF6B6B 0%, #FF8E53 100%);
+        }
+        
+        .highlight-box.info {
+            background: linear-gradient(135deg, #4ECDC4 0%, #44A08D 100%);
+        }
+        
+        .highlight-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .footer {
+            text-align: center;
+            color: white;
+            opacity: 0.8;
+            margin-top: 30px;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .tabs {
+                flex-wrap: wrap;
+            }
+            
+            .tab {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+            
+            .news-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📊 3C行业周度咨询看板</h1>
+            <div class="subtitle">2026年3月第4周 | 平板电脑 & 笔记本电脑市场动态</div>
+        </div>
+        
+        <div class="tabs">
+            <button class="tab active" onclick="switchTab('tablet')">📱 平板电脑</button>
+            <button class="tab" onclick="switchTab('laptop')">💻 笔记本电脑</button>
+        </div>
+        
+        <!-- 平板电脑内容 -->
+        <div id="tablet" class="content active">
+            <!-- 重要提醒 -->
+            <div class="highlight-box warning">
+                <div class="highlight-title">⚠️ 本周重点关注</div>
+                <div>苹果2026春季发布会于3月初举行，发布iPad 12、iPad Air M4等多款新品；全球存储芯片涨价潮持续，vivo、OPPO等品牌宣布3月18日起调价。</div>
+            </div>
+            
+            <!-- 统计数据 -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">8</div>
+                    <div class="stat-label">本周新品发布</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">5</div>
+                    <div class="stat-label">参与品牌</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">4</div>
+                    <div class="stat-label">即将发布</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">+12%</div>
+                    <div class="stat-label">2025年底市场增长</div>
+                </div>
+            </div>
+            
+            <!-- 新品发布 -->
+            <div class="card">
+                <div class="card-title">
+                    <span class="icon">🆕</span>
+                    本周新品发布
+                </div>
+                <div class="news-grid">
+                    <div class="news-item brand-apple">
+                        <div class="news-brand">Apple</div>
+                        <div class="news-title">iPad 12 (A19) 正式发布</div>
+                        <div class="news-desc">搭载升级版A19芯片和8GB内存，提升性能与多任务处理能力。外观及屏幕规格延续上一代设计，维持2360x1640分辨率和1200万像素摄像头。</div>
+                        <span class="news-tag new">新品</span>
+                        <span class="news-tag">常规迭代</span>
+                    </div>
+                    
+                    <div class="news-item brand-apple">
+                        <div class="news-brand">Apple</div>
+                        <div class="news-title">iPad Air M4 发布</div>
+                        <div class="news-desc">搭载M4芯片，配备更大内存，性能大幅提升。相比前代产品，多任务处理能力显著增强，定位中高端市场。</div>
+                        <span class="news-tag new">新品</span>
+                        <span class="news-tag tech">M4芯片</span>
+                    </div>
+                    
+                    <div class="news-item brand-xiaomi">
+                        <div class="news-brand">Xiaomi</div>
+                        <div class="news-title">小米平板7系列持续热销</div>
+                        <div class="news-desc">小米平板7系列凭借高性价比定位，在2000-3000元价位段表现强劲。配合澎湃OS生态，与手机、笔记本协同体验优化。</div>
+                        <span class="news-tag">热销</span>
+                    </div>
+                    
+                    <div class="news-item brand-huawei">
+                        <div class="news-brand">HUAWEI</div>
+                        <div class="news-title">华为MatePad系列降价促销</div>
+                        <div class="news-desc">2月24日至3月15日期间，华为MatePad Air、MatePad 11.5 S、MatePad Pro系列全系至高直降800元，大学生及教职工可额外享受至高300元教育优惠。</div>
+                        <span class="news-tag price">降价</span>
+                        <span class="news-tag">教育优惠</span>
+                    </div>
+                    
+                    <div class="news-item brand-honor">
+                        <div class="news-brand">HONOR</div>
+                        <div class="news-title">荣耀MagicPad 4 即将发布</div>
+                        <div class="news-desc">荣耀新一代旗舰平板MagicPad 4已进入发布倒计时，预计将在3月底或4月初正式亮相，主打大屏影音与生产力体验。</div>
+                        <span class="news-tag new">即将发布</span>
+                    </div>
+                    
+                    <div class="news-item brand-lenovo">
+                        <div class="news-brand">Lenovo</div>
+                        <div class="news-title">联想Y700五代即将发布</div>
+                        <div class="news-desc">联想拯救者Y700五代游戏平板即将发布，延续小尺寸高性能定位，预计搭载最新旗舰处理器，主打游戏场景。</div>
+                        <span class="news-tag new">即将发布</span>
+                        <span class="news-tag">游戏平板</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 行业动态 -->
+            <div class="card">
+                <div class="card-title">
+                    <span class="icon">📈</span>
+                    行业动态与趋势
+                </div>
+                <ul class="trend-list">
+                    <li>
+                        <div class="trend-content">
+                            <div class="trend-title">存储芯片涨价潮波及平板市场</div>
+                            <div class="trend-desc">受全球半导体及存储成本持续大幅上涨影响，vivo、OPPO于3月16-18日宣布调整部分产品建议零售价，预计平板产品也将受到影响。</div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="trend-content">
+                            <div class="trend-title">2025年中国平板市场份额预测</div>
+                            <div class="trend-desc">苹果凭借iPad基础款与Air系列的强劲表现，销量份额预计同比提升4.5%至35%；华为份额预计微降至22%；小米、荣耀、联想、vivo、OPPO等品牌中低端产品受成本上涨冲击更大。</div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="trend-content">
+                            <div class="trend-title">OLED屏幕技术加速渗透</div>
+                            <div class="trend-desc">据Omdia曝光，下一代iPad mini将使用8.4英寸OLED屏（2026-2027年），iPad Air将在2027-2028年采用11英寸和13英寸OLED屏，LTPS技术逐步普及。</div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="trend-content">
+                            <div class="trend-title">2026年市场展望</div>
+                            <div class="trend-desc">Omdia预计，平板电脑市场在2025年底增长12%至3500万台后，2026年将回落9%至3200万台，市场进入调整期。</div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            
+            <!-- 即将发布 -->
+            <div class="card">
+                <div class="card-title">
+                    <span class="icon">🔮</span>
+                    即将发布产品
+                </div>
+                <div class="news-grid">
+                    <div class="news-item brand-apple">
+                        <div class="news-brand">Apple</div>
+                        <div class="news-title">iPad Pro M5系列</div>
+                        <div class="news-desc">预计2026年下半年发布，搭载M5芯片，可能采用OLED屏幕技术升级。</div>
+                        <span class="news-tag">预计Q3-Q4</span>
+                    </div>
+                    
+                    <div class="news-item brand-huawei">
+                        <div class="news-brand">HUAWEI</div>
+                        <div class="news-title">MatePad Mini</div>
+                        <div class="news-desc">华为小尺寸平板即将登场，定位便携娱乐与轻办公场景。</div>
+                        <span class="news-tag">预计Q2</span>
+                    </div>
+                    
+                    <div class="news-item brand-vivo">
+                        <div class="news-brand">vivo</div>
+                        <div class="news-title">vivo Pad 4系列</div>
+                        <div class="news-desc">vivo新一代平板产品正在筹备中，预计将在存储成本稳定后发布。</div>
+                        <span class="news-tag">待定</span>
+                    </div>
+                    
+                    <div class="news-item brand-oppo">
+                        <div class="news-brand">OPPO</div>
+                        <div class="news-title">OPPO Pad 4 Pro</div>
+                        <div class="news-desc">OPPO旗舰平板迭代产品，预计将搭载更强大的处理器和屏幕。</div>
+                        <span class="news-tag">待定</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 笔记本电脑内容 -->
+        <div id="laptop" class="content">
+            <!-- 重要提醒 -->
+            <div class="highlight-box info">
+                <div class="highlight-title">💡 本周重点关注</div>
+                <div>苹果发布MacBook Air M5、MacBook Pro M5 Pro/Max系列；MacBook Neo以4599元起售价成为苹果史上最实惠笔记本；联想ThinkBook、小新系列密集更新。</div>
+            </div>
+            
+            <!-- 统计数据 -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">12</div>
+                    <div class="stat-label">本周新品发布</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">6</div>
+                    <div class="stat-label">参与品牌</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">+20%</div>
+                    <div class="stat-label">MacBook预计增长</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">-10%</div>
+                    <div class="stat-label">Windows笔电预计衰退</div>
+                </div>
+            </div>
+            
+            <!-- 新品发布 -->
+            <div class="card">
+                <div class="card-title">
+                    <span class="icon">🆕</span>
+                    本周新品发布
+                </div>
+                <div class="news-grid">
+                    <div class="news-item brand-apple">
+                        <div class="news-brand">Apple</div>
+                        <div class="news-title">MacBook Air M5</div>
+                        <div class="news-desc">苹果发布搭载M5芯片的MacBook Air，带来卓越性能和扩展AI功能。13英寸和15英寸双尺寸可选，续航进一步提升。</div>
+                        <span class="news-tag new">新品</span>
+                        <span class="news-tag tech">M5芯片</span>
+                    </div>
+                    
+                    <div class="news-item brand-apple">
+                        <div class="news-brand">Apple</div>
+                        <div class="news-title">MacBook Neo</div>
+                        <div class="news-desc">苹果史上最实惠的笔记本电脑，起售价仅4599元（教育优惠3999元）。定位入门级市场，有望叠加国补政策，价格将创历史新低。</div>
+                        <span class="news-tag new">新品</span>
+                        <span class="news-tag price">亲民定价</span>
+                    </div>
+                    
+                    <div class="news-item brand-apple">
+                        <div class="news-brand">Apple</div>
+                        <div class="news-title">MacBook Pro M5 Pro/Max</div>
+                        <div class="news-desc">14英寸和16英寸MacBook Pro更新，搭载M5 Pro和M5 Max芯片，面向专业用户，性能大幅提升。</div>
+                        <span class="news-tag new">新品</span>
+                        <span class="news-tag tech">专业级</span>
+                    </div>
+                    
+                    <div class="news-item brand-lenovo">
+                        <div class="news-brand">Lenovo</div>
+                        <div class="news-title">联想小新Pro14/16 AI元启 2026</div>
+                        <div class="news-desc">3月18日发布，主打AI功能体验，搭载最新处理器，配备AI元启系统，提升智能办公效率。</div>
+                        <span class="news-tag new">新品</span>
+                        <span class="news-tag tech">AI PC</span>
+                    </div>
+                    
+                    <div class="news-item brand-lenovo">
+                        <div class="news-brand">Lenovo</div>
+                        <div class="news-title">ThinkBook 14/16 2026 锐龙版</div>
+                        <div class="news-desc">3月14日发布，搭载AMD锐龙处理器，定位商务办公市场，延续ThinkBook系列的高性价比路线。</div>
+                        <span class="news-tag new">新品</span>
+                        <span class="news-tag">商务本</span>
+                    </div>
+                    
+                    <div class="news-item brand-lenovo">
+                        <div class="news-brand">Lenovo</div>
+                        <div class="news-title">ThinkBook 16 2026 酷睿版</div>
+                        <div class="news-desc">3月3日发布，搭载英特尔酷睿Ultra处理器，配备16英寸大屏，适合办公与轻度创作场景。</div>
+                        <span class="news-tag new">新品</span>
+                    </div>
+                    
+                    <div class="news-item brand-xiaomi">
+                        <div class="news-brand">Xiaomi</div>
+                        <div class="news-title">Xiaomi Book Pro 14 2026</div>
+                        <div class="news-desc">3月19日发布，主打1.08kg超轻薄机身，搭载第三代英特尔酷睿Ultra X7 358H处理器，定位高端AI轻薄本市场。</div>
+                        <span class="news-tag new">新品</span>
+                        <span class="news-tag">超轻薄</span>
+                    </div>
+                    
+                    <div class="news-item brand-asus">
+                        <div class="news-brand">ASUS</div>
+                        <div class="news-title">华硕破晓Ultra</div>
+                        <div class="news-desc">3月14日发布，定位商务办公市场，搭载最新处理器，主打稳定可靠的商务体验。</div>
+                        <span class="news-tag new">新品</span>
+                        <span class="news-tag">商务本</span>
+                    </div>
+                    
+                    <div class="news-item brand-asus">
+                        <div class="news-brand">ASUS</div>
+                        <div class="news-title">华硕灵耀14双屏 2026</div>
+                        <div class="news-desc">搭载英特尔酷睿Ultra第三代处理器，配备双14英寸2.8K屏幕，创新双屏设计提升多任务处理效率。</div>
+                        <span class="news-tag new">新品</span>
+                        <span class="news-tag tech">双屏</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 行业动态 -->
+            <div class="card">
+                <div class="card-title">
+                    <span class="icon">📈</span>
+                    行业动态与趋势
+                </div>
+                <ul class="trend-list">
+                    <li>
+                        <div class="trend-content">
+                            <div class="trend-title">MacBook出货量预计大幅增长</div>
+                            <div class="trend-desc">在全球Windows笔电市场预计同比衰退超10%的背景下，苹果MacBook系列2026年出货量有望达2500万台，同比增长20%-25%，重返疫情时期出货高峰。</div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="trend-content">
+                            <div class="trend-title">AI PC成为2026年核心趋势</div>
+                            <div class="trend-desc">头部品牌密集发布AI PC新品，万元超高端机型成为技术实力标杆。联想天禧AI 3.5实现个性化、多端一致体验，AI智能体系统进阶至第三阶段。</div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="trend-content">
+                            <div class="trend-title">内存涨价影响PC出货量</div>
+                            <div class="trend-desc">受内存芯片价格飙升影响，2026年PC与智能手机出货量预计下降10%以上，行业面临成本压力。</div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="trend-content">
+                            <div class="trend-title">高通骁龙X2挑战x86市场</div>
+                            <div class="trend-desc">高通在2025年9月发布Snapdragon X2 Elite与X2 Elite Extreme，CES 2026展出首批实机产品，开始正面硬刚x86高性能市场。</div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="trend-content">
+                            <div class="trend-title">主动散热技术成为旗舰标配</div>
+                            <div class="trend-desc">iQOO 15 Ultra搭载超大主动散热风扇与8K VC均热板双散热系统，红魔、OPPO等品牌也纷纷布局主动散热技术，应对高功耗芯片需求。</div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            
+            <!-- 价格动态 -->
+            <div class="card">
+                <div class="card-title">
+                    <span class="icon">💰</span>
+                    价格动态
+                </div>
+                <div class="news-grid">
+                    <div class="news-item brand-apple">
+                        <div class="news-brand">Apple</div>
+                        <div class="news-title">MacBook Neo 创历史低价</div>
+                        <div class="news-desc">起售价4599元，教育优惠3999元，叠加国补后有望创苹果笔记本历史最低价，大幅降低Mac入门门槛。</div>
+                        <span class="news-tag price">价格优势</span>
+                    </div>
+                    
+                    <div class="news-item">
+                        <div class="news-brand">行业</div>
+                        <div class="news-title">2026年笔记本涨价潮</div>
+                        <div class="news-desc">受内存芯片与核心元器件成本上涨影响，新发布机型起售价较2025年同档产品普遍上调，最低涨幅超过1000元，中高端旗舰涨幅预计达2000-3000元。</div>
+                        <span class="news-tag price">涨价</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>数据来源：公开市场信息整理 | 更新时间：2026年3月26日</p>
+            <p>© 2026 3C行业周度咨询看板</p>
+        </div>
+    </div>
+    
+    <script>
+        function switchTab(tabName) {
+            // 移除所有active类
+            document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.content').forEach(content => content.classList.remove('active'));
+            
+            // 添加active类到当前选中的tab和内容
+            event.target.classList.add('active');
+            document.getElementById(tabName).classList.add('active');
+        }
+    </script>
+</body>
+</html>
