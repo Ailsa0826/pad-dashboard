@@ -3,644 +3,579 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>3C行业周度资讯看板｜2026年4月27日-5月3日</title>
+    <title>3C行业周度资讯看板 - 2026年4月第5周</title>
     <style>
-        :root {
-            --bg-primary: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-            --bg-secondary: rgba(255,255,255,0.05);
-            --text-primary: #ffffff;
-            --text-secondary: rgba(255,255,255,0.7);
-            --text-muted: rgba(255,255,255,0.45);
-            --border-color: rgba(255,255,255,0.1);
-            --card-bg: rgba(255,255,255,0.07);
-            --apple: #007AFF;
-            --huawei: #CF0A2C;
-            --xiaomi: #FF6900;
-            --redmi: #FF6900;
-            --honor: #00BFFF;
-            --oppo: #1BAA52;
-            --vivo: #415FFF;
-            --lenovo: #E2231A;
-            --asus: #00539B;
-            --hp: #0096D6;
-            --mechrevo: #222222;
-            --rog: #FF0000;
-            --thinkpad: #E2231A;
-            --thinkbook: #0071C6;
-            --hyperx: #FF0000;
-        }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
-            background: var(--bg-primary);
-            color: var(--text-primary);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
             min-height: 100vh;
-            padding-bottom: 40px;
+            padding: 20px;
         }
-        /* Header */
+        .container { max-width: 1400px; margin: 0 auto; }
         .header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 20px 32px 16px;
-            border-bottom: 1px solid var(--border-color);
-        }
-        .header-left h1 {
-            font-size: 22px;
-            font-weight: 700;
-            letter-spacing: 1px;
-        }
-        .header-left .subtitle {
-            font-size: 13px;
-            color: var(--text-secondary);
-            margin-top: 4px;
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+            position: relative;
         }
         .lucy-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            background: rgba(0,122,255,0.15);
-            border: 1px solid rgba(0,122,255,0.3);
+            position: absolute;
+            top: 0;
+            left: 0;
+            font-size: 0.7rem;
+            color: rgba(255,255,255,0.7);
+            background: rgba(255,255,255,0.15);
+            padding: 4px 10px;
             border-radius: 20px;
-            padding: 5px 12px;
-            font-size: 12px;
-            color: rgba(255,255,255,0.8);
+            border: 1px solid rgba(255,255,255,0.25);
+            letter-spacing: 0.5px;
+            pointer-events: none;
+            user-select: none;
         }
-        .lucy-badge .emoji { font-size: 14px; }
-        /* Month Nav */
+        .header h1 { font-size: 2.5rem; margin-bottom: 10px; text-shadow: 2px 2px 4px rgba(0,0,0,0.2); }
+        .header .subtitle { font-size: 1.1rem; opacity: 0.9; }
+        .tabs { display: flex; justify-content: center; gap: 10px; margin-bottom: 30px; }
+        .tab {
+            padding: 12px 30px;
+            background: rgba(255,255,255,0.2);
+            border: none; border-radius: 25px;
+            color: white; font-size: 1rem; cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .tab.active { background: white; color: #667eea; font-weight: 600; }
+        .tab:hover { background: rgba(255,255,255,0.3); }
+        .tab.active:hover { background: white; }
         .month-nav {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            padding: 12px 32px;
-            border-bottom: 1px solid var(--border-color);
-            overflow-x: auto;
-            white-space: nowrap;
+            display: flex; justify-content: center;
+            gap: 10px; margin-bottom: 20px; flex-wrap: wrap;
         }
-        .month-nav a {
-            display: inline-block;
-            padding: 5px 14px;
-            border-radius: 16px;
-            font-size: 13px;
-            color: var(--text-secondary);
-            text-decoration: none;
-            transition: all 0.2s;
+        .month-link {
+            padding: 8px 16px;
+            background: rgba(255,255,255,0.15);
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 20px; color: white;
+            font-size: 0.9rem; text-decoration: none;
+            transition: all 0.3s ease;
         }
-        .month-nav a:hover { color: var(--text-primary); background: var(--card-bg); }
-        .month-nav a.active {
-            background: rgba(0,122,255,0.25);
-            color: #fff;
-            border: 1px solid rgba(0,122,255,0.5);
+        .month-link:hover { background: rgba(255,255,255,0.25); }
+        .month-link.active { background: white; color: #667eea; font-weight: 600; }
+        .content { display: none; }
+        .content.active { display: block; }
+        .card {
+            background: white; border-radius: 16px;
+            padding: 25px; margin-bottom: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
         }
-        .month-nav .month-label {
-            font-size: 13px;
-            color: var(--text-muted);
-            padding: 0 4px;
+        .card-title {
+            font-size: 1.3rem; color: #333;
+            margin-bottom: 20px; padding-bottom: 10px;
+            border-bottom: 3px solid #667eea;
+            display: flex; align-items: center; gap: 10px;
         }
-        /* Tabs */
-        .tabs {
-            display: flex;
-            gap: 0;
-            padding: 16px 32px 0;
+        .card-title .icon { font-size: 1.5rem; }
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
         }
-        .tab-btn {
-            padding: 10px 28px;
-            border: none;
-            background: transparent;
-            color: var(--text-secondary);
-            font-size: 15px;
-            font-weight: 600;
-            cursor: pointer;
-            border-bottom: 3px solid transparent;
-            transition: all 0.2s;
+        .news-item {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ec 100%);
+            border-radius: 12px; padding: 20px;
+            border-left: 4px solid #667eea;
+            transition: transform 0.2s ease;
         }
-        .tab-btn.active {
-            color: var(--text-primary);
-            border-bottom-color: #007AFF;
+        .news-item:hover { transform: translateY(-3px); box-shadow: 0 5px 20px rgba(0,0,0,0.1); }
+        .news-item.brand-apple    { border-left-color: #007AFF; }
+        .news-item.brand-huawei   { border-left-color: #CF0A2C; }
+        .news-item.brand-xiaomi   { border-left-color: #FF6900; }
+        .news-item.brand-lenovo   { border-left-color: #E2231A; }
+        .news-item.brand-oppo     { border-left-color: #1BAA52; }
+        .news-item.brand-vivo     { border-left-color: #415FFF; }
+        .news-item.brand-honor    { border-left-color: #00BFFF; }
+        .news-item.brand-asus     { border-left-color: #00539B; }
+        .news-item.brand-hp       { border-left-color: #0096D6; }
+        .news-item.brand-mechrevo { border-left-color: #222222; }
+        .news-item.brand-rog      { border-left-color: #FF0000; }
+        .news-item.brand-thinkpad { border-left-color: #E2231A; }
+        .news-item.brand-hyperx   { border-left-color: #FF0000; }
+        .news-brand { font-size: 0.85rem; font-weight: 600; color: #667eea; margin-bottom: 8px; text-transform: uppercase; }
+        .news-title { font-size: 1.1rem; font-weight: 600; color: #333; margin-bottom: 10px; line-height: 1.4; }
+        .news-desc { font-size: 0.95rem; color: #666; line-height: 1.6; }
+        .news-tag {
+            display: inline-block; padding: 4px 12px;
+            background: #667eea; color: white;
+            border-radius: 12px; font-size: 0.75rem;
+            margin-top: 10px; margin-right: 5px;
         }
-        .tab-btn:hover { color: var(--text-primary); }
-        /* Tab Content */
-        .tab-content { display: none; padding: 24px 32px; }
-        .tab-content.active { display: block; }
-        /* Alert */
-        .alert-box {
-            border-radius: 14px;
-            padding: 16px 20px;
-            margin-bottom: 24px;
-            border-left: 4px solid;
-        }
-        .alert-box h3 {
-            font-size: 14px;
-            margin-bottom: 8px;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-        .alert-box p { font-size: 13px; line-height: 1.6; opacity: 0.9; }
-        .alert-warning {
-            background: rgba(255, 152, 0, 0.12);
-            border-color: #FF9800;
-        }
-        /* Stats */
+        .news-tag.new   { background: #FF6B6B; }
+        .news-tag.price { background: #4ECDC4; }
+        .news-tag.tech  { background: #96CEB4; }
         .stats-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-            gap: 12px;
-            margin-bottom: 28px;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px; margin-bottom: 20px;
         }
         .stat-card {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 16px 20px;
-            text-align: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 12px; padding: 20px;
+            color: white; text-align: center;
         }
-        .stat-number {
-            font-size: 32px;
-            font-weight: 800;
-            color: #007AFF;
-            line-height: 1;
+        .stat-number { font-size: 2.5rem; font-weight: 700; margin-bottom: 5px; }
+        .stat-label { font-size: 0.9rem; opacity: 0.9; }
+        .trend-list { list-style: none; }
+        .trend-list li {
+            padding: 15px; background: #f8f9fa;
+            border-radius: 8px; margin-bottom: 10px;
+            display: flex; align-items: flex-start; gap: 15px;
         }
-        .stat-label { font-size: 12px; color: var(--text-secondary); margin-top: 6px; }
-        /* Section */
-        .section-title {
-            font-size: 14px;
-            font-weight: 700;
-            color: var(--text-secondary);
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            margin-bottom: 16px;
-            padding-bottom: 8px;
-            border-bottom: 1px solid var(--border-color);
-            display: flex;
-            align-items: center;
-            gap: 8px;
+        .trend-list li::before { content: "▶"; color: #667eea; font-size: 0.8rem; margin-top: 3px; }
+        .trend-content { flex: 1; }
+        .trend-title { font-weight: 600; color: #333; margin-bottom: 5px; }
+        .trend-desc { font-size: 0.9rem; color: #666; }
+        .highlight-box {
+            background: linear-gradient(135deg, #FF6B6B 0%, #FF8E53 100%);
+            border-radius: 12px; padding: 20px; color: white; margin-bottom: 20px;
         }
-        .section-title .dot {
-            width: 8px; height: 8px;
-            border-radius: 50%;
-            background: #007AFF;
-        }
-        /* News */
-        .news-list { display: flex; flex-direction: column; gap: 12px; }
-        .news-item {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 16px 20px;
-            position: relative;
-            transition: transform 0.2s, border-color 0.2s;
-        }
-        .news-item:hover { transform: translateY(-1px); border-color: rgba(255,255,255,0.2); }
-        .news-brand {
-            font-size: 11px;
-            font-weight: 700;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            color: var(--text-secondary);
-            margin-bottom: 6px;
-        }
-        .news-title {
-            font-size: 15px;
-            font-weight: 600;
-            margin-bottom: 6px;
-            color: var(--text-primary);
-        }
-        .news-desc {
-            font-size: 13px;
-            color: var(--text-secondary);
-            line-height: 1.65;
-        }
-        .news-tag {
-            display: inline-block;
-            padding: 3px 9px;
-            border-radius: 10px;
-            font-size: 11px;
-            font-weight: 600;
-            margin-right: 6px;
-            margin-top: 8px;
-        }
-        .news-tag.new { background: rgba(255, 60, 60, 0.2); color: #FF6B6B; border: 1px solid rgba(255, 60, 60, 0.3); }
-        .news-tag.upcoming { background: rgba(255, 152, 0, 0.15); color: #FFB74D; border: 1px solid rgba(255, 152, 0, 0.3); }
-        .news-tag.hot { background: rgba(255, 60, 60, 0.2); color: #FF6B6B; border: 1px solid rgba(255, 60, 60, 0.3); }
-        .news-tag.info { background: rgba(255,255,255,0.08); color: var(--text-secondary); border: 1px solid rgba(255,255,255,0.12); }
-        .news-tag.price { background: rgba(0, 180, 100, 0.15); color: #4CAF50; border: 1px solid rgba(0, 180, 100, 0.3); }
-        /* Brand colors */
-        .brand-apple .news-brand { color: var(--apple); }
-        .brand-huawei .news-brand { color: var(--huawei); }
-        .brand-xiaomi .news-brand { color: var(--xiaomi); }
-        .brand-redmi .news-brand { color: var(--redmi); }
-        .brand-honor .news-brand { color: var(--honor); }
-        .brand-oppo .news-brand { color: var(--oppo); }
-        .brand-vivo .news-brand { color: var(--vivo); }
-        .brand-lenovo .news-brand { color: var(--lenovo); }
-        .brand-thinkpad .news-brand { color: var(--thinkpad); }
-        .brand-thinkbook .news-brand { color: var(--thinkbook); }
-        .brand-asus .news-brand { color: var(--asus); }
-        .brand-hp .news-brand { color: var(--hp); }
-        .brand-hyperx .news-brand { color: var(--hyperx); }
-        .brand-mechrevo .news-brand { color: var(--text-secondary); }
-        /* Footer */
-        .footer {
-            text-align: center;
-            padding: 24px;
-            font-size: 12px;
-            color: var(--text-muted);
-            border-top: 1px solid var(--border-color);
-            margin-top: 32px;
-        }
-        /* Responsive */
-        @media (max-width: 600px) {
-            .header { padding: 16px; }
-            .header-left h1 { font-size: 18px; }
-            .tabs, .month-nav { padding-left: 16px; padding-right: 16px; }
-            .tab-content { padding: 16px; }
-            .stats-grid { grid-template-columns: 1fr 1fr; }
+        .highlight-box.info { background: linear-gradient(135deg, #4ECDC4 0%, #44A08D 100%); }
+        .highlight-title { font-size: 1.1rem; font-weight: 600; margin-bottom: 10px; display: flex; align-items: center; gap: 10px; }
+        .footer { text-align: center; color: white; opacity: 0.8; margin-top: 30px; font-size: 0.9rem; }
+        @media (max-width: 768px) {
+            .header h1 { font-size: 1.8rem; }
+            .tabs { flex-wrap: wrap; }
+            .tab { padding: 10px 20px; font-size: 0.9rem; }
+            .news-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
-
-<!-- Header -->
-<div class="header">
-    <div class="header-left">
+<div class="container">
+    <div class="header">
+        <div class="lucy-badge">Ailsa's assistant 🦐 Lucy 生成</div>
         <h1>📊 3C行业周度资讯看板</h1>
-        <div class="subtitle">📅 2026年4月27日-5月3日 &nbsp;|&nbsp; 覆盖平板 + 笔记本双品类</div>
-    </div>
-    <div class="lucy-badge">🦐 Ailsa's assistant · Lucy</div>
-</div>
-
-<!-- Month Nav -->
-<nav class="month-nav">
-    <a href="3c-dashboard-2026-03.html">3月</a>
-    <a href="3c-dashboard-2026-04.html">4月</a>
-    <a class="active" href="#">5月</a>
-    <span class="month-label">·</span>
-    <a href="3c-dashboard-latest.html" style="color:#007AFF;">← 最新</a>
-</nav>
-
-<!-- Tabs -->
-<div class="tabs">
-    <button class="tab-btn active" onclick="switchTab(event, 'pad')">📱 平板</button>
-    <button class="tab-btn" onclick="switchTab(event, 'notebook')">💻 笔记本</button>
-</div>
-
-<!-- ====== 平板 TAB ====== -->
-<div class="tab-content active" id="pad">
-
-    <!-- 重点提醒 -->
-    <div class="alert-box alert-warning" style="margin-top:8px;">
-        <h3>🔥 本周重点提醒</h3>
-        <p>本周平板重磅：OPPO Pad Mini <strong>4月30日开售</strong>（骁龙8 Gen5+8.8寸2.5K OLED，3699元起/国补3199）；REDMI Pad 2 Pro 乐学版 <strong>5月1日开售</strong>（2699元）；另有REDMI K Pad 2、Pad 2 SE等多款已发布待追踪开售节点。</p>
+        <div class="subtitle">2026年4月27日－5月3日 | 平板电脑 &amp; 笔记本电脑市场动态</div>
     </div>
 
-    <!-- 统计 -->
-    <div class="stats-grid">
-        <div class="stat-card">
-            <div class="stat-number">5</div>
-            <div class="stat-label">本周已发布新品</div>
-        </div>
-        <div class="stat-card">
-            <div class="stat-number">3</div>
-            <div class="stat-label">本周开售新品</div>
-        </div>
-        <div class="stat-card">
-            <div class="stat-number">6</div>
-            <div class="stat-label">参与品牌数</div>
-        </div>
+    <!-- 月份导航 -->
+    <div class="month-nav">
+        <a href="3c-dashboard-2026-03.html" class="month-link">2026年3月</a>
+        <a href="#" class="month-link">2026年4月</a>
+        <a href="3c-dashboard-latest.html" class="month-link" style="color:#007AFF;">← 返回最新</a>
     </div>
 
-    <!-- 本周已发布 -->
-    <div class="section-title"><span class="dot"></span>本周已发布新品</div>
-    <div class="news-list">
-
-        <div class="news-item brand-redmi">
-            <div class="news-brand">REDMI</div>
-            <div class="news-title">REDMI K Pad 2 发布（4月21日）</div>
-            <div class="news-desc">8.8英寸165Hz高刷LCD屏，天玑9500处理器，8+256GB首销价3399元，高性能游戏平板定位，REDMI Pad系列首次推出带"K"后缀的旗舰机型。</div>
-            <span class="news-tag new">4月21日发布</span>
-            <span class="news-tag info">开售日待确认</span>
-        </div>
-
-        <div class="news-item brand-redmi">
-            <div class="news-brand">REDMI</div>
-            <div class="news-title">REDMI Pad 2 SE 发布（4月21日）</div>
-            <div class="news-desc">入门级平板新品，售价1099元起，主打性价比，满足基础网课和娱乐需求。</div>
-            <span class="news-tag new">4月21日发布</span>
-            <span class="news-tag info">开售日待确认</span>
-        </div>
-
-        <div class="news-item brand-redmi">
-            <div class="news-brand">REDMI</div>
-            <div class="news-title">REDMI Pad 2 Pro 乐学版 发布（4月21日）</div>
-            <div class="news-desc">5月1日开售，定价2699元，主打学习教育场景，轻薄护眼设计，面向学生和家长群体。</div>
-            <span class="news-tag upcoming">5月1日开售</span>
-            <span class="news-tag info">乐学版</span>
-        </div>
-
-        <div class="news-item brand-oppo">
-            <div class="news-brand">OPPO</div>
-            <div class="news-title">OPPO Pad Mini 小平板 发布（4月21日）</div>
-            <div class="news-desc">8.8英寸2.5K LCD屏，279g超轻薄，骁龙8 Gen5处理器，莫奈紫/薄荷青/深空灰三色。8+256GB售3699元（国补3199元），12+256GB柔光版售3999元（国补3499元）。</div>
-            <span class="news-tag new">4月21日发布</span>
-            <span class="news-tag upcoming">4月30日开售</span>
-        </div>
-
-        <div class="news-item brand-huawei">
-            <div class="news-brand">HUAWEI</div>
-            <div class="news-title">华为MatePad 12.2 2026 发布（4月20日）</div>
-            <div class="news-desc">麒麟芯片+HarmonyOS，护眼云晰柔光屏，10100mAh大电池，定位高端学习平板，延续华为平板护眼生态优势。</div>
-            <span class="news-tag info">4月20日发布</span>
-            <span class="news-tag info">麒麟+鸿蒙</span>
-        </div>
-
+    <div class="tabs">
+        <button class="tab active" onclick="switchTab(event,'tablet')">📱 平板电脑</button>
+        <button class="tab" onclick="switchTab(event,'laptop')">💻 笔记本电脑</button>
     </div>
 
-    <!-- 本周开售 -->
-    <div class="section-title" style="margin-top:28px;"><span class="dot"></span>本周开售新品</div>
-    <div class="news-list">
+    <!-- ══════════════════════════════
+         平板电脑
+    ══════════════════════════════ -->
+    <div id="tablet" class="content active">
 
-        <div class="news-item brand-oppo">
-            <div class="news-brand">OPPO</div>
-            <div class="news-title">OPPO Pad Mini 开售（4月30日）</div>
-            <div class="news-desc">8.8寸2.5K LCD，骁龙8 Gen5，279g超轻，8+256GB国补3199元起 / 12+256GB柔光版国补3499元起。</div>
-            <span class="news-tag price">🗓️ 4月30日（本周三）</span>
+        <!-- 重点提醒 -->
+        <div class="highlight-box">
+            <div class="highlight-title">⚠️ 本周重点关注</div>
+            <div>
+                🔥 <strong>OPPO Pad Mini</strong> 4月30日开售（骁龙8 Gen5+8.8寸2.5K OLED，279g超轻，3699元起/国补3199元）；
+                <strong>REDMI Pad 2 Pro 乐学版</strong> 5月1日开售（2699元，主打学习市场）；
+                <strong>REDMI K Pad 2</strong> 4月21日已发布，天玑9500+8.8寸3K LCD，3399元起，关注开售节奏；
+                <strong>荣耀MagicPad 3 Pro</strong> 4月23日已发布，4.8mm全球最薄旗舰，3999元起。
+            </div>
         </div>
 
-        <div class="news-item brand-redmi">
-            <div class="news-brand">REDMI</div>
-            <div class="news-title">REDMI Pad 2 Pro 乐学版 开售（5月1日）</div>
-            <div class="news-desc">学习教育平板，2699元，主打护眼和家长管控功能，面向K12学生群体。</div>
-            <span class="news-tag price">🗓️ 5月1日（本周四）</span>
+        <!-- 统计 -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-number">5</div>
+                <div class="stat-label">本周已发布新品</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">3</div>
+                <div class="stat-label">本周开售新品</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">6</div>
+                <div class="stat-label">参与品牌数</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">-9%</div>
+                <div class="stat-label">2026年平板市场预测</div>
+            </div>
         </div>
 
+        <!-- 本周已发布 -->
+        <div class="card">
+            <div class="card-title"><span class="icon">🆕</span>本周已发布新品</div>
+            <div class="news-grid">
+
+                <div class="news-item brand-xiaomi">
+                    <div class="news-brand">REDMI</div>
+                    <div class="news-title">REDMI K Pad 2（4月21日发布）</div>
+                    <div class="news-desc">8.8英寸3K 165Hz LCD电竞屏，天玑9500旗舰芯片，15300mm²超大VC散热，9100mAh电池+67W快充。双0815 X轴马达+Bose调音，电光紫/太空银/深邃黑三色。8+256GB首销3399元，定位"口袋性能魔王"。开售日期待确认。</div>
+                    <span class="news-tag new">4月21日发布</span>
+                    <span class="news-tag">8.8英寸性能旗舰</span>
+                </div>
+
+                <div class="news-item brand-xiaomi">
+                    <div class="news-brand">REDMI</div>
+                    <div class="news-title">REDMI Pad 2 SE（4月21日发布）</div>
+                    <div class="news-desc">9.7英寸2K LCD，入门级平板，1099元起，主打性价比学生市场。金属一体机身，莱茵护眼认证，7600mAh电池，关注后续开售。</div>
+                    <span class="news-tag new">4月21日发布</span>
+                    <span class="news-tag">千元入门</span>
+                </div>
+
+                <div class="news-item brand-xiaomi">
+                    <div class="news-brand">REDMI</div>
+                    <div class="news-title">REDMI Pad 2 Pro 乐学版（4月21日发布）</div>
+                    <div class="news-desc">主打学习教育场景，轻薄护眼设计，2699元。面向K12学生和家长群体，家长管控功能。5月1日开售。</div>
+                    <span class="news-tag">4月21日发布</span>
+                    <span class="news-tag new">5月1日开售</span>
+                </div>
+
+                <div class="news-item brand-oppo">
+                    <div class="news-brand">OPPO</div>
+                    <div class="news-title">OPPO Pad Mini（4月21日发布）</div>
+                    <div class="news-desc">8.8英寸2.5K OLED，279g超轻薄，骁龙8 Gen5全球首发。8+256GB售价3699元（国补到手3199元），12+256GB柔光版3999元（国补3499元）。莫奈紫/薄荷青/深空灰三色。4月30日开售。</div>
+                    <span class="news-tag new">4月21日发布</span>
+                    <span class="news-tag new">4月30日开售</span>
+                </div>
+
+                <div class="news-item brand-huawei">
+                    <div class="news-brand">HUAWEI</div>
+                    <div class="news-title">华为MatePad 12.2 2026款（4月20日发布）</div>
+                    <div class="news-desc">麒麟芯片+鸿蒙系统，护眼云晰柔光屏，10100mAh大电池，定位高端学习平板，延续华为平板护眼生态优势。对联想中高端平板形成直接竞争。</div>
+                    <span class="news-tag">4月20日发布</span>
+                    <span class="news-tag">麒麟+鸿蒙</span>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- 本周开售 -->
+        <div class="card">
+            <div class="card-title"><span class="icon">🛒</span>本周开售新品</div>
+            <div class="news-grid">
+
+                <div class="news-item brand-oppo">
+                    <div class="news-brand">OPPO</div>
+                    <div class="news-title">OPPO Pad Mini 开售（4月30日）</div>
+                    <div class="news-desc">骁龙8 Gen5+8.8寸2.5K OLED，279g超轻旗舰。8+256GB国补3199元起，12+256GB柔光版国补3499元起。与iPad mini、联想Tab P12直接竞争，小屏旗舰赛道升温。</div>
+                    <span class="news-tag new">4月30日（本周三）</span>
+                    <span class="news-tag price">国补3199元起</span>
+                </div>
+
+                <div class="news-item brand-xiaomi">
+                    <div class="news-brand">REDMI</div>
+                    <div class="news-title">REDMI Pad 2 Pro 乐学版 开售（5月1日）</div>
+                    <div class="news-desc">学习教育平板，2699元，护眼+家长管控，面向K12学生群体。5月1日开售，关注供货情况。</div>
+                    <span class="news-tag new">5月1日（本周四）</span>
+                    <span class="news-tag price">2699元</span>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- 价格动态 -->
+        <div class="card">
+            <div class="card-title"><span class="icon">💰</span>价格动态（竞品监测）</div>
+            <div class="news-grid">
+
+                <div class="news-item brand-oppo">
+                    <div class="news-brand">OPPO</div>
+                    <div class="news-title">OPPO Pad Mini 竞品影响分析</div>
+                    <div class="news-desc">Pad Mini（骁龙8 Gen5，279g，国补3199元）主打超轻小屏旗舰，与iPad mini、联想Tab P12形成直接竞争。超轻旗舰平板赛道升温，联想Tab系列需关注是否跟进降价应对。</div>
+                    <span class="news-tag price">联想需关注</span>
+                    <span class="news-tag">小屏旗舰竞争</span>
+                </div>
+
+                <div class="news-item brand-xiaomi">
+                    <div class="news-brand">REDMI</div>
+                    <div class="news-title">REDMI K Pad 2 竞品影响分析</div>
+                    <div class="news-desc">K Pad 2（天玑9500+8.8寸165Hz，3399元）直接对标联想拯救者Tab性能版，同价位段竞争加剧。联想Tab和华为MatePad性能版需关注是否跟进降价应对。</div>
+                    <span class="news-tag price">联想/华为关注</span>
+                    <span class="news-tag">游戏平板竞争</span>
+                </div>
+
+                <div class="news-item brand-huawei">
+                    <div class="news-brand">HUAWEI</div>
+                    <div class="news-title">华为平板价格监测</div>
+                    <div class="news-desc">MatePad 11.5 2026款近期出现限时特惠活动，鸿蒙生态持续完善。2500-4000元价位段竞争激烈（小米/OPPO/荣耀均有旗舰平板布局），华为通过促销活动维持份额。</div>
+                    <span class="news-tag price">促销中</span>
+                    <span class="news-tag">价格战持续</span>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- 行业动态 -->
+        <div class="card">
+            <div class="card-title"><span class="icon">📈</span>行业动态与趋势</div>
+            <ul class="trend-list">
+                <li>
+                    <div class="trend-content">
+                        <div class="trend-title">8.8英寸游戏小平板赛道持续升温</div>
+                        <div class="trend-desc">REDMI K Pad 2（天玑9500+LCD）与OPPO Pad Mini（骁龙8 Gen5+OLED）本周齐发，8-9英寸高性能小平板已成2026上半年最热赛道，联想Y700五代迎来强劲对手，三款产品同台竞技，倒逼整个小尺寸平板市场快速升级。</div>
+                    </div>
+                </li>
+                <li>
+                    <div class="trend-content">
+                        <div class="trend-title">OPPO × 哈苏影像战略深化，平板影像能力成新战场</div>
+                        <div class="trend-desc">OPPO Pad Mini与Find X8 Ultra同场发布，哈苏影像系统向平板生态延伸，色彩科学和计算摄影能力成为OPPO平板差异化竞争力，对小米平板影像能力形成挑战。</div>
+                    </div>
+                </li>
+                <li>
+                    <div class="trend-content">
+                        <div class="trend-title">苹果2026年iPad路线图前瞻：全面更新三大产品线</div>
+                        <div class="trend-desc">苹果2026年将全面更新iPad Air、iPad Pro、iPad mini三条核心产品线，M5芯片将登陆iPad Pro，mini版有望迎来五年来最大更新。OPPO Pad Mini本周发布后，iPad mini需跟进应对安卓小屏旗舰的性价比攻势。</div>
+                    </div>
+                </li>
+                <li>
+                    <div class="trend-content">
+                        <div class="trend-title">国补效应持续，平板消费需求结构性分化</div>
+                        <div class="trend-desc">2026年国补持续惠及平板品类，OPPO/REDMI旗舰平板均可叠加国补，加速中高端平板消费升级。但整体平板市场预测仍为-9%负增长，换机周期拉长，品牌竞争将进一步白热化。</div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+    </div><!-- /tablet -->
+
+    <!-- ══════════════════════════════
+         笔记本电脑
+    ══════════════════════════════ -->
+    <div id="laptop" class="content">
+
+        <!-- 重点提醒 -->
+        <div class="highlight-box info">
+            <div class="highlight-title">💡 本周重点关注</div>
+            <div>
+                <strong>ThinkPad X1 Carbon Aura AI 2026</strong> 4月22日已发布（984g旗舰，国补16499元起）+ <strong>荣耀MagicBook Pro + WIN游戏本系列</strong> 4月23日已发布（H7已开售/H9定档5月6日）；
+                <strong>华为MateBook 14 鸿蒙版</strong> 4月28日开售（6599元起，主流首款鸿蒙PC）；
+                本周Windows笔电市场极为热闹，华为鸿蒙入局+荣耀游戏本入场+ThinkPad旗舰发布三重变量叠加。
+            </div>
+        </div>
+
+        <!-- 统计 -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-number">7</div>
+                <div class="stat-label">本周已发布新品</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">3</div>
+                <div class="stat-label">本周开售新品</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">8</div>
+                <div class="stat-label">参与品牌数</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">-10%</div>
+                <div class="stat-label">Windows笔电市场预测</div>
+            </div>
+        </div>
+
+        <!-- 本周已发布 -->
+        <div class="card">
+            <div class="card-title"><span class="icon">🆕</span>本周已发布新品</div>
+            <div class="news-grid">
+
+                <div class="news-item brand-thinkpad">
+                    <div class="news-brand">ThinkPad</div>
+                    <div class="news-title">ThinkPad 2026三款新品发布（4月22日）</div>
+                    <div class="news-desc"><strong>X1 Carbon Aura AI 2026</strong>——984g超轻旗舰，酷睿Ultra 300系列，2.8K OLED，16小时续航，国补16499元起；<strong>X14 AI 2026</strong>——1.2kg/15mm，首款Magic Bay模块ThinkPad；<strong>X9-15p Aura AI 2026</strong>——OLED触控屏，七大接口，23小时续航。三款全系搭载天禧AI 3.7生态，对联想商务本形成内部竞争。</div>
+                    <span class="news-tag new">4月22日发布</span>
+                    <span class="news-tag">国补16499元起</span>
+                </div>
+
+                <div class="news-item brand-huawei">
+                    <div class="news-brand">HUAWEI</div>
+                    <div class="news-title">华为MateBook 14 鸿蒙版（4月20日发布）</div>
+                    <div class="news-desc">麒麟X90芯片，HarmonyOS 6.1原生体验，2.8K 120Hz 3:2触控屏，纳米蚀刻柔光版，波点艺术圆键盘，机身1.31kg/14.5mm，6599元起。首款主流价位鸿蒙PC，4月28日开售，对联想小新Pro、ThinkBook系列形成直接竞争。</div>
+                    <span class="news-tag new">4月20日发布</span>
+                    <span class="news-tag new">4月28日开售</span>
+                </div>
+
+                <div class="news-item brand-hyperx">
+                    <div class="news-brand">HP / HyperX</div>
+                    <div class="news-title">HyperX暗影精灵三款游戏本（4月20日发布）</div>
+                    <div class="news-desc">OMEN正式更名为HyperX。三款：<strong>MAX 16</strong>（Ultra 9 290HX+RTX 5090，300W散热，240Hz）；<strong>PRO 16</strong>（Intel/AMD双版，RTX 5070，200W）；<strong>PRO 15</strong>（23.6mm，RTX 5060/5070，180W）。已上架销售，8074元起，全线升级AI功能，对联想拯救者形成直接竞争。</div>
+                    <span class="news-tag">4月20日发布</span>
+                    <span class="news-tag price">已上架 8074元起</span>
+                </div>
+
+                <div class="news-item brand-honor">
+                    <div class="news-brand">HONOR</div>
+                    <div class="news-title">荣耀MagicBook Pro 2026 + WIN游戏本（4月23日发布）</div>
+                    <div class="news-desc"><strong>MagicBook Pro 14|16 2026</strong>——Panther Lake旗舰轻薄本，HONOR Turbo X加持，14寸国补5599.15元起；<strong>WIN游戏本 H9</strong>——酷睿Ultra 9 290HX+RTX 5070Ti，270W散热，5月6日首销，国补9999元起；<strong>H7</strong>——RTX 5070，205W，4月23日已开售，国补7819.15元起。</div>
+                    <span class="news-tag new">4月23日发布</span>
+                    <span class="news-tag new">H9：5月6日首销</span>
+                </div>
+
+                <div class="news-item brand-xiaomi">
+                    <div class="news-brand">REDMI</div>
+                    <div class="news-title">REDMI Book Pro 14/16 2026（4月21日开售）</div>
+                    <div class="news-desc">酷睿Ultra X7 358H，14寸/16寸两款，99Wh大电池。已上架京东，14寸6999元起（部分地区国补后5949元），16寸7199元起。对联想小新Pro系列形成正面竞争。</div>
+                    <span class="news-tag">4月21日开售</span>
+                    <span class="news-tag price">国补后5949元起</span>
+                </div>
+
+                <div class="news-item brand-mechrevo">
+                    <div class="news-brand">MECHREVO</div>
+                    <div class="news-title">机械革命无界14 2026款上市</div>
+                    <div class="news-desc">4299元起，主打性价比轻薄本。极光X系列5799元起，稳坐京东游戏本销量冠军。性价比战略持续冲击联想拯救者中低端市场。</div>
+                    <span class="news-tag">已上市</span>
+                    <span class="news-tag price">4299元起</span>
+                </div>
+
+                <div class="news-item brand-lenovo">
+                    <div class="news-brand">Lenovo 小新</div>
+                    <div class="news-title">小新Pro16 酷睿 AI元启版 3代 上市</div>
+                    <div class="news-desc">第三代Ultra5-336H处理器，16英寸大屏，32GB+1TB存储组合，小新Pro系列持续扩充AI元启版产品线，主打主流办公市场。</div>
+                    <span class="news-tag">已上市</span>
+                    <span class="news-tag">Ultra5-336H</span>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- 本周开售 -->
+        <div class="card">
+            <div class="card-title"><span class="icon">🛒</span>本周开售新品</div>
+            <div class="news-grid">
+
+                <div class="news-item brand-huawei">
+                    <div class="news-brand">HUAWEI</div>
+                    <div class="news-title">华为MateBook 14 鸿蒙版 开售（4月28日）</div>
+                    <div class="news-desc">麒麟X90+鸿蒙OS 6.1，6599元起，主流价位首款鸿蒙PC，意义重大。对联想小新Pro、ThinkBook系列形成直接竞争。</div>
+                    <span class="news-tag new">4月28日（明天）</span>
+                    <span class="news-tag price">6599元起</span>
+                </div>
+
+                <div class="news-item brand-hyperx">
+                    <div class="news-brand">HP / HyperX</div>
+                    <div class="news-title">HyperX暗影精灵 MAX 16 / PRO 系列已上架</div>
+                    <div class="news-desc">RTX 5090旗舰MAX 16现已上架，直接对标联想拯救者Legion旗舰，与华硕ROG枪神系列形成三方竞争格局。</div>
+                    <span class="news-tag new">已上架</span>
+                    <span class="news-tag">RTX 5090旗舰</span>
+                </div>
+
+                <div class="news-item brand-honor">
+                    <div class="news-brand">HONOR</div>
+                    <div class="news-title">荣耀WIN游戏本 H7 已开售（4月23日）</div>
+                    <div class="news-desc">RTX 5070，205W性能释放，国补7819.15元，与HyperX PRO系列正面竞争，同时压制联想Legion 5i价位段。</div>
+                    <span class="news-tag new">已开售</span>
+                    <span class="news-tag price">国补7819元起</span>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- 下周预告 -->
+        <div class="card">
+            <div class="card-title"><span class="icon">🔮</span>下周预告（5月4-10日）</div>
+            <div class="news-grid">
+
+                <div class="news-item brand-honor">
+                    <div class="news-brand">HONOR</div>
+                    <div class="news-title">荣耀WIN游戏本 H9 首销（5月6日）</div>
+                    <div class="news-desc">酷睿Ultra 9 290HX+RTX 5070Ti，270W散热，旗舰电竞本，国补9999元起（建议零售11499元），首销日关注实际供货和溢价情况。</div>
+                    <span class="news-tag new">5月6日（下周二）</span>
+                    <span class="news-tag price">国补9999元起</span>
+                </div>
+
+                <div class="news-item brand-lenovo">
+                    <div class="news-brand">Lenovo</div>
+                    <div class="news-title">联想5月19日全场景发布会（提前预告）</div>
+                    <div class="news-desc">联想官宣5月19日"天禧AI一体多端全场景新品超能之夜"，将集中发布笔记本、平板、手机等多品类新品，包括拯救者Y900新一代旗舰平板、moto razr大折叠、天禧AI生态系列笔记本新品，届时需重点关注联想反击节奏。</div>
+                    <span class="news-tag">5月19日发布会</span>
+                    <span class="news-tag">多品类齐发</span>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- 价格动态 -->
+        <div class="card">
+            <div class="card-title"><span class="icon">💰</span>价格动态（竞品监测）</div>
+            <div class="news-grid">
+
+                <div class="news-item brand-honor">
+                    <div class="news-brand">HONOR</div>
+                    <div class="news-title">荣耀WIN游戏本价格策略分析</div>
+                    <div class="news-desc">H9国补9999元，H7国补7819元，直接切入联想拯救者Legion核心价位段。荣耀以270W散热和"2+4"轴流风扇为差异化，对联想游戏本市场形成强势冲击。WIN游戏本H9在5月6日首销前仍有预约窗口，联想Legion需关注是否跟进促销应对。</div>
+                    <span class="news-tag price">联想/HP关注</span>
+                    <span class="news-tag">游戏本价格战</span>
+                </div>
+
+                <div class="news-item brand-thinkpad">
+                    <div class="news-brand">ThinkPad</div>
+                    <div class="news-title">ThinkPad X1 Carbon vs 华为MateBook X Pro 竞争格局</div>
+                    <div class="news-desc">X1 Carbon Aura AI 2026国补16499元起，与华为MateBook X Pro在万元高端商务本区间形成直接对标。ThinkPad以984g+军工级品质为优势；华为以麒麟芯片+鸿蒙生态+AI助手为差异化。联想ThinkBook和商务消费线需关注是否有价格应对。</div>
+                    <span class="news-tag price">联想内部竞争</span>
+                    <span class="news-tag">华为竞品</span>
+                </div>
+
+                <div class="news-item brand-hp">
+                    <div class="news-brand">HP / HyperX</div>
+                    <div class="news-title">HyperX vs 荣耀WIN vs 联想Legion 游戏本价格监测</div>
+                    <div class="news-desc">HyperX PRO 16 RTX 5070，荣耀WIN H7国补7819元，联想Legion 5i/7a国内售价相近，三方在8000-10000元主流游戏本价位段激烈竞争。HyperX PRO 15 RTX 5060/5070下沉5000-7000元，机械革命极光X（5799元起）以性价比持续领跑，联想游戏本面临上下双重压力。</div>
+                    <span class="news-tag price">联想需关注</span>
+                    <span class="news-tag">三方价格战</span>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- 行业动态 -->
+        <div class="card">
+            <div class="card-title"><span class="icon">📈</span>行业动态与趋势</div>
+            <ul class="trend-list">
+                <li>
+                    <div class="trend-content">
+                        <div class="trend-title">鸿蒙PC生态加速，主流价位入场</div>
+                        <div class="trend-desc">MateBook 14鸿蒙版（6599元起）是鸿蒙PC首次进入主流消费价位段，标志着华为PC从"高端试水"转向"全面替代"。对Windows阵营（联想、惠普、戴尔）的中长期压力持续上升，需持续跟踪鸿蒙应用生态完善进度。</div>
+                    </div>
+                </li>
+                <li>
+                    <div class="trend-content">
+                        <div class="trend-title">荣耀"养虾本"：AI助手YOYO与机器人破纪录</div>
+                        <div class="trend-desc">荣耀MagicBook Pro系列2026被网友称为"养虾本"——发布会当天，搭载荣耀AI助手YOYO的机器人在北京亦庄半程马拉松中打破人类纪录夺冠。荣耀PC的AI差异化标签进一步强化，对联想AI PC战略形成对标压力。</div>
+                    </div>
+                </li>
+                <li>
+                    <div class="trend-content">
+                        <div class="trend-title">ThinkPad 天禧AI 3.7进化，联想AI生态加速</div>
+                        <div class="trend-desc">ThinkPad X1 Carbon/X14/X9三款新品全系搭载天禧AI 3.7（升级版），同时发布AI边缘设备（AI主机）进军智能体硬件赛道。联想以"ThinkPad+天禧AI"双品牌驱动商务AI PC战略，与华为鸿蒙AI PC正面对决。</div>
+                    </div>
+                </li>
+                <li>
+                    <div class="trend-content">
+                        <div class="trend-title">MacBook出货量逆势增长，苹果M5持续蚕食份额</div>
+                        <div class="trend-desc">在全球Windows笔电市场预计同比衰退10%以上的背景下，苹果MacBook 2026年出货量有望达2500万台，同比增长20%-25%。国补+M5性能代差双重加持，苹果在中国轻薄本市场份额持续走高，联想小新/YOGA系列压力加大。</div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+    </div><!-- /laptop -->
+
+    <div class="footer">
+        <p>数据来源：公开市场信息整理 | 更新时间：2026年4月27日 15:15</p>
+        <p>监控品牌（平板）：Apple / 华为 / 小米 / 红米 / 荣耀 / OPPO / vivo / 联想 / 一加 / iQOO</p>
+        <p>监控品牌（笔电）：Apple / 华为 / 小米 / 红米 / 荣耀 / 联想 / ThinkPad / ThinkBook / 机械革命 / 华硕 / 惠普 / HyperX</p>
+        <p>© 2026 3C行业周度资讯看板 · 每周一 09:30 更新</p>
     </div>
-
-    <!-- 价格动态 -->
-    <div class="section-title" style="margin-top:28px;"><span class="dot"></span>价格动态（竞品监测）</div>
-    <div class="news-list">
-
-        <div class="news-item brand-redmi">
-            <div class="news-brand">REDMI</div>
-            <div class="news-title">REDMI K Pad 2 竞品影响分析</div>
-            <div class="news-desc">K Pad 2（天玑9500+8.8寸165Hz，3399元）直接对标联想拯救者Tab、华为MatePad性能版，同价位段竞争加剧。联想Tab和华为需关注是否跟进降价应对。</div>
-            <span class="news-tag info">竞品监测</span>
-            <span class="news-tag price">联想/华为关注</span>
-        </div>
-
-        <div class="news-item brand-oppo">
-            <div class="news-brand">OPPO</div>
-            <div class="news-title">OPPO Pad Mini 竞品影响分析</div>
-            <div class="news-desc">Pad Mini（骁龙8 Gen5，279g，3699元/国补3199）主打超轻小屏旗舰，与iPad mini、联想Tab P12形成直接竞争，超轻旗舰平板赛道升温。</div>
-            <span class="news-tag info">竞品监测</span>
-            <span class="news-tag price">iPad mini/联想关注</span>
-        </div>
-
-        <div class="news-item brand-huawei">
-            <div class="news-brand">HUAWEI</div>
-            <div class="news-title">华为平板价格监测</div>
-            <div class="news-desc">MatePad 11.5 2026款近期出现限时特惠活动（IT之家报道），鸿蒙生态持续完善，与小米/OPPO旗舰平板在2500-4000元价位段竞争激烈。</div>
-            <span class="news-tag info">价格监测</span>
-            <span class="news-tag price">促销中</span>
-        </div>
-
-    </div>
-
-    <!-- 行业动态 -->
-    <div class="section-title" style="margin-top:28px;"><span class="dot"></span>行业动态</div>
-    <div class="news-list">
-        <div class="news-item brand-apple">
-            <div class="news-brand">Apple</div>
-            <div class="news-title">苹果2026 iPad路线图前瞻</div>
-            <div class="news-desc">苹果2026年将全面更新iPad Air、iPad Pro、iPad mini三条核心产品线，M5芯片将登陆iPad Pro，mini版有望迎来五年来最大更新。iPad mini 7已在推进中，与OPPO Pad Mini等安卓小屏旗舰直接对标。</div>
-            <span class="news-tag info">行业趋势</span>
-        </div>
-        <div class="news-item brand-oppo">
-            <div class="news-brand">OPPO</div>
-            <div class="news-title">OPPO × 哈苏影像战略深化</div>
-            <div class="news-desc">OPPO Pad Mini与Find X8 Ultra同场发布，哈苏影像系统向平板生态延伸，色彩科学和计算摄影能力成为OPPO平板差异化竞争力，对小米平板影像能力形成挑战。</div>
-            <span class="news-tag info">生态战略</span>
-        </div>
-    </div>
-
-</div>
-
-<!-- ====== 笔记本 TAB ====== -->
-<div class="tab-content" id="notebook">
-
-    <!-- 重点提醒 -->
-    <div class="alert-box alert-warning" style="margin-top:8px;">
-        <h3>🔥 本周重磅：荣耀PC家族全面爆发 + ThinkPad商务旗舰发布</h3>
-        <p><strong>ThinkPad X1 Carbon Aura AI 2026</strong>（4/22发布，984g，国补16499元起）+ <strong>荣耀MagicBook Pro + WIN游戏本系列</strong>（4/23发布，H7已开售/H9定档5/6）双线出击。华为MateBook 14 鸿蒙版<strong>4月28日开售</strong>（6599元起），本周笔电市场极为热闹。</p>
-    </div>
-
-    <!-- 统计 -->
-    <div class="stats-grid">
-        <div class="stat-card">
-            <div class="stat-number">7</div>
-            <div class="stat-label">本周已发布新品</div>
-        </div>
-        <div class="stat-card">
-            <div class="stat-number">3</div>
-            <div class="stat-label">本周开售新品</div>
-        </div>
-        <div class="stat-card">
-            <div class="stat-number">8</div>
-            <div class="stat-label">参与品牌数</div>
-        </div>
-    </div>
-
-    <!-- 本周已发布 -->
-    <div class="section-title"><span class="dot"></span>本周已发布新品</div>
-    <div class="news-list">
-
-        <div class="news-item brand-thinkpad">
-            <div class="news-brand">ThinkPad</div>
-            <div class="news-title">ThinkPad 2026三款新品发布（4月22日）</div>
-            <div class="news-desc"><strong>X1 Carbon Aura AI 2026</strong>——984g超轻旗舰，酷睿Ultra 300系列，2.8K OLED，16小时续航，国补16499元起；<strong>X14 AI 2026</strong>——1.2kg/15mm，首款Magic Bay模块ThinkPad；<strong>X9-15p Aura AI 2026</strong>——OLED触控屏，七大接口，23小时续航。三款全系搭载天禧AI 3.7生态，对联想商务本形成内部竞争。</div>
-            <span class="news-tag new">4月22日发布</span>
-            <span class="news-tag info">国补16499元起</span>
-        </div>
-
-        <div class="news-item brand-huawei">
-            <div class="news-brand">HUAWEI</div>
-            <div class="news-title">华为MateBook 14 鸿蒙版发布（4月20日）</div>
-            <div class="news-desc">麒麟X90芯片，HarmonyOS 6.1原生体验，2.8K 120Hz 3:2触控屏，纳米蚀刻柔光版，波点艺术圆键盘，机身1.31kg/14.5mm，6599元起。首款主流价位鸿蒙PC，4月28日开售。</div>
-            <span class="news-tag new">4月20日发布</span>
-            <span class="news-tag upcoming">4月28日开售</span>
-        </div>
-
-        <div class="news-item brand-hyperx">
-            <div class="news-brand">HP / HyperX</div>
-            <div class="news-title">HyperX暗影精灵三款游戏本发布（4月20日）</div>
-            <div class="news-desc">OMEN正式更名为HyperX。三款：<strong>MAX 16</strong>（Ultra 9 290HX+RTX 5090，300W散热，240Hz）；<strong>PRO 16</strong>（Intel/AMD双版，RTX 5070，200W）；<strong>PRO 15</strong>（23.6mm，RTX 5060/5070，180W）。已上架销售，8074元起，全线升级AI功能。</div>
-            <span class="news-tag info">4月20日发布</span>
-            <span class="news-tag price">已上架 8074元起</span>
-        </div>
-
-        <div class="news-item brand-redmi">
-            <div class="news-brand">REDMI</div>
-            <div class="news-title">REDMI Book Pro 14/16 2026 开售（4月21日）</div>
-            <div class="news-desc">酷睿Ultra X7 358H，14寸/16寸两款，99Wh大电池，2026款Pro系列已上架京东，14寸6999元起（部分地区国补后5949元），16寸7199元起。</div>
-            <span class="news-tag info">4月21日开售</span>
-            <span class="news-tag price">国补后5949元起</span>
-        </div>
-
-        <div class="news-item brand-honor">
-            <div class="news-brand">HONOR</div>
-            <div class="news-title">荣耀MagicBook Pro 2026 + WIN游戏本发布（4月23日）</div>
-            <div class="news-desc"><strong>MagicBook Pro 14|16 2026</strong>——Panther Lake旗舰轻薄本，HONOR Turbo X加持，性能/续航/屏幕全面升级，14寸国补5599.15元起；<strong>WIN游戏本 H9</strong>——酷睿Ultra 9 290HX+RTX 5070Ti，270W散热，5月6日首销，国补9999元起；<strong>H7</strong>——RTX 5070，205W，4月23日已开售，国补7819.15元起。</div>
-            <span class="news-tag new">4月23日发布</span>
-            <span class="news-tag upcoming">H9：5月6日首销</span>
-        </div>
-
-        <div class="news-item brand-mechrevo">
-            <div class="news-brand">MECHREVO</div>
-            <div class="news-title">机械革命无界14 2026款上市</div>
-            <div class="news-desc">4299元起，主打性价比轻薄本，搭载最新处理器，京东游戏本销量持续领先。极光X系列5799元起，稳坐京东游戏本销量冠军。</div>
-            <span class="news-tag info">已上市</span>
-            <span class="news-tag price">4299元起</span>
-        </div>
-
-        <div class="news-item brand-lenovo">
-            <div class="news-brand">Lenovo 小新</div>
-            <div class="news-title">小新Pro16 酷睿 AI元启版 3代 上市</div>
-            <div class="news-desc">搭载第三代Ultra5-336H处理器，16英寸大屏，32GB+1TB存储组合，小新Pro系列持续扩充AI元启版产品线，主打主流办公市场。</div>
-            <span class="news-tag info">已上市</span>
-            <span class="news-tag info">Ultra5-336H</span>
-        </div>
-
-    </div>
-
-    <!-- 本周开售 -->
-    <div class="section-title" style="margin-top:28px;"><span class="dot"></span>本周开售新品</div>
-    <div class="news-list">
-
-        <div class="news-item brand-huawei">
-            <div class="news-brand">HUAWEI</div>
-            <div class="news-title">华为MateBook 14 鸿蒙版 开售（4月28日）</div>
-            <div class="news-desc">麒麟X90+鸿蒙OS 6.1，6599元起，主流价位首款鸿蒙PC，意义重大。对联想小新Pro、ThinkBook系列形成直接竞争。</div>
-            <span class="news-tag price">🗓️ 4月28日（明天）</span>
-            <span class="news-tag info">6599元起</span>
-        </div>
-
-        <div class="news-item brand-hyperx">
-            <div class="news-brand">HP / HyperX</div>
-            <div class="news-title">HyperX暗影精灵 MAX 16 / PRO 16/15 已上架</div>
-            <div class="news-desc">RTX 5090旗舰MAX 16（Ultra 9 290HX Plus）现已上架销售，直接对标联想拯救者Legion旗舰，与华硕ROG枪神系列形成三方竞争格局。</div>
-            <span class="news-tag price">🗓️ 已上架</span>
-            <span class="news-tag info">RTX 5090旗舰</span>
-        </div>
-
-        <div class="news-item brand-honor">
-            <div class="news-brand">HONOR</div>
-            <div class="news-title">荣耀WIN游戏本 H7 已开售（4月23日）</div>
-            <div class="news-desc">RTX 5070，205W性能释放，国补7819.15元，与HyperX PRO系列正面竞争。</div>
-            <span class="news-tag price">🗓️ 已开售</span>
-            <span class="news-tag price">国补7819元起</span>
-        </div>
-
-    </div>
-
-    <!-- 价格动态 -->
-    <div class="section-title" style="margin-top:28px;"><span class="dot"></span>价格动态（竞品监测）</div>
-    <div class="news-list">
-
-        <div class="news-item brand-honor">
-            <div class="news-brand">HONOR</div>
-            <div class="news-title">荣耀WIN游戏本价格策略分析</div>
-            <div class="news-desc">H9国补9999元（建议零售11499元），H7国补7819元，直接切入联想拯救者Legion核心价位段（Legion 5i/7a国内售价相近）。荣耀以270W散热和"2+4"轴流风扇为差异化卖点，对联想游戏本市场形成强势冲击。WIN游戏本H9在5月6日首销前仍有预约窗口。</div>
-            <span class="news-tag info">竞品监测</span>
-            <span class="news-tag price">联想/HP关注</span>
-        </div>
-
-        <div class="news-item brand-thinkpad">
-            <div class="news-brand">ThinkPad</div>
-            <div class="news-title">ThinkPad X1 Carbon vs 华为MateBook X Pro 竞争格局</div>
-            <div class="news-desc">X1 Carbon Aura AI 2026国补16499元起，与华为MateBook X Pro在万元高端商务本区间形成直接对标。ThinkPad以984g+军工级品质+ThinkPad品牌积淀为优势；华为以麒麟芯片+鸿蒙生态+AI助手为差异化。两强相争，联想ThinkBook和商务消费线需关注是否有价格应对。</div>
-            <span class="news-tag info">联想视角监测</span>
-            <span class="news-tag price">华为竞品</span>
-        </div>
-
-        <div class="news-item brand-hp">
-            <div class="news-brand">HP / HyperX</div>
-            <div class="news-title">HyperX vs 荣耀WIN vs 联想Legion 游戏本价格监测</div>
-            <div class="news-desc">HyperX PRO 16 RTX 5070（国补？元），荣耀WIN H7国补7819元，联想Legion 5i/7a国内售价相近，三方在8000-10000元主流游戏本价位段形成激烈竞争。HyperX PRO 15 RTX 5060/5070（国补？元）下沉5000-7000元价位，机械革命极光X（5799元起）以性价比持续领跑京东销量。</div>
-            <span class="news-tag info">三方价格战监测</span>
-            <span class="news-tag price">联想需关注</span>
-        </div>
-
-    </div>
-
-    <!-- 即将发布（展望下周） -->
-    <div class="section-title" style="margin-top:28px;"><span class="dot"></span>下周预告</div>
-    <div class="news-list">
-
-        <div class="news-item brand-honor">
-            <div class="news-brand">HONOR</div>
-            <div class="news-title">荣耀WIN游戏本 H9 首销（5月6日）</div>
-            <div class="news-desc">酷睿Ultra 9 290HX+RTX 5070Ti，270W散热，旗舰电竞本，国补9999元起，首销日关注实际供货和溢价情况。</div>
-            <span class="news-tag upcoming">5月6日（下周二）</span>
-            <span class="news-tag price">国补9999元起</span>
-        </div>
-
-        <div class="news-item brand-apple">
-            <div class="news-brand">Apple</div>
-            <div class="news-title">苹果2026年MacBook产品线前瞻</div>
-            <div class="news-desc">2026年苹果迎来50周年，MacBook Pro/Air将全面更新M5系列芯片，下半年预计有多款MacBook新品。苹果国内教育优惠和竞品比价需持续跟踪。</div>
-            <span class="news-tag info">行业趋势</span>
-        </div>
-
-    </div>
-
-    <!-- 行业动态 -->
-    <div class="section-title" style="margin-top:28px;"><span class="dot"></span>行业动态</div>
-    <div class="news-list">
-
-        <div class="news-item brand-thinkpad">
-            <div class="news-brand">ThinkPad</div>
-            <div class="news-title">天禧AI 3.7 正式进化，联想AI生态加速</div>
-            <div class="news-desc">ThinkPad X1 Carbon/X14/X9三款新品全系搭载天禧AI 3.7（升级版），强调"懂行业、懂业务"，同时发布AI边缘设备（AI主机）进军智能体硬件赛道。联想以"ThinkPad+天禧AI"双品牌驱动商务AI PC战略。</div>
-            <span class="news-tag info">AI生态</span>
-        </div>
-
-        <div class="news-item brand-honor">
-            <div class="news-brand">HONOR</div>
-            <div class="news-title">荣耀"养虾本"：AI助手YOYO与机器人破纪录</div>
-            <div class="news-desc">荣耀MagicBook Pro系列2026被网友称为"养虾本"——发布会当天，搭载荣耀AI助手YOYO的机器人在北京亦庄半程马拉松中打破人类纪录夺冠，引发科技圈热议。荣耀PC的AI差异化标签进一步强化。</div>
-            <span class="news-tag info">AI+机器人</span>
-        </div>
-
-        <div class="news-item brand-huawei">
-            <div class="news-brand">HUAWEI</div>
-            <div class="news-title">鸿蒙PC生态加速，主流价位入场</div>
-            <div class="news-desc">MateBook 14鸿蒙版（6599元起）是鸿蒙PC首次进入主流消费价位段，标志着华为PC从"高端试水"转向"全面替代"。对Windows阵营（联想、惠普、戴尔）的中长期压力持续上升。</div>
-            <span class="news-tag info">生态战略</span>
-            <span class="news-tag hot">长期影响</span>
-        </div>
-
-    </div>
-
-</div>
-
-<!-- Footer -->
-<div class="footer">
-    🦐 Lucy 生成 · 3C周度资讯看板 · 2026年4月27日更新<br>
-    数据来源：IT之家、中关村在线、快科技、太平洋等综合整理
 </div>
 
 <script>
-function switchTab(event, tabName) {
-    document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
-    document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
-    document.getElementById(tabName).classList.add('active');
-    if (event && event.currentTarget) {
-        event.currentTarget.classList.add('active');
-    } else {
-        document.querySelector(`.tab-btn[onclick*="${tabName}"]`).classList.add('active');
+    function switchTab(e, tabName) {
+        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.content').forEach(c => c.classList.remove('active'));
+        e.target.classList.add('active');
+        document.getElementById(tabName).classList.add('active');
     }
-}
 </script>
-
 </body>
 </html>
