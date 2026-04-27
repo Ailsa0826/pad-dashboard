@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>3C行业周度资讯看板 - 2026年4月第4周</title>
+    <title>3C行业周度资讯看板 - 2026年4月第5周</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
@@ -13,53 +13,33 @@
             padding: 20px;
         }
         .container { max-width: 1400px; margin: 0 auto; }
-        .header {
-            text-align: center;
-            color: white;
-            margin-bottom: 30px;
-            position: relative;
-        }
+        .header { text-align: center; color: white; margin-bottom: 30px; position: relative; }
         .lucy-badge {
-            position: absolute;
-            top: 0;
-            left: 0;
-            font-size: 0.7rem;
-            color: rgba(255,255,255,0.7);
-            background: rgba(255,255,255,0.15);
-            padding: 4px 10px;
-            border-radius: 20px;
-            border: 1px solid rgba(255,255,255,0.25);
-            letter-spacing: 0.5px;
-            pointer-events: none;
-            user-select: none;
+            position: absolute; top: 0; left: 0;
+            font-size: 0.7rem; color: rgba(255,255,255,0.7);
+            background: rgba(255,255,255,0.15); padding: 4px 10px;
+            border-radius: 20px; border: 1px solid rgba(255,255,255,0.25);
+            letter-spacing: 0.5px; pointer-events: none; user-select: none;
         }
         .header h1 { font-size: 2.5rem; margin-bottom: 10px; text-shadow: 2px 2px 4px rgba(0,0,0,0.2); }
         .header .subtitle { font-size: 1.1rem; opacity: 0.9; }
         .tabs { display: flex; justify-content: center; gap: 10px; margin-bottom: 30px; }
         .tab {
-            padding: 12px 30px;
-            background: rgba(255,255,255,0.2);
-            border: none; border-radius: 25px;
-            color: white; font-size: 1rem; cursor: pointer;
-            transition: all 0.3s ease;
+            padding: 12px 30px; background: rgba(255,255,255,0.2);
+            border: none; border-radius: 25px; color: white;
+            font-size: 1rem; cursor: pointer; transition: all 0.3s ease;
         }
-        .tab.active { background: white; color: #667eea; font-weight: 600; }
+        .tab.active { background: white; color: #1a1a2e; font-weight: 600; }
         .tab:hover { background: rgba(255,255,255,0.3); }
         .tab.active:hover { background: white; }
-        .month-nav {
-            display: flex; justify-content: center;
-            gap: 10px; margin-bottom: 20px; flex-wrap: wrap;
-        }
+        .month-nav { display: flex; justify-content: center; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; }
         .month-link {
-            padding: 8px 16px;
-            background: rgba(255,255,255,0.15);
-            border: 1px solid rgba(255,255,255,0.3);
-            border-radius: 20px; color: white;
-            font-size: 0.9rem; text-decoration: none;
-            transition: all 0.3s ease;
+            padding: 8px 16px; background: rgba(255,255,255,0.15);
+            border: 1px solid rgba(255,255,255,0.3); border-radius: 20px;
+            color: white; font-size: 0.9rem; text-decoration: none; transition: all 0.3s ease;
         }
         .month-link:hover { background: rgba(255,255,255,0.25); }
-        .month-link.active { background: white; color: #667eea; font-weight: 600; }
+        .month-link.active { background: white; color: #1a1a2e; font-weight: 600; }
         .content { display: none; }
         .content.active { display: block; }
         .card {
@@ -68,9 +48,8 @@
             box-shadow: 0 10px 40px rgba(0,0,0,0.1);
         }
         .card-title {
-            font-size: 1.3rem; color: #333;
-            margin-bottom: 20px; padding-bottom: 10px;
-            border-bottom: 3px solid #667eea;
+            font-size: 1.3rem; color: #333; margin-bottom: 20px;
+            padding-bottom: 10px; border-bottom: 3px solid #667eea;
             display: flex; align-items: center; gap: 10px;
         }
         .card-title .icon { font-size: 1.5rem; }
@@ -81,8 +60,7 @@
         }
         .news-item {
             background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ec 100%);
-            border-radius: 12px; padding: 20px;
-            border-left: 4px solid #667eea;
+            border-radius: 12px; padding: 20px; border-left: 4px solid #667eea;
             transition: transform 0.2s ease;
         }
         .news-item:hover { transform: translateY(-3px); box-shadow: 0 5px 20px rgba(0,0,0,0.1); }
@@ -116,16 +94,14 @@
         }
         .stat-card {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border-radius: 12px; padding: 20px;
-            color: white; text-align: center;
+            border-radius: 12px; padding: 20px; color: white; text-align: center;
         }
         .stat-number { font-size: 2.5rem; font-weight: 700; margin-bottom: 5px; }
         .stat-label { font-size: 0.9rem; opacity: 0.9; }
         .trend-list { list-style: none; }
         .trend-list li {
-            padding: 15px; background: #f8f9fa;
-            border-radius: 8px; margin-bottom: 10px;
-            display: flex; align-items: flex-start; gap: 15px;
+            padding: 15px; background: #f8f9fa; border-radius: 8px;
+            margin-bottom: 10px; display: flex; align-items: flex-start; gap: 15px;
         }
         .trend-list li::before { content: "▶"; color: #667eea; font-size: 0.8rem; margin-top: 3px; }
         .trend-content { flex: 1; }
@@ -151,7 +127,7 @@
     <div class="header">
         <div class="lucy-badge">Ailsa's assistant 🦐 Lucy 生成</div>
         <h1>📊 3C行业周度资讯看板</h1>
-        <div class="subtitle">2026年4月20日－4月26日 | 平板电脑 &amp; 笔记本电脑市场动态</div>
+        <div class="subtitle">2026年4月21日－4月27日 | 平板电脑 &amp; 笔记本电脑市场动态</div>
     </div>
 
     <!-- 月份导航 -->
@@ -166,7 +142,7 @@
     </div>
 
     <!-- ══════════════════════════════
-         平板电脑
+         平板电脑 Tab
     ══════════════════════════════ -->
     <div id="tablet" class="content active">
 
@@ -174,25 +150,24 @@
         <div class="highlight-box">
             <div class="highlight-title">⚠️ 本周重点关注</div>
             <div>
-                🔥 <strong>REDMI K Pad 2</strong> 4月21日19:00正式发布（天玑9500 + 8.8英寸3K 165Hz LCD，9100mAh，口袋性能魔王）；
-                <strong>OPPO Pad Mini</strong> 4月21日同日发布（骁龙8 Gen5 + 8.8英寸2.5K OLED，5.39mm/279g极致轻薄，2499元起）；
-                <strong>荣耀MagicPad 3 Pro 12.3英寸</strong> 定档4月23日发布（OLED超窄边框，4.8mm全球最薄，5280Hz PWM调光）；
-                <strong>联想拯救者Y900新品</strong> 官宣5月19日发布（14.5英寸中大尺寸游戏平板，天禧AI加持）。
+                🔥 <strong>REDMI K Pad 2</strong>（4/21发布，天玑9500+8.8寸3K 165Hz，3399元起）与 <strong>OPPO Pad Mini</strong>（4/21发布，骁龙8 Gen5+8.8寸2.5K OLED，3699元起）同日双发，小尺寸高性能平板市场强势竞争；
+                <strong>荣耀 MagicPad 3 Pro</strong>（4/23发布，4.8mm全球最薄，12.3寸165Hz OLED，3999元起）正式亮相，直接对标华为旗舰平板；
+                <strong>REDMI Pad 2 Pro 乐学版</strong>（4/21发布，5月1日开售，2699元）切入教育市场，本周竞品平板发布密度为年内最高。
             </div>
         </div>
 
         <!-- 统计 -->
         <div class="stats-grid">
             <div class="stat-card">
-                <div class="stat-number">3</div>
-                <div class="stat-label">本周发布新品</div>
+                <div class="stat-number">5</div>
+                <div class="stat-label">本周已发布新品</div>
             </div>
             <div class="stat-card">
-                <div class="stat-number">2</div>
-                <div class="stat-label">本周待发布新品</div>
+                <div class="stat-number">1</div>
+                <div class="stat-label">本周待开售新品</div>
             </div>
             <div class="stat-card">
-                <div class="stat-number">8</div>
+                <div class="stat-number">6</div>
                 <div class="stat-label">参与品牌数</div>
             </div>
             <div class="stat-card">
@@ -203,31 +178,49 @@
 
         <!-- 本周已发布 -->
         <div class="card">
-            <div class="card-title"><span class="icon">🆕</span>本周已发布新品</div>
+            <div class="card-title"><span class="icon">🆕</span>本周已发布新品（4月21-27日）</div>
             <div class="news-grid">
-
-                <div class="news-item brand-huawei">
-                    <div class="news-brand">HUAWEI</div>
-                    <div class="news-title">华为MatePad 12.2英寸 2026款（今日发布）</div>
-                    <div class="news-desc">4月20日14:30"影像新生，折叠未来"全场景发布会上亮相。12.2英寸双层OLED云晰柔光屏，麒麟芯片+鸿蒙系统，10000mAh+100W快充，支持星闪手写笔+M-Pencil Pro，搭配星跃键盘实现PC级生产力。华为旗舰平板阵容再添新成员，对联想中高端平板市场形成直接竞争压力。</div>
-                    <span class="news-tag new">今日发布</span>
-                    <span class="news-tag">麒麟+鸿蒙旗舰</span>
-                </div>
 
                 <div class="news-item brand-xiaomi">
                     <div class="news-brand">REDMI</div>
-                    <div class="news-title">REDMI K Pad 2</div>
-                    <div class="news-desc">4月21日19:00与K90 Max同台发布。8.8英寸3K 165Hz LCD电竞屏，天玑9500旗舰芯片，15300mm²超大VC散热，9100mAh电池+67W快充，支持主板直供电边玩边充不发烫。双0815 X轴马达+Bose专业调音，电光紫/太空银/深邃黑三色。定位"口袋性能魔王"。</div>
+                    <div class="news-title">REDMI K Pad 2（4月21日发布）</div>
+                    <div class="news-desc">4月21日19:00与K90 Max同台发布，已开售。8.8英寸3K 165Hz LCD电竞屏，天玑9500旗舰芯片，15300mm²超大VC散热，9100mAh+67W快充，双0815 X轴马达+Bose专业调音。8+256GB首销3399元，12+256GB 3799元，12+512GB 4199元。定位"口袋性能魔王"，正面对标联想小新平板游戏本。</div>
                     <span class="news-tag new">4月21日发布</span>
-                    <span class="news-tag">8.8英寸性能旗舰</span>
+                    <span class="news-tag price">3399元起</span>
                 </div>
 
                 <div class="news-item brand-oppo">
                     <div class="news-brand">OPPO</div>
-                    <div class="news-title">OPPO Pad Mini</div>
-                    <div class="news-desc">4月21日与Find X9系列同台发布，起售价2499元。8.8英寸2.5K OLED明眸柔光屏，144Hz高刷，3:2比例，2.99mm超窄边框。骁龙8 Gen5全球首发，机身仅279g/5.39mm超轻薄。8000mAh电池。提供8+256G/12+256G/12+512G三种配置。</div>
+                    <div class="news-title">OPPO Pad Mini（4月21日发布）</div>
+                    <div class="news-desc">4月21日与Find X9系列同台发布，即日开售。8.8英寸2.5K OLED明眸柔光屏，144Hz高刷，2.99mm超窄边框，骁龙8 Gen5全球首发，机身仅279g/5.39mm极致轻薄。8000mAh电池，提供8+256G/12+256G/12+512G三种配置。8+256G起售3699元，国补3199元起。深空灰/薄荷青/莫奈紫三色。</div>
                     <span class="news-tag new">4月21日发布</span>
-                    <span class="news-tag price">2499元起</span>
+                    <span class="news-tag price">3699元起</span>
+                </div>
+
+                <div class="news-item brand-xiaomi">
+                    <div class="news-brand">REDMI</div>
+                    <div class="news-title">REDMI Pad 2 SE（4月21日开售）</div>
+                    <div class="news-desc">4月21日正式开售，9.7英寸2K 120Hz高亮LCD全面屏，骁龙6s 4G处理器，7600mAh大电池，莱茵三重护眼认证，全金属机身。仅提供6+128GB配置，官方售价1099元，国补到手934.15元。入门级高性价比平板，主打学生党市场。</div>
+                    <span class="news-tag">4月21日开售</span>
+                    <span class="news-tag price">1099元</span>
+                </div>
+
+                <div class="news-item brand-xiaomi">
+                    <div class="news-brand">REDMI</div>
+                    <div class="news-title">REDMI Pad 2 Pro 乐学版（4月21日发布）</div>
+                    <div class="news-desc">4月21日正式发布，5月1日开售，12.1英寸柔光屏版本。8+128GB柔光屏版2699元，国补到手2294.15元，现已开启预约。定位教育学习场景，搭载小米三年AI教育服务，护眼+学习功能完善。与联想小新Pad Pro教育版形成直接竞争。</div>
+                    <span class="news-tag new">4月21日发布</span>
+                    <span class="news-tag">5月1日开售</span>
+                    <span class="news-tag price">2699元起</span>
+                </div>
+
+                <div class="news-item brand-honor">
+                    <div class="news-brand">HONOR</div>
+                    <div class="news-title">荣耀 MagicPad 3 Pro 12.3英寸（4月23日发布）</div>
+                    <div class="news-desc">4月23日荣耀全场景发布会正式亮相。12.3英寸3K 165Hz OLED超窄边框屏，Hybrid OLED+5280Hz超高频PWM调光，4.8mm/450g全金属机身（全球最薄），第五代骁龙8至尊版，MagicOS 10支持PC级生产力。首销3999元起（国补3499元起），8+256G/12+256G/12+512G/16+512G四个版本，月影白/星空灰双色。</div>
+                    <span class="news-tag new">4月23日发布</span>
+                    <span class="news-tag price">3999元起</span>
+                    <span class="news-tag">全球最薄4.8mm</span>
                 </div>
 
             </div>
@@ -238,28 +231,12 @@
             <div class="card-title"><span class="icon">🔮</span>即将发布产品</div>
             <div class="news-grid">
 
-                <div class="news-item brand-honor">
-                    <div class="news-brand">HONOR</div>
-                    <div class="news-title">荣耀MagicPad 3 Pro 12.3英寸</div>
-                    <div class="news-desc">定档4月23日发布，预约已开启。12.3英寸OLED超窄边框屏，5280Hz超高频PWM调光，4.8mm超薄机身（全球轻薄标杆），IMAX ENHANCED认证，MagicOS 10，支持PC级WPS、剪映专业版、PC化桌面。提供8+256GB至16+512GB多个版本，月影白/星空灰双色。</div>
-                    <span class="news-tag new">4月23日发布</span>
-                    <span class="news-tag">4.8mm全球最薄</span>
-                </div>
-
                 <div class="news-item brand-lenovo">
                     <div class="news-brand">Lenovo</div>
-                    <div class="news-title">联想拯救者Y900新一代</div>
-                    <div class="news-desc">官宣5月19日"天禧AI一体多端全场景新品超能之夜"发布。定位14.5英寸中大尺寸游戏平板，后置家族式环形LOGO闪光灯+双摄，比Y700五代明显更大，搭载天禧AI功能生态，配纯白键盘保护壳及手写笔。是联想游戏平板旗舰升级之作。</div>
+                    <div class="news-title">联想拯救者 Y900 新一代</div>
+                    <div class="news-desc">官宣5月19日"天禧AI一体多端全场景新品超能之夜"发布。定位14.5英寸中大尺寸游戏平板，后置家族式环形LOGO闪光灯+双摄，比Y700五代明显更大，搭载天禧AI功能生态，配纯白键盘保护壳及手写笔。是联想游戏平板旗舰升级之作，主动迎战REDMI K Pad 2等竞品。</div>
                     <span class="news-tag">5月19日发布</span>
                     <span class="news-tag">14.5英寸旗舰</span>
-                </div>
-
-                <div class="news-item brand-xiaomi">
-                    <div class="news-brand">REDMI</div>
-                    <div class="news-title">REDMI Pad 2 SE</div>
-                    <div class="news-desc">与K Pad 2同场发布，定位千元级入门平板。9.7英寸2K超清LCD全面屏，前置摄像头内嵌边框，莱茵三重护眼认证，旗舰金属一体机身，7600mAh电池。天猫已开启1元预约，主打性价比学生党市场。</div>
-                    <span class="news-tag new">4月21日发布</span>
-                    <span class="news-tag">千元入门</span>
                 </div>
 
             </div>
@@ -267,23 +244,23 @@
 
         <!-- 上周回顾 -->
         <div class="card">
-            <div class="card-title"><span class="icon">📅</span>上周已发布新品回顾（4月13-19日）</div>
+            <div class="card-title"><span class="icon">📅</span>上周已发布新品回顾（4月14-20日）</div>
             <div class="news-grid">
 
-                <div class="news-item brand-vivo">
-                    <div class="news-brand">vivo</div>
-                    <div class="news-title">vivo Pad6 Pro 钛色新配色</div>
-                    <div class="news-desc">4月14日开启预售，4月17日正式开售。售价4299元起。13.2英寸4K原彩屏，骁龙8至尊版，全新钛色配色上架。此前墨玉黑/云月白已于4月3日开售，市场反馈良好。</div>
-                    <span class="news-tag">4月17日开售</span>
-                    <span class="news-tag price">4299元起</span>
+                <div class="news-item brand-huawei">
+                    <div class="news-brand">HUAWEI</div>
+                    <div class="news-title">华为 MatePad 12.2英寸 2026款（4月20日发布）</div>
+                    <div class="news-desc">4月20日华为全场景发布会亮相。12.2英寸双层OLED云晰柔光屏，麒麟旗舰芯片+鸿蒙系统，支持星闪手写笔+M-Pencil Pro，10000mAh+100W快充，搭配星跃键盘实现PC级生产力。华为平板旗舰阵容再添新力，对联想中高端平板形成直接竞争压力。</div>
+                    <span class="news-tag">4月20日发布</span>
+                    <span class="news-tag">麒麟+鸿蒙旗舰</span>
                 </div>
 
-                <div class="news-item brand-honor">
-                    <div class="news-brand">HONOR</div>
-                    <div class="news-title">荣耀MagicPad 4 国行版（预热中）</div>
-                    <div class="news-desc">MWC 2026（3月1日）海外首发后，国行版预计4月发布。12.3英寸3K 165Hz，骁龙8 Gen5，4.8mm机身，450g轻量化设计。与MagicPad 3 Pro同月推出，覆盖性能旗舰与美学旗舰两条产品线。</div>
-                    <span class="news-tag">预计本月</span>
-                    <span class="news-tag">国行待官宣</span>
+                <div class="news-item brand-huawei">
+                    <div class="news-brand">HUAWEI</div>
+                    <div class="news-title">华为 MatePad 11.5 2026款（4月14日发布）</div>
+                    <div class="news-desc">护眼学习平板，11.5英寸硬件级类自然光显示，云晰柔光屏，鸿蒙AI健康学习，10100mAh大电池。最高12GB+512GB，1799元起，国补价更低。主打学习场景，与联想小新Pad 11英寸系列直接竞争。</div>
+                    <span class="news-tag">4月14日发布</span>
+                    <span class="news-tag price">1799元起</span>
                 </div>
 
             </div>
@@ -294,28 +271,28 @@
             <div class="card-title"><span class="icon">💰</span>价格动态（竞品监测）</div>
             <div class="news-grid">
 
+                <div class="news-item brand-honor">
+                    <div class="news-brand">HONOR</div>
+                    <div class="news-title">荣耀 MagicPad 3 Pro 国补价3499元起——直接对标联想</div>
+                    <div class="news-desc">MagicPad 3 Pro首销原价3999元，叠加国补到手3499元，定价策略精准卡在联想小新Pad Pro 12.7英寸上方，以"全球最薄+OLED+旗舰芯"为差异点攻击联想中高端平板市场。荣耀平板4月连发三波，从1799元（MatePad 11.5同档位）到3499元全覆盖，对联想施压明显。</div>
+                    <span class="news-tag price">3499元（国补后）</span>
+                    <span class="news-tag">全面竞争联想</span>
+                </div>
+
                 <div class="news-item brand-oppo">
                     <div class="news-brand">OPPO</div>
-                    <div class="news-title">OPPO Pad Mini 2499元开门红</div>
-                    <div class="news-desc">OPPO Pad Mini起售价2499元（8+256GB），是今年首款2499元以下搭载骁龙8 Gen5的平板产品，价格极具杀伤力。同档联想小平板（如小新Pad系列）价格上已无明显优势，OPPO以低价旗舰芯入场，对联想中端平板形成直接价格压迫。</div>
-                    <span class="news-tag price">2499元起</span>
-                    <span class="news-tag new">旗舰芯低价</span>
+                    <div class="news-title">OPPO Pad Mini 国补3199元——小尺寸旗舰拉低门槛</div>
+                    <div class="news-desc">骁龙8 Gen5旗舰芯片+8.8寸2.5K OLED，国补后3199元入手。OPPO在小尺寸平板率先布局旗舰配置，直接压制REDMI K Pad 2（3399元）的价格优势，同时对iQOO Pad小尺寸版形成价格压力。对联想在8英寸游戏平板市场布局缺失的问题敲响警钟。</div>
+                    <span class="news-tag price">3199元（国补后）</span>
+                    <span class="news-tag">骁龙8 Gen5旗舰</span>
                 </div>
 
-                <div class="news-item brand-apple">
-                    <div class="news-brand">Apple</div>
-                    <div class="news-title">iPad Air M4 国补叠加持续活跃</div>
-                    <div class="news-desc">4月国补第二批625亿落地，iPad Air M4（128GB）天猫百亿补贴+国补后维持3847元价格区间，256GB维持4297元。苹果在中端平板持续凭借补贴政策侵蚀安卓阵营市场，对联想中高端平板替代性增强。</div>
-                    <span class="news-tag price">3847元起</span>
-                    <span class="news-tag">国补持续</span>
-                </div>
-
-                <div class="news-item brand-huawei">
-                    <div class="news-brand">HUAWEI</div>
-                    <div class="news-title">华为MatePad Pro 12.2 维持3199元</div>
-                    <div class="news-desc">华为MatePad Pro 12.2英寸（双层OLED，10000mAh+100W）京东活动叠加政府补贴500元后价格维持3199元（原3699元）。华为在旗舰OLED平板市场继续以价格杠杆抢占份额，12英寸以上大屏旗舰平板市场竞争持续激烈。</div>
-                    <span class="news-tag price">3199元</span>
-                    <span class="news-tag">官降500元</span>
+                <div class="news-item brand-xiaomi">
+                    <div class="news-brand">REDMI</div>
+                    <div class="news-title">REDMI Pad 2 SE 934元——千元以下平板重燃战火</div>
+                    <div class="news-desc">国补叠加后934.15元，9.7英寸2K屏+全金属机身，把有品质感的平板门槛拉到千元以下。直接对标联想小新Pad 10英寸入门款，对联想在超高性价比市场的份额造成持续压力。</div>
+                    <span class="news-tag price">934元（国补后）</span>
+                    <span class="news-tag">最低价有品平板</span>
                 </div>
 
             </div>
@@ -327,58 +304,57 @@
             <ul class="trend-list">
                 <li>
                     <div class="trend-content">
-                        <div class="trend-title">8.8英寸游戏小平板赛道本周爆发</div>
-                        <div class="trend-desc">REDMI K Pad 2（天玑9500+LCD）与OPPO Pad Mini（骁龙8 Gen5+OLED）同日发布，加上此前的联想Y700五代，8-9英寸高性能小平板已成2026上半年最热赛道，三款产品同台竞技，倒逼整个小尺寸平板市场快速升级。</div>
+                        <div class="trend-title">本周平板发布"密度创年内之最"</div>
+                        <div class="trend-desc">仅4月21-23日三天内，REDMI/OPPO/荣耀共5款平板密集发布，开启Q2平板市场抢位战。骁龙8 Gen5首发、天玑9500旗舰芯、4.8mm极致轻薄，多项技术标杆同步刷新，市场竞争激烈程度超过2025年同期。</div>
                     </div>
                 </li>
                 <li>
                     <div class="trend-content">
-                        <div class="trend-title">OPPO Pad Mini首发骁龙8 Gen5打破价格底线</div>
-                        <div class="trend-desc">2499元搭载骁龙8 Gen5的平板正式出现，是安卓旗舰芯平板有史以来的最低入门价格，宣告旗舰性能平板价格下探进入新阶段。此举将加速中端市场洗牌，迫使同价位产品重新定价或强化差异化卖点。</div>
+                        <div class="trend-title">8英寸小尺寸平板成新战场</div>
+                        <div class="trend-desc">REDMI K Pad 2与OPPO Pad Mini同日发布，REDMI主打游戏性能（天玑9500+LCD+9100mAh长续航），OPPO主打轻薄体验（骁龙8 Gen5+OLED+5.39mm），两款产品定位差异化但目标用户高度重叠。小尺寸旗舰平板有望成为下半年增量市场。</div>
                     </div>
                 </li>
                 <li>
                     <div class="trend-content">
-                        <div class="trend-title">荣耀平板4月双线夹击：美学旗舰+性能旗舰</div>
-                        <div class="trend-desc">MagicPad 3 Pro（4.8mm超薄OLED美学旗舰）与MagicPad 4国行版（骁龙8 Gen5性能旗舰）同月并发，荣耀以差异化双产品线覆盖旗舰平板全场景，是今年安卓平板阵营最系统性的品牌布局。</div>
+                        <div class="trend-title">国家补贴持续放大竞品价格攻击力</div>
+                        <div class="trend-desc">本周多款平板国补后价格较官方价下降约15%，荣耀/REDMI/OPPO均精准利用国补卡位联想同档位产品。国补政策至少延续至年底，竞品价格战压力将长期存在。</div>
                     </div>
                 </li>
                 <li>
                     <div class="trend-content">
-                        <div class="trend-title">国补第二批落地，平板补贴效应持续发酵</div>
-                        <div class="trend-desc">4月国补第二批625亿资金落地，多地已恢复申领入口，持续至12月31日。Apple、华为等品牌平板叠加国补后价格降幅显著，进一步刺激换机需求，预计Q2平板市场出货量将获得阶段性提振。</div>
+                        <div class="trend-title">教育场景成重要战场，REDMI Pad 2 Pro 乐学版切入</div>
+                        <div class="trend-desc">REDMI Pad 2 Pro乐学版搭载三年AI教育服务，定价2699元（国补2294元），直接对标联想在教育平板市场的布局。教育场景平板已成各品牌重要发力点。</div>
                     </div>
                 </li>
             </ul>
         </div>
 
-    </div><!-- /tablet -->
+    </div>
 
     <!-- ══════════════════════════════
-         笔记本电脑
+         笔记本电脑 Tab
     ══════════════════════════════ -->
     <div id="laptop" class="content">
 
         <!-- 重点提醒 -->
         <div class="highlight-box info">
-            <div class="highlight-title">💡 本周重点关注</div>
+            <div class="highlight-title">⚠️ 本周重点关注</div>
             <div>
-                <strong>华为MateBook 14 鸿蒙版</strong>今日（4月20日）14:30正式发布，首款面向主流市场的鸿蒙标准本，云晰柔光屏+波点艺术圆键盘，搭载麒麟处理器+HarmonyOS；
-                <strong>荣耀MagicBook Pro系列 + WIN游戏本</strong>定档4月23日发布（MagicBook Pro主打AI续航旗舰，WIN游戏本开创新赛道）；
-                <strong>联想Legion 7a / 5i</strong>CES已亮相，国内上市时间待确认；
-                联想官宣<strong>5月19日举办发布会</strong>，笔记本/平板/手机多品类齐发。
+                🔥 <strong>ThinkPad 2026新品</strong>（4/22发布，X1 Carbon 984g/16499元起、X14 Magic Bay模块创新、X9-15p 23小时续航）正式亮相，ThinkPad年度旗舰商务本全面迎战；
+                <strong>荣耀 WIN游戏本 + MagicBook Pro 2026</strong>（4/23发布，游戏本270W性能释放，MagicBook Pro 续航超越MacBook，6799元起）强势入场；
+                <strong>HyperX 暗影精灵系列</strong>（4/20发布，4/25上架，8074元起）与 <strong>REDMI Book Pro 14/16</strong>（4/21开售，6999元起）同步冲击市场。
             </div>
         </div>
 
         <!-- 统计 -->
         <div class="stats-grid">
             <div class="stat-card">
-                <div class="stat-number">2</div>
+                <div class="stat-number">5</div>
                 <div class="stat-label">本周已发布新品</div>
             </div>
             <div class="stat-card">
-                <div class="stat-number">2</div>
-                <div class="stat-label">本周待发布新品</div>
+                <div class="stat-number">1</div>
+                <div class="stat-label">本周待开售（华为MateBook）</div>
             </div>
             <div class="stat-card">
                 <div class="stat-number">7</div>
@@ -392,23 +368,51 @@
 
         <!-- 本周已发布 -->
         <div class="card">
-            <div class="card-title"><span class="icon">🆕</span>本周已发布新品</div>
+            <div class="card-title"><span class="icon">🆕</span>本周已发布新品（4月21-27日）</div>
             <div class="news-grid">
 
-                <div class="news-item brand-huawei">
-                    <div class="news-brand">HUAWEI</div>
-                    <div class="news-title">华为MateBook 14 鸿蒙版（4月20日发布）</div>
-                    <div class="news-desc">4月20日14:30在Pura 90系列发布会上正式亮相，是鸿蒙PC问世以来首款面向主流市场的标准版MateBook。搭载原生HarmonyOS 6.1，云晰柔光屏（2.8K 120Hz 3:2，纳米蚀刻工艺降低99%反光），波点艺术圆键盘，多彩配色，小艺AI深度集成，机身1.31kg/14.5mm超轻薄。</div>
-                    <span class="news-tag">4月20日发布</span>
-                    <span class="news-tag">鸿蒙标准本</span>
+                <div class="news-item brand-lenovo">
+                    <div class="news-brand">ThinkPad</div>
+                    <div class="news-title">ThinkPad X1 Carbon / X14 / X9-15p Aura AI 2026（4月22日发布）</div>
+                    <div class="news-desc">4月22日19:00"我·即我们"发布会正式亮相，三款商务旗舰：① X1 Carbon——984g超轻，首创星轨架构散热，第三代Intel酷睿Ultra，续航最高16小时，定价17999元（国补16499元起）；② X14——1.2kg/15mm，首款搭载Magic Bay磁吸模块扩展，酷睿Ultra X9，定价待官宣；③ X9-15p Aura AI——50W跨级性能释放，高刷OLED触控屏，23小时超长续航，七大接口，定价待官宣。全系搭载天禧AI生态，商务本年度旗舰。</div>
+                    <span class="news-tag new">4月22日发布</span>
+                    <span class="news-tag price">16499元起（国补）</span>
+                    <span class="news-tag">984g旗舰轻薄</span>
+                </div>
+
+                <div class="news-item brand-honor">
+                    <div class="news-brand">HONOR</div>
+                    <div class="news-title">荣耀 WIN游戏本 + MagicBook Pro 2026（4月23日发布）</div>
+                    <div class="news-desc">4月23日成都全场景发布会双线亮相：① WIN游戏本——首款荣耀游戏本，"2+4"轴流风扇散热，270W性能释放，英特尔旗舰处理器+RTX 50系显卡，以"赢者通吃"开创荣耀游戏本赛道；② MagicBook Pro 2026——Panther Lake旗舰架构，续航号称超越MacBook Pro，92Wh超大电池，国补到手价6799.15元起，全渠道开售。</div>
+                    <span class="news-tag new">4月23日发布</span>
+                    <span class="news-tag price">6799元起（国补）</span>
+                    <span class="news-tag">超越MacBook续航</span>
                 </div>
 
                 <div class="news-item brand-hp">
                     <div class="news-brand">HP / HyperX</div>
-                    <div class="news-title">HyperX暗影精灵三款2026游戏本（4月20日发布）</div>
-                    <div class="news-desc">OMEN品牌正式更名为HyperX，4月20日发布三款新品：旗舰MAX 16（Intel Ultra 9 290HX Plus+RTX 5090，300W散热，240Hz）；主流PRO 16 Intel/AMD双版（Ryzen 9 9955HX3D或Ultra 200HX+RTX 5070，200W散热，240Hz）；便携PRO 15（23.6mm机身，180W，RTX 5060/5070）。全线升级AI功能（OMEN AI+惠小微），对联想拯救者游戏本系列形成直接竞争压力。</div>
-                    <span class="news-tag">4月20日发布</span>
+                    <div class="news-title">HyperX 暗影精灵 2026系列（4月20日发布，4月25日上架）</div>
+                    <div class="news-desc">4月25日正式上架电商，首发到手价8074.15元起。三款机型：MAX 16（RTX 5090旗舰，300W散热）、PRO 16 Intel/AMD双版（RTX 5070，200W）、PRO 15（RTX 5060/5070，23.6mm便携）。OMEN品牌更名HyperX，全线搭载OMEN AI+惠小微，对联想拯救者游戏本系列形成直接竞争压力。</div>
+                    <span class="news-tag">4月25日上架</span>
+                    <span class="news-tag price">8074元起</span>
                     <span class="news-tag">RTX 5090旗舰</span>
+                </div>
+
+                <div class="news-item brand-xiaomi">
+                    <div class="news-brand">REDMI</div>
+                    <div class="news-title">REDMI Book Pro 14/16 2026（4月21日开售）</div>
+                    <div class="news-desc">4月21日正式开售，14英寸6999元起（国补5949.15元起），16英寸7199元起。全系搭载酷睿Ultra旗舰处理器，轻薄高性能定位，对联想小新Pro 14/16系列形成直接价格竞争，国补叠加后价格优势明显。</div>
+                    <span class="news-tag">4月21日开售</span>
+                    <span class="news-tag price">5949元起（国补）</span>
+                </div>
+
+                <div class="news-item brand-huawei">
+                    <div class="news-brand">HUAWEI</div>
+                    <div class="news-title">华为 MateBook 14 鸿蒙版（4月20日发布，4月28日开售）</div>
+                    <div class="news-desc">4月20日发布，4月28日正式开售，6599元起（含国补优惠）。原生HarmonyOS 6.1，云晰柔光屏（2.8K 120Hz 3:2），波点艺术圆键盘，小艺AI深度集成，1.31kg/14.5mm超轻薄。以系统差异化切入，对联想ThinkBook及小新中端市场形成品牌层面压力。</div>
+                    <span class="news-tag">4月28日开售</span>
+                    <span class="news-tag price">6599元起</span>
+                    <span class="news-tag">鸿蒙生态本</span>
                 </div>
 
             </div>
@@ -419,28 +423,12 @@
             <div class="card-title"><span class="icon">🔮</span>即将发布新品</div>
             <div class="news-grid">
 
-                <div class="news-item brand-honor">
-                    <div class="news-brand">HONOR</div>
-                    <div class="news-title">荣耀MagicBook Pro 14/16 2026 + WIN游戏本</div>
-                    <div class="news-desc">定档4月23日与MagicPad 3 Pro同场发布。MagicBook Pro系列主打行业续航最长+AI旗舰（92Wh超大电池，HONOR Turbo X加持，实测续航15.5小时）；全新WIN游戏本开创荣耀游戏本新赛道，以"赢者通吃"为slogan，主打性能+续航+AI全能体验。</div>
-                    <span class="news-tag new">4月23日发布</span>
-                    <span class="news-tag">AI续航旗舰</span>
-                </div>
-
-                <div class="news-item brand-lenovo">
-                    <div class="news-brand">ThinkPad</div>
-                    <div class="news-title">ThinkPad 2026新品暨天禧AI生态发布会（今晚19:00）</div>
-                    <div class="news-desc">今晚（4月22日）19:00"我·即我们"主题发布会，三款核心新品：① X1 Carbon Aura AI 2026——984g超轻，首创星轨架构散热，第三代Intel酷睿Ultra，续航最高16小时；② X14 AI 2026——1.2kg/15mm，首款搭载Magic Bay模块ThinkPad，搭载酷睿Ultra X9；③ X9-15p Aura AI 2026——50W性能释放，高刷OLED触控屏，23小时超长续航，七大接口。全系搭载天禧AI生态，对联想商务本市场形成直接正面竞争。1元预约已开启。</div>
-                    <span class="news-tag new">今晚19:00发布</span>
-                    <span class="news-tag">984g旗舰轻薄</span>
-                </div>
-
                 <div class="news-item brand-lenovo">
                     <div class="news-brand">Lenovo</div>
-                    <div class="news-title">拯救者Legion 7a / Legion 5i 国内上市</div>
-                    <div class="news-desc">CES 2026已亮相，Legion 7a搭载AMD Ryzen AI 9 HX 470（Gorgon Point平台）+ RTX 5060，16英寸240Hz OLED，超便携游戏旗舰。Legion 5i为酷睿Ultra 9 + RTX 5060，15.3英寸OLED。国内具体上市时间待官宣，预计4月底至5月上市。</div>
-                    <span class="news-tag">国行即将上市</span>
-                    <span class="news-tag tech">RTX 50系</span>
+                    <div class="news-title">联想拯救者 Y7000X 2026 + 5月19日全场景发布会</div>
+                    <div class="news-desc">联想拯救者官方宣布2026款Y7000X整机质量不足2kg，将于5月19日"天禧AI一体多端全场景新品超能之夜"正式发布。同场预计还有更多游戏本、笔记本新品。Legion 7a / 5i国行版也预计本季度内上市，具体档期待官宣。</div>
+                    <span class="news-tag">5月19日发布会</span>
+                    <span class="news-tag">2kg超轻游戏本</span>
                 </div>
 
             </div>
@@ -448,22 +436,21 @@
 
         <!-- 上周回顾 -->
         <div class="card">
-            <div class="card-title"><span class="icon">📅</span>上周已发布新品回顾（4月13-19日）</div>
+            <div class="card-title"><span class="icon">📅</span>上周已发布新品回顾（4月14-20日）</div>
             <div class="news-grid">
 
                 <div class="news-item brand-honor">
                     <div class="news-brand">HONOR</div>
-                    <div class="news-title">荣耀MagicBook 14/16 2026款</div>
-                    <div class="news-desc">4月16日发布，行业首款"养虾本"（养护眼睛寓意）。搭载第三代英特尔酷睿Ultra X7 358H，HONOR Turbo X加持性能释放至88W，续航最高15.6小时，100W超级快充，配全新锐炫B390显卡。主打"大学四年一本通关"学生市场，同步参与国补。</div>
+                    <div class="news-title">荣耀 MagicBook 14/16 2026款（4月16日发布）</div>
+                    <div class="news-desc">4月16日以"史上最短发布会"亮相，搭载第三代英特尔酷睿Ultra X7 358H，HONOR Turbo X性能释放至88W，续航最高15.6小时，100W超级快充，主打学生与职场市场，同步参与国补。</div>
                     <span class="news-tag">4月16日发布</span>
                 </div>
 
                 <div class="news-item brand-lenovo">
-                    <div class="news-brand">Lenovo</div>
-                    <div class="news-title">联想5月19日全场景发布会官宣</div>
-                    <div class="news-desc">联想官方确认5月19日举办"天禧AI一体多端全场景新品超能之夜"，将集中发布笔记本、平板、手机等多品类新品，包括moto razr fold大折叠、拯救者Y70手机、新一代AI平板，以及天禧AI生态系列笔记本新品。</div>
-                    <span class="news-tag">5月19日发布会</span>
-                    <span class="news-tag tech">多品类齐发</span>
+                    <div class="news-brand">ThinkBook</div>
+                    <div class="news-title">ThinkBook 14/16 2026 锐龙版（4月11日开启预约）</div>
+                    <div class="news-desc">搭载AMD锐龙7 H 260处理器，8核16线程，最高5.1GHz，2.8K 120Hz屏，已开启线上预约通道，3月底酷睿版已开售。ThinkBook 14+/16+ 酷睿版顶配8999元。对标同价位华为MateBook和荣耀MagicBook竞争激烈。</div>
+                    <span class="news-tag">预约已开启</span>
                 </div>
 
             </div>
@@ -474,28 +461,28 @@
             <div class="card-title"><span class="icon">💰</span>价格动态（竞品监测）</div>
             <div class="news-grid">
 
-                <div class="news-item brand-apple">
-                    <div class="news-brand">Apple</div>
-                    <div class="news-title">MacBook Air M5 国补持续加码</div>
-                    <div class="news-desc">4月国补第二批625亿落地，MacBook Air M5（16+512GB）京东国补后价格维持7188元区间（原9499元）。苹果连续两个月靠国补杠杆在轻薄本市场发力，M5性能代差拉大导致对联想小新Pro 14同价位竞争力持续强化，联想轻薄本面临较大压力。</div>
-                    <span class="news-tag price">7188元（国补后）</span>
-                    <span class="news-tag">持续抢份额</span>
+                <div class="news-item brand-lenovo">
+                    <div class="news-brand">ThinkPad</div>
+                    <div class="news-title">ThinkPad X1 Carbon 国补后16499元——商务旗舰价格战</div>
+                    <div class="news-desc">原价17999元，叠加国补到手16499元起。984g+16小时续航+星轨架构，对联想自己的ThinkBook高端线和外部竞品（华为MateBook X Pro等）都形成冲击。X1 Carbon历史上最低国行价，商务本旗舰价格向下突破。</div>
+                    <span class="news-tag price">16499元（国补后）</span>
+                    <span class="news-tag">商务旗舰</span>
                 </div>
 
-                <div class="news-item brand-huawei">
-                    <div class="news-brand">HUAWEI</div>
-                    <div class="news-title">鸿蒙本入场，华为双线布局</div>
-                    <div class="news-desc">今日发布的MateBook 14鸿蒙版主打年轻人市场，与MateBook X Pro形成高低双线布局。鸿蒙本预计定价在5000-6000元区间（官方待公布），以系统差异化取代硬件堆料路线，对联想ThinkBook及小新中端市场形成品牌层面压力，重点抢占国产生态认同用户。</div>
-                    <span class="news-tag new">今日发布</span>
-                    <span class="news-tag">鸿蒙生态切入</span>
+                <div class="news-item brand-honor">
+                    <div class="news-brand">HONOR</div>
+                    <div class="news-title">荣耀 MagicBook Pro 6799元——直攻联想小新Pro价格带</div>
+                    <div class="news-desc">国补到手6799元，Panther Lake旗舰架构+92Wh超大电池+号称超越MacBook Pro续航，精准卡在联想小新Pro 14旗舰版价格带。荣耀PC两款新品（游戏本+轻薄本）同日发布，形成多点攻击联想笔记本市场策略。</div>
+                    <span class="news-tag price">6799元（国补后）</span>
+                    <span class="news-tag">对标联想小新Pro</span>
                 </div>
 
                 <div class="news-item brand-hp">
-                    <div class="news-brand">HP</div>
-                    <div class="news-title">惠普星Book Pro 16 入门款3900元起</div>
-                    <div class="news-desc">惠普星Book Pro 16（酷睿Ultra X7 358H，24GB版）维持3900元起定价，继续切入3000-4000元轻薄本价格段，与联想小新Air 14正面竞争。同款32GB旗舰版（7999元）仍具竞争力，惠普两端夹击战略对联想小新Air/Pro系列均形成压力。</div>
-                    <span class="news-tag price">3900元起</span>
-                    <span class="news-tag">两端夹击</span>
+                    <div class="news-brand">HP / HyperX</div>
+                    <div class="news-title">HyperX 暗影精灵 8074元起——游戏本直接竞争拯救者</div>
+                    <div class="news-desc">首发到手8074.15元起，RTX 5090旗舰版定价待官宣。OMEN更名HyperX后品牌焕新，以OMEN AI+惠小微AI功能切入，主打游戏+AI双属性，正面对抗联想拯救者Y9000P系列，游戏本市场格局将迎来变化。</div>
+                    <span class="news-tag price">8074元起</span>
+                    <span class="news-tag">对标拯救者</span>
                 </div>
 
             </div>
@@ -507,47 +494,46 @@
             <ul class="trend-list">
                 <li>
                     <div class="trend-content">
-                        <div class="trend-title">鸿蒙PC生态今日正式向大众市场破圈</div>
-                        <div class="trend-desc">华为MateBook 14鸿蒙版今日发布，是鸿蒙PC体系从高端旗舰（MateBook X Pro）走向主流中端市场的关键一步。随着鸿蒙系统应用生态持续完善，预计2026年下半年鸿蒙PC将在国内轻薄本市场份额进一步提升，对Windows阵营形成更系统性挑战。</div>
+                        <div class="trend-title">本周笔电发布"五品牌同周齐发"——竞争烈度超出预期</div>
+                        <div class="trend-desc">ThinkPad、荣耀、惠普HyperX、REDMI、华为五大品牌在同一周内集中发布/开售，涵盖超轻商务本、游戏本、轻薄本、鸿蒙本四大品类。发布密度为Q2最高，各品牌争夺五一假期购买窗口的策略意图明显。</div>
                     </div>
                 </li>
                 <li>
                     <div class="trend-content">
-                        <div class="trend-title">荣耀游戏本入场，打破ROG/机械革命双寡头</div>
-                        <div class="trend-desc">荣耀WIN游戏本4月23日发布，代表荣耀首次进入游戏本赛道。凭借品牌知名度、HONOR Turbo X调优能力和AI功能，荣耀有望在中端游戏本市场快速占位，对联想游戏本(Legion/拯救者)中低端产品线形成潜在压力。</div>
+                        <div class="trend-title">ThinkPad Magic Bay模块——商务本扩展性新玩法</div>
+                        <div class="trend-desc">ThinkPad X14首次引入Magic Bay磁吸模块，可扩展摄像头、网络等模块，将商务本扩展性提升到新维度。这一设计已在华为MateBook系列上验证，ThinkPad跟进意味着商务本模块化成趋势。</div>
                     </div>
                 </li>
                 <li>
                     <div class="trend-content">
-                        <div class="trend-title">MacBook出货量逆势增长，苹果M5持续蚕食份额</div>
-                        <div class="trend-desc">在全球Windows笔电市场预计同比衰退10%以上的背景下，苹果MacBook 2026年出货量有望达2500万台，同比增长20%-25%。M5芯片性能代差+国补助力+MacBook Neo低价策略三重加持，苹果在中国轻薄本市场份额持续走高。</div>
+                        <div class="trend-title">AI笔记本"天禧AI生态"集中爆发</div>
+                        <div class="trend-desc">ThinkPad和联想5月新品均主打"天禧AI"，与荣耀的"HONOR Turbo X"、华为的"小艺AI"形成三大AI生态竞争格局。AI功能已从卖点变为基础配置，差异化向"行业垂直AI"（商务/创作/游戏）转移。</div>
                     </div>
                 </li>
                 <li>
                     <div class="trend-content">
-                        <div class="trend-title">联想5月19日发布会，AI生态全线升级</div>
-                        <div class="trend-desc">联想5月19日全场景发布会以"天禧AI一体多端"为主题，预示联想将从单品升级转向AI生态体系化发布。多品类协同+天禧AI 3.5升级是联想今年对抗华为鸿蒙生态、苹果Apple Intelligence的核心武器，发布会结果将影响联想二季度整体市场表现。</div>
+                        <div class="trend-title">荣耀WIN游戏本——新玩家切入游戏本市场</div>
+                        <div class="trend-desc">荣耀首款游戏本270W性能释放，正式进入游戏本赛道，与联想拯救者、华硕ROG、机械革命形成四方竞争。荣耀凭借手机端生态优势和年轻用户基础，有望在游戏本市场快速起量。</div>
                     </div>
                 </li>
             </ul>
         </div>
 
-    </div><!-- /laptop -->
+    </div>
 
     <div class="footer">
-        <p>数据来源：公开市场信息整理 | 更新时间：2026年4月20日 11:45</p>
         <p>监控品牌（平板）：Apple / 华为 / 小米 / 红米 / 荣耀 / OPPO / vivo / 联想 / 一加 / iQOO</p>
-        <p>监控品牌（笔电）：Apple / 华为 / 小米 / 红米 / 荣耀 / 联想 / 机械革命 / 华硕 / 惠普 / ThinkBook / ROG</p>
-        <p>© 2026 3C行业周度资讯看板 · 每周一 09:30 更新</p>
+        <p>监控品牌（笔电）：Apple / 华为 / 小米 / 红米 / 荣耀 / 联想 / ThinkBook / ThinkPad / 机械革命 / 华硕 / 惠普HyperX / ROG</p>
+        <p>© 2026 3C行业周度资讯看板 · 每周一 09:30 更新 · Ailsa's assistant 🦐 Lucy 生成</p>
     </div>
 </div>
 
 <script>
-    function switchTab(e, tabName) {
-        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    function switchTab(event, tabName) {
         document.querySelectorAll('.content').forEach(c => c.classList.remove('active'));
-        e.target.classList.add('active');
+        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
         document.getElementById(tabName).classList.add('active');
+        event.currentTarget.classList.add('active');
     }
 </script>
 </body>
