@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3C行业周度资讯看板 - 2026年7月第2周</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container { max-width: 1400px; margin: 0 auto; }
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+            position: relative;
+        }
+        .lucy-badge {
+            position: absolute;
+            top: 0;
+            left: 0;
+            font-size: 0.7rem;
+            color: rgba(255,255,255,0.7);
+            background: rgba(255,255,255,0.15);
+            padding: 4px 10px;
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.25);
+            letter-spacing: 0.5px;
+            pointer-events: none;
+            user-select: none;
+        }
+        .header h1 { font-size: 2.5rem; margin-bottom: 10px; text-shadow: 2px 2px 4px rgba(0,0,0,0.2); }
+        .header .subtitle { font-size: 1.1rem; opacity: 0.9; }
+        .tabs { display: flex; justify-content: center; gap: 10px; margin-bottom: 30px; }
+        .tab {
+            padding: 12px 30px;
+            background: rgba(255,255,255,0.2);
+            border: none; border-radius: 25px;
+            color: white; font-size: 1rem; cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .tab.active { background: white; color: #667eea; font-weight: 600; }
+        .tab:hover { background: rgba(255,255,255,0.3); }
+        .tab.active:hover { background: white; }
+        .month-nav {
+            display: flex; justify-content: center;
+            gap: 10px; margin-bottom: 20px; flex-wrap: wrap;
+        }
+        .month-link {
+            padding: 8px 16px;
+            background: rgba(255,255,255,0.15);
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 20px; color: white;
+            font-size: 0.9rem; text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        .month-link:hover { background: rgba(255,255,255,0.25); }
+        .month-link.active { background: white; color: #667eea; font-weight: 600; }
+        .content { display: none; }
+        .content.active { display: block; }
+        .card {
+            background: white; border-radius: 16px;
+            padding: 25px; margin-bottom: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+        .card-title {
+            font-size: 1.3rem; color: #333;
+            margin-bottom: 20px; padding-bottom: 10px;
+            border-bottom: 3px solid #667eea;
+            display: flex; align-items: center; gap: 10px;
+        }
+        .card-title .icon { font-size: 1.5rem; }
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .news-item {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ec 100%);
+            border-radius: 12px; padding: 20px;
+            border-left: 4px solid #667eea;
+            transition: transform 0.2s ease;
+        }
+        .news-item:hover { transform: translateY(-3px); box-shadow: 0 5px 20px rgba(0,0,0,0.1); }
+        .news-item.brand-apple    { border-left-color: #007AFF; }
+        .news-item.brand-huawei   { border-left-color: #CF0A2C; }
+        .news-item.brand-xiaomi   { border-left-color: #FF6900; }
+        .news-item.brand-lenovo   { border-left-color: #E2231A; }
+        .news-item.brand-oppo     { border-left-color: #1BAA52; }
+        .news-item.brand-vivo     { border-left-color: #415FFF; }
+        .news-item.brand-honor    { border-left-color: #00BFFF; }
+        .news-item.brand-asus     { border-left-color: #00539B; }
+        .news-item.brand-hp       { border-left-color: #0096D6; }
+        .news-item.brand-mechrevo { border-left-color: #222222; }
+        .news-item.brand-rog      { border-left-color: #FF0000; }
+        .news-item.brand-thinkpad { border-left-color: #E2231A; }
+        .news-item.brand-hyperx   { border-left-color: #FF0000; }
+        .news-item.brand-iqoo     { border-left-color: #FF6600; }
+        .news-brand { font-size: 0.85rem; font-weight: 600; color: #667eea; margin-bottom: 8px; text-transform: uppercase; }
+        .news-title { font-size: 1.1rem; font-weight: 600; color: #333; margin-bottom: 10px; line-height: 1.4; }
+        .news-desc { font-size: 0.95rem; color: #666; line-height: 1.6; }
+        .news-tag {
+            display: inline-block; padding: 4px 12px;
+            background: #667eea; color: white;
+            border-radius: 12px; font-size: 0.75rem;
+            margin-top: 10px; margin-right: 5px;
+        }
+        .news-tag.new   { background: #FF6B6B; }
+        .news-tag.price { background: #4ECDC4; }
+        .news-tag.tech  { background: #96CEB4; }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px; margin-bottom: 20px;
+        }
+        .stat-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 12px; padding: 20px;
+            color: white; text-align: center;
+        }
+        .stat-number { font-size: 2.5rem; font-weight: 700; margin-bottom: 5px; }
+        .stat-label { font-size: 0.9rem; opacity: 0.9; }
+        .trend-list { list-style: none; }
+        .trend-list li {
+            padding: 15px; background: #f8f9fa;
+            border-radius: 8px; margin-bottom: 10px;
+            display: flex; align-items: flex-start; gap: 15px;
+        }
+        .trend-list li::before { content: "▶"; color: #667eea; font-size: 0.8rem; margin-top: 3px; }
+        .trend-content { flex: 1; }
+        .trend-title { font-weight: 600; color: #333; margin-bottom: 5px; }
+        .trend-desc { font-size: 0.9rem; color: #666; }
+        .highlight-box {
+            background: linear-gradient(135deg, #FF6B6B 0%, #FF8E53 100%);
+            border-radius: 12px; padding: 20px; color: white; margin-bottom: 20px;
+        }
+        .highlight-box.info { background: linear-gradient(135deg, #4ECDC4 0%, #44A08D 100%); }
+        .highlight-box.warn { background: linear-gradient(135deg, #f7971e 0%, #ffd200 100%); color: #333; }
+        .highlight-title { font-size: 1.1rem; font-weight: 600; margin-bottom: 10px; display: flex; align-items: center; gap: 10px; }
+        .footer { text-align: center; color: white; opacity: 0.8; margin-top: 30px; font-size: 0.9rem; }
+        @media (max-width: 768px) {
+            .header h1 { font-size: 1.8rem; }
+            .tabs { flex-wrap: wrap; }
+            .tab { padding: 10px 20px; font-size: 0.9rem; }
+            .news-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <div class="lucy-badge">Ailsa's assistant 🦐 Lucy 生成</div>
+        <h1>📊 3C行业周度资讯看板</h1>
+        <div class="subtitle">2026年7月6日－7月12日 | 平板电脑 &amp; 笔记本电脑市场动态</div>
+    </div>
+
+    <!-- 月份导航 -->
+    <div class="month-nav">
+        <a href="https://ailsa0826.github.io/pad-dashboard/2026-03.html" class="month-link" target="_blank">2026年3月</a>
+        <a href="https://ailsa0826.github.io/pad-dashboard/2026-04.html" class="month-link" target="_blank">2026年4月</a>
+        <a href="https://ailsa0826.github.io/pad-dashboard/2026-05.html" class="month-link" target="_blank">2026年5月</a>
+        <a href="https://ailsa0826.github.io/pad-dashboard/2026-06.html" class="month-link" target="_blank">2026年6月</a>
+        <a href="https://ailsa0826.github.io/pad-dashboard/3c-dashboard-2026-07.html" class="month-link active" style="background:white;color:#667eea;font-weight:600;">2026年7月</a>
+        <a href="https://ailsa0826.github.io/pad-dashboard/3c-dashboard-latest.html" class="month-link" target="_blank" style="color:#007AFF;">← 返回最新</a>
+    </div>
+
+    <div class="tabs">
+        <button class="tab active" onclick="switchTab(event,'tablet')">📱 平板电脑</button>
+        <button class="tab" onclick="switchTab(event,'laptop')">💻 笔记本电脑</button>
+    </div>
+
+    <!-- ══════════════════════════════
+         平板电脑
+    ══════════════════════════════ -->
+    <div id="tablet" class="content active">
+
+        <!-- 重点提醒 -->
+        <div class="highlight-box warn">
+            <div class="highlight-title">⚠️ 本周重点关注</div>
+            <div>
+                🆕 <strong>vivo Pad5c / iQOO Pad5c</strong> 7月1日同步发布上市，2699元起，国补后2429元起，暑期学生市场主攻；<br>
+                🌍 <strong>华为MatePad Pro Max</strong> 海外版7月1日欧洲开售（1099欧元），国行上市仍待定；<br>
+                📢 <strong>华为官宣9月全品类新品</strong>：Mate 90系列+三折叠Mate XT 2领衔，平板/笔记本同步更新；<br>
+                🔥 <strong>联想拯救者Y700无极版</strong> 6月30日公布，首发5G+OLED小平板，8月上市，暑期游戏平板市场提前预热。
+            </div>
+        </div>
+
+        <!-- 统计 -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-number">2</div>
+                <div class="stat-label">本周平板新品上市</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">1</div>
+                <div class="stat-label">本周平板海外开售</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">1</div>
+                <div class="stat-label">平板新品预告</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">暑期</div>
+                <div class="stat-label">学生市场启动</div>
+            </div>
+        </div>
+
+        <!-- 本周动态 -->
+        <div class="card">
+            <div class="card-title"><span class="icon">🆕</span>本周新品动态</div>
+            <div class="news-grid">
+
+                <div class="news-item brand-vivo">
+                    <div class="news-brand">vivo</div>
+                    <div class="news-title">vivo Pad5c 正式发布并上市（7月1日）</div>
+                    <div class="news-desc">搭载第三代骁龙8s处理器，12.1英寸2.8K 144Hz护眼屏，10000mAh电池，44W快充。尺寸266.43×192×6.62mm，重量584g。4扬声器全景声学系统，前置5MP/后置8MP。配备PC级WPS、同声传译、AI转记、原子笔记等学习功能。售价2699元起，国补后2429.1元起，7月1日-31日有学生专享教育优惠。定位中端学习/创作平板，与OPPO Pad 6、REDMI Pad 2形成竞争。</div>
+                    <span class="news-tag new">7月1日上市</span>
+                    <span class="news-tag">2699元起</span>
+                    <span class="news-tag">教育优惠</span>
+                </div>
+
+                <div class="news-item brand-iqoo">
+                    <div class="news-brand">iQOO</div>
+                    <div class="news-title">iQOO Pad5c 正式发布并上市（7月1日）</div>
+                    <div class="news-desc">与vivo Pad5c同步发布，整体配置相近，主要升级处理器从天玑9300+换为第三代骁龙8s。LPDDR5X内存+UFS4.1闪存（256GB版），32200mm²石墨烯立体散热。内置游戏超分、触控精准调校、游戏直播助手等自研游戏优化技术。售价同样2699元起，国补后2429.1元起。与vivo Pad5c形成"学习vs游戏"的同平台差异化定位。</div>
+                    <span class="news-tag new">7月1日上市</span>
+                    <span class="news-tag">2699元起</span>
+                    <span class="news-tag">游戏优化</span>
+                </div>
+
+                <div class="news-item brand-huawei">
+                    <div class="news-brand">HUAWEI</div>
+                    <div class="news-title">华为MatePad Pro Max 海外版开售（7月1日）</div>
+                    <div class="news-desc">海外版本于7月1日起在德国、英国等市场正式发售，起售价1099欧元（约8522元人民币）。搭载麒麟T93 Pro处理器与HarmonyOS 4.3。海外版未搭载EMUI15.0。13.2英寸3K OLED超窄边框屏（3.55mm边框），4.7mm全球最薄机身。国行上市时间和价格仍待定。</div>
+                    <span class="news-tag new">7月1日海外开售</span>
+                    <span class="news-tag">1099欧元起</span>
+                    <span class="news-tag">国行待定</span>
+                </div>
+
+                <div class="news-item brand-lenovo">
+                    <div class="news-brand">Lenovo 拯救者</div>
+                    <div class="news-title">拯救者Y700无极版公布：首发5G+OLED小平板（6月30日）</div>
+                    <div class="news-desc">6月30日，联想拯救者Y700无极版正式公布，官方定位"小平板，大5G"。首次在Y700系列中引入5G通信能力，采用实体SIM卡设计。搭载OLED屏幕，定位旗舰小尺寸游戏平板。计划于8月上市，对iPad mini和现有Y700五代形成升级竞争。暑期游戏平板市场提前预热。</div>
+                    <span class="news-tag">8月上市</span>
+                    <span class="news-tag">5G+OLED</span>
+                    <span class="news-tag">旗舰小平板</span>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- 即将发布 -->
+        <div class="card">
+            <div class="card-title"><span class="icon">🔮</span>即将发布/开售预告</div>
+            <div class="news-grid">
+
+                <div class="news-item brand-lenovo">
+                    <div class="news-brand">Lenovo 拯救者</div>
+                    <div class="news-title">拯救者Y700无极版（预计8月上市）</div>
+                    <div class="news-desc">6月30日公布的Y700无极版，首发5G通信+OLED屏幕，实体SIM卡设计。定位旗舰小尺寸游戏平板，约8.8英寸。预计8月正式上市，暑期游戏平板市场的重磅新品。</div>
+                    <span class="news-tag">预计8月上市</span>
+                    <span class="news-tag">5G+OLED</span>
+                    <span class="news-tag">旗舰小平板</span>
+                </div>
+
+                <div class="news-item brand-huawei">
+                    <div class="news-brand">HUAWEI</div>
+                    <div class="news-title">华为MatePad Pro Max 国行上市（待定）</div>
+                    <div class="news-desc">5月7日泰国全球发布后，国行版本上市时间和价格仍未公布。13.2英寸3K OLED+4.7mm全球最薄机身。关注国行定价策略，预计可能在9月全品类发布会中亮相。</div>
+                    <span class="news-tag">国行待定</span>
+                    <span class="news-tag">13.2寸3K OLED</span>
+                    <span class="news-tag">4.7mm最薄</span>
+                </div>
+
+                <div class="news-item brand-huawei">
+                    <div class="news-brand">HUAWEI</div>
+                    <div class="news-title">华为9月全品类新品发布：Mate 90系列+平板/笔记本</div>
+                    <div class="news-desc">7月3日消息，华为计划9月集中发布全品类新品。智能手机包括Mate 90系列（Mate 90/90 Pro/90 Pro Max/90 RS四款）和三折叠旗舰Mate XT 2。平板电脑、笔记本电脑、智慧屏、穿戴、音频等产品也将同步更新。关注MatePad和MateBook的新品迭代。</div>
+                    <span class="news-tag">9月发布</span>
+                    <span class="news-tag">全品类</span>
+                    <span class="news-tag">Mate 90系列</span>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- 历史回顾 -->
+        <div class="card">
+            <div class="card-title"><span class="icon">📋</span>历史回顾（5月-6月已发布/开售）</div>
+            <div class="news-grid">
+
+                <div class="news-item brand-oppo">
+                    <div class="news-brand">OPPO</div>
+                    <div class="news-title">OPPO Pad 6 已首销（6月3日）</div>
+                    <div class="news-desc">搭载天玑9500s处理器，12.1英寸3K柔光屏，10420mAh电池。国补后2804.15元起。定位中端学习/创作平板。</div>
+                    <span class="news-tag">6月3日已首销</span>
+                    <span class="news-tag">2804元起</span>
+                    <span class="news-tag">天玑9500s</span>
+                </div>
+
+                <div class="news-item brand-lenovo">
+                    <div class="news-brand">Lenovo 拯救者</div>
+                    <div class="news-title">拯救者Y900 11英寸 已首销（6月10日）</div>
+                    <div class="news-desc">搭载天玑9500s处理器，144Hz高刷屏，8GB+256GB/12GB+256GB/12GB+512GB，售价3399-4199元。</div>
+                    <span class="news-tag">6月10日已首销</span>
+                    <span class="news-tag">3399-4199元</span>
+                </div>
+
+                <div class="news-item brand-lenovo">
+                    <div class="news-brand">Lenovo 拯救者</div>
+                    <div class="news-title">拯救者Y900 13英寸 已先行发售（5月19日发布）</div>
+                    <div class="news-desc">搭载骁龙8至尊版，13英寸4K 144Hz超清屏，2699元起。定位旗舰AI平板。</div>
+                    <span class="news-tag">5月19日发布</span>
+                    <span class="news-tag">2699元起</span>
+                    <span class="news-tag">4K 144Hz</span>
+                </div>
+
+                <div class="news-item brand-iqoo">
+                    <div class="news-brand">iQOO</div>
+                    <div class="news-title">iQOO Pad6 Pro 已开售（5月20日）</div>
+                    <div class="news-desc">搭载骁龙8 Elite Gen5，13.2英寸4K 144Hz LCD屏，13000mAh+90W快充，8扬声器。京东活动价4398元起。定位旗舰游戏平板。</div>
+                    <span class="news-tag">5月20日已开售</span>
+                    <span class="news-tag">4398元起</span>
+                    <span class="news-tag">4K 144Hz</span>
+                </div>
+
+                <div class="news-item brand-oppo">
+                    <div class="news-brand">OnePlus</div>
+                    <div class="news-title">一加平板3 Pro 已开售（5月13日）</div>
+                    <div class="news-desc">搭载骁龙8 Elite Gen5，13.2英寸3.4K 144Hz高刷原彩屏，ColorOS 16。起售价4399元。定位旗舰性能平板。</div>
+                    <span class="news-tag">5月13日已开售</span>
+                    <span class="news-tag">4399元起</span>
+                    <span class="news-tag">骁龙8 Elite Gen5</span>
+                </div>
+
+                <div class="news-item brand-huawei">
+                    <div class="news-brand">HUAWEI</div>
+                    <div class="news-title">华为MatePad Pro Max 全球发布（5月7日·泰国曼谷）</div>
+                    <div class="news-desc">13.2英寸3K OLED超窄边框屏（3.55mm边框），4.7mm全球最薄机身，后置星环Deco。海外起售价1399欧元（约1.1万元）。国行上市时间待定。</div>
+                    <span class="news-tag">5月7日全球发布</span>
+                    <span class="news-tag">13.2寸3K OLED</span>
+                    <span class="news-tag">4.7mm最薄</span>
+                </div>
+
+                <div class="news-item brand-xiaomi">
+                    <div class="news-brand">REDMI</div>
+                    <div class="news-title">REDMI Pad 2 SE 4G版 已开售（5月10日）</div>
+                    <div class="news-desc">9.7英寸2K 120Hz高刷屏，第二代骁龙6s 4G处理器，7600mAh电池。支持双卡双待4G通话。6+128GB售价1299元。</div>
+                    <span class="news-tag">5月10日已开售</span>
+                    <span class="news-tag">1299元</span>
+                    <span class="news-tag">双卡双待4G</span>
+                </div>
+
+                <div class="news-item brand-honor">
+                    <div class="news-brand">HONOR</div>
+                    <div class="news-title">荣耀MagicPad 3 Pro（4月23日发布）</div>
+                    <div class="news-desc">4.8mm全球最薄旗舰平板，3999元起。已上市销售。</div>
+                    <span class="news-tag">已发布</span>
+                    <span class="news-tag">3999元起</span>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- 价格动态 -->
+        <div class="card">
+            <div class="card-title"><span class="icon">💰</span>价格动态（竞品监测）</div>
+            <div class="news-grid">
+
+                <div class="news-item brand-vivo">
+                    <div class="news-brand">vivo / iQOO</div>
+                    <div class="news-title">Pad5c系列2699元：暑期中端平板价格锚点</div>
+                    <div class="news-desc">vivo Pad5c和iQOO Pad5c均以2699元起售，国补后2429.1元，叠加7月学生教育优惠。12.1英寸2.8K 144Hz+第三代骁龙8s+10000mAh的配置，在2500元价位段极具竞争力。直接对标OPPO Pad 6（3299元）、REDMI Pad 2 SE（1299元）之间的中端市场。暑期学生购机旺季，vivo/iQOO以"教育优惠+国补"双驱动抢占市场。</div>
+                    <span class="news-tag price">2699元起</span>
+                    <span class="news-tag">国补后2429元</span>
+                    <span class="news-tag">教育优惠</span>
+                </div>
+
+                <div class="news-item brand-lenovo">
+                    <div class="news-brand">行业整体</div>
+                    <div class="news-title">暑期市场启动：学生平板需求升温，品牌促销策略分化</div>
+                    <div class="news-desc">进入7月，暑期学生市场启动。vivo/iQOO以Pad5c系列+教育优惠主攻中端；华为MatePad Pro Max海外开售（1099欧元），国行若定价比肩iPad Pro 13将形成高端竞争；联想拯救者Y700无极版（5G+OLED）8月上市将引爆小尺寸游戏平板市场。各品牌暑期促销策略分化明显：vivo/iQOO主攻中端教育市场，华为维持高端定价，联想准备游戏平板爆发。</div>
+                    <span class="news-tag price">暑期市场</span>
+                    <span class="news-tag">学生需求</span>
+                    <span class="news-tag">策略分化</span>
+                </div>
+
+                <div class="news-item brand-apple">
+                    <div class="news-brand">Apple</div>
+                    <div class="news-title">iPad Pro 2026全面涨价：6月涨价后市场表现关注</div>
+                    <div class="news-desc">苹果在2026年6月对iPad Pro进行了全面涨价，涨幅较大。彭博社古尔曼爆料，2027年春季才会更新iPad Pro（M6/M7芯片），外观不会有重大变化，但可能引入均热板散热技术。这意味着iPad Pro在2026年7月-2027年3月之间不会有硬件更新，仅靠涨价和促销维持。暑期学生市场苹果可能通过教育优惠变相降价。</div>
+                    <span class="news-tag">6月涨价</span>
+                    <span class="news-tag">2027春更新</span>
+                    <span class="news-tag">教育优惠</span>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- 行业动态 -->
+        <div class="card">
+            <div class="card-title"><span class="icon">📈</span>行业动态与趋势</div>
+            <ul class="trend-list">
+                <li>
+                    <div class="trend-content">
+                        <div class="trend-title">vivo/iQOO Pad5c双平台发布：中端平板市场进入暑期争夺战</div>
+                        <div class="trend-desc">7月1日，vivo和iQOO同步发布Pad5c系列，以2699元（国补后2429元）的价格切入中端平板市场。两款产品同平台但差异化定位：vivo Pad5c侧重学习/创作，iQOO Pad5c侧重游戏。这一策略与OPPO Pad 6（3299元）、REDMI Pad 2 SE（1299元）形成覆盖，暑期学生市场将见证中端平板的激烈竞争。</div>
+                    </div>
+                </li>
+                <li>
+                    <div class="trend-content">
+                        <div class="trend-title">华为MatePad Pro Max海外开售：国行定价策略成关键变量</div>
+                        <div class="trend-desc">华为MatePad Pro Max海外版7月1日开售（1099欧元/约8522元），搭载HarmonyOS 4.3和麒麟T93 Pro。国行版本上市时间仍待定，可能在9月全品类发布会上亮相。13.2英寸3K OLED+4.7mm全球最薄的设计在高端平板市场具有竞争力，国行定价将直接影响其与iPad Pro 13和联想Y900 13英寸的竞争格局。</div>
+                    </div>
+                </li>
+                <li>
+                    <div class="trend-content">
+                        <div class="trend-title">联想拯救者Y700无极版：5G+OLED小平板定义暑期游戏市场新标准</div>
+                        <div class="trend-desc">联想拯救者Y700无极版6月30日公布，首次在Y700系列引入5G通信和OLED屏幕，实体SIM卡设计。定位旗舰小尺寸游戏平板，预计8月上市。这一定义将直接挑战iPad mini的市场地位，同时与现有Y700五代形成差异化升级。暑期游戏平板市场将迎来重要变量。</div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+    </div><!-- /tablet -->
+
+    <!-- ══════════════════════════════
+         笔记本电脑
+    ══════════════════════════════ -->
+    <div id="laptop" class="content">
+
+        <!-- 重点提醒 -->
+        <div class="highlight-box warn">
+            <div class="highlight-title">⚠️ 本周重点关注</div>
+            <div>
+                🆕 <strong>荣耀MagicBook数字系列2026</strong> 震撼上市，Ultra 5 336H+32GB+1TB+180Hz高刷屏，7699元/国补后6280元；<br>
+                🎮 <strong>荣耀三角洲行动联名游戏本</strong> 7月3日透露，限量款游戏本外观细节融入专属元素；<br>
+                💼 <strong>ThinkPad P1 AI 2026</strong> 6月29日发布，1.8kg超便携AI工作站，572 TOPS GPU算力，最高RTX PRO 2000；<br>
+                🎪 <strong>机械革命耀世Air系列</strong> 7月10-12日BW2026现场发布，Panther Lake+RTX 5070，1.65kg/18mm轻薄游戏本。
+            </div>
+        </div>
+
+        <!-- 统计 -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-number">2</div>
+                <div class="stat-label">本周笔电新品上市</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">1</div>
+                <div class="stat-label">本周联名新品</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">1</div>
+                <div class="stat-label">本周发布会预告</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">暑期</div>
+                <div class="stat-label">学生市场启动</div>
+            </div>
+        </div>
+
+        <!-- 本周开售 -->
+        <div class="card">
+            <div class="card-title"><span class="icon">🛒</span>本周开售/上市新品</div>
+            <div class="news-grid">
+
+                <div class="news-item brand-honor">
+                    <div class="news-brand">HONOR</div>
+                    <div class="news-title">荣耀MagicBook数字系列2026震撼上市</div>
+                    <div class="news-desc">搭载最新Intel Core Ultra 5 336H处理器，32GB超大内存+1TB高速固态硬盘，16英寸2.5K高分辨率屏幕支持180Hz超高刷新率与智能护眼技术。目前京东活动售价7699元，叠加满7000减300及政府补贴15%双重优惠，下单实付6280.65元。定位AI商务轻薄便携本，对联想小新Air、华为MateBook D系列形成竞争。</div>
+                    <span class="news-tag new">7月3日上市</span>
+                    <span class="news-tag">7699元/国补6280元</span>
+                    <span class="news-tag">180Hz高刷</span>
+                </div>
+
+                <div class="news-item brand-thinkpad">
+                    <div class="news-brand">ThinkPad</div>
+                    <div class="news-title">ThinkPad P1 AI 2026发布上市（6月29日）</div>
+                    <div class="news-desc">联想年度超便携旗舰AI工作站。仅重1.8kg，拥有高达572 TOPS GPU算力。搭载最新一代英特尔酷睿处理器，最高可选NVIDIA RTX PRO 2000专业显卡。内嵌联想天禧AI智能体，通过中国信通院认证。通过多家ISV专业软件认证。已在多个线上渠道同步开启销售。定位移动专业创作工具，对戴尔Precision、惠普ZBook形成竞争。</div>
+                    <span class="news-tag">6月29日发布</span>
+                    <span class="news-tag">1.8kg/572 TOPS</span>
+                    <span class="news-tag">RTX PRO 2000</span>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- 本周发布会/活动 -->
+        <div class="card">
+            <div class="card-title"><span class="icon">🎤</span>本周发布会/活动</div>
+            <div class="news-grid">
+
+                <div class="news-item brand-mechrevo">
+                    <div class="news-brand">Mechrevo 机械革命</div>
+                    <div class="news-title">耀世Air系列轻薄游戏本 BW2026现场发布（7月10-12日）</div>
+                    <div class="news-desc">机械革命将参展7月10-12日BilibiliWorld 2026，并现场发布2026款耀世Air系列轻薄游戏本。该系列"在极致轻薄和满血性能之间实现完美平衡"。包括15"级和16"级两个版本，均搭载英特尔第三代酷睿Ultra "Panther Lake"处理器。新耀世16 Air拥有镁铝合金机身，至高可选RTX 5070，QHD+ 240Hz 100% DCI-P3屏幕，1.65kg/18mm。定位轻薄游戏本，对联想拯救者Y7000X、华硕天选系列形成竞争。</div>
+                    <span class="news-tag new">7月10-12日</span>
+                    <span class="news-tag">BW2026</span>
+                    <span class="news-tag">Panther Lake+RTX 5070</span>
+                </div>
+
+                <div class="news-item brand-honor">
+                    <div class="news-brand">HONOR</div>
+                    <div class="news-title">荣耀三角洲行动联名限量游戏本（7月3日透露）</div>
+                    <div class="news-desc">荣耀PC产品线总经理朱臣才7月3日透露，荣耀将推出与游戏《三角洲行动》联名的限量款游戏笔记本电脑。外观与细节设计融入专属元素，体现双方联合创作理念。此前荣耀已在手机及PC领域与三角洲行动多次合作。此次联名游戏本标志着合作迈入更深层次。具体配置和发布时间待定。</div>
+                    <span class="news-tag">7月3日透露</span>
+                    <span class="news-tag">限量联名</span>
+                    <span class="news-tag">三角洲行动</span>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- 已上架/预约中 -->
+        <div class="card">
+            <div class="card-title"><span class="icon">📦</span>已上架/持续销售</div>
+            <div class="news-grid">
+
+                <div class="news-item brand-lenovo">
+                    <div class="news-brand">Lenovo 小新</div>
+                    <div class="news-title">小新Air 2026全系轻薄本（6月10日开售，持续销售）</div>
+                    <div class="news-desc">全系搭载英特尔酷睿5320（Wildcat Lake）处理器，16GB RAM+512GB SSD。Air 13仅14.3mm厚、重1.19kg。Air 13首发价4699元，国补已结束。对荣耀MagicBook数字系列、华为MateBook D系列形成直接竞争。</div>
+                    <span class="news-tag">已上架</span>
+                    <span class="news-tag">4699元起</span>
+                    <span class="news-tag">Wildcat Lake</span>
+                </div>
+
+                <div class="news-item brand-lenovo">
+                    <div class="news-brand">Lenovo ThinkBook</div>
+                    <div class="news-title">ThinkBook X 2026轻薄本（6月12日开售，持续销售）</div>
+                    <div class="news-desc">搭载英特尔Lunar Lake架构处理器，整机仅1.06kg，配备高素质OLED屏幕。起步售价6499元。定位高端商务轻薄本，对华为MateBook X Pro、苹果MacBook Air形成竞争。</div>
+                    <span class="news-tag">已上架</span>
+                    <span class="news-tag">6499元起</span>
+                    <span class="news-tag">1.06kg超轻</span>
+                </div>
+
+                <div class="news-item brand-mechrevo">
+                    <div class="news-brand">Mechrevo 机械革命</div>
+                    <div class="news-title">机械革命极光X 2026（6月17日上市，持续销售）</div>
+                    <div class="news-desc">搭载英特尔酷睿Ultra 7 251HX，16GB RAM+1TB SSD，16英寸2560×1600分辨率300Hz高刷面板，500尼特，100% DCI-P3。A面航空级镁铝合金，1600万色RGB背光键盘。RTX 5060版本8999元，RTX 5070版本定价更高。三风扇内吹散热系统。定位中高端游戏本。</div>
+                    <span class="news-tag">已上市</span>
+                    <span class="news-tag">8999元起</span>
+                    <span class="news-tag">300Hz高刷</span>
+                </div>
+
+                <div class="news-item brand-mechrevo">
+                    <div class="news-brand">Mechrevo 机械革命</div>
+                    <div class="news-title">机械革命星耀15轻薄本（6月16日开售，持续销售）</div>
+                    <div class="news-desc">搭载AMD锐龙AI 9 H 365处理器，主打AI性能、极致轻薄与长续航。定价6999元。定位AI轻薄本，对联想小新Air 15、荣耀MagicBook 16形成价格竞争。</div>
+                    <span class="news-tag">已开售</span>
+                    <span class="news-tag">6999元</span>
+                    <span class="news-tag tech">锐龙AI 9 H 365</span>
+                </div>
+
+                <div class="news-item brand-hp">
+                    <div class="news-brand">HP / HyperX</div>
+                    <div class="news-title">HyperX暗影精灵PRO 16《无畏契约》典藏版（6月12日上市，持续销售）</div>
+                    <div class="news-desc">惠普HyperX OMEN PRO 16游戏本《无畏契约》玩家典藏版。机身A面独特蚀刻印记，前缘印有"VLRNT PRTCL"字样，侧面装饰以角色定位徽章。提供高低两种配置，融合游戏元素的外观设计。对联想拯救者Y7000X、华硕ROG枪神系列形成竞争。</div>
+                    <span class="news-tag">已上市</span>
+                    <span class="news-tag">《无畏契约》联名</span>
+                    <span class="news-tag">电竞典藏</span>
+                </div>
+
+                <div class="news-item brand-lenovo">
+                    <div class="news-brand">Lenovo 昭阳</div>
+                    <div class="news-title">联想昭阳·悦Plus 14/16 2026（5月8日上架，持续销售）</div>
+                    <div class="news-desc">搭载酷睿Ultra 9 386H处理器，32GB LPDDR5X-8533 LPCAMM2内存+1TB SSD，99.9Wh超大电池。14.5"款3072×1920 120Hz/16"款3200×2000 165Hz，均500nits 100% DCI-P3。立轴双风扇70W+散热，Wi-Fi 7，MagicBay生态。14款9299元/16款9499元。定位高端商用轻薄本。</div>
+                    <span class="news-tag">已上架</span>
+                    <span class="news-tag">9299元起</span>
+                    <span class="news-tag tech">Ultra 9 386H</span>
+                </div>
+
+                <div class="news-item brand-lenovo">
+                    <div class="news-brand">Lenovo 拯救者</div>
+                    <div class="news-title">拯救者Y7000X / Y9000P 2026（5月19日发布，已上架）</div>
+                    <div class="news-desc">联想5/19超能之夜发布的拯救者游戏本双旗舰。Y9000P 2026搭载酷睿Ultra 9 290HX Plus+OLED专业超竞屏，Y7000X定位主流性能游戏本。搭载RTX 50系列显卡，与荣耀WIN H9、HyperX暗影精灵、华硕ROG枪神10形成多方竞争。已上架销售。</div>
+                    <span class="news-tag">已上架</span>
+                    <span class="news-tag">游戏本双旗舰</span>
+                </div>
+
+                <div class="news-item brand-lenovo">
+                    <div class="news-brand">Lenovo YOGA</div>
+                    <div class="news-title">YOGA Air 14 Ultra 2026（5月19日发布，已上架）</div>
+                    <div class="news-desc">YOGA高端旗舰轻薄本，延续OLED触控屏+极致轻薄设计。对华为MateBook X Pro、苹果MacBook Air形成高端竞争。已上架销售。</div>
+                    <span class="news-tag">已上架</span>
+                    <span class="news-tag">高端旗舰</span>
+                </div>
+
+                <div class="news-item brand-honor">
+                    <div class="news-brand">HONOR</div>
+                    <div class="news-title">荣耀MagicBook Pro 14/16 2026（4月23日发布，已上市）</div>
+                    <div class="news-desc">荣耀MagicBook Pro 14配备14.6寸3.1K大屏，触控功能，8重绿洲护眼技术。Pro 16同样升级。6799.15元起（国补价）。定位Panther Lake旗舰轻薄本，续航表现突出。</div>
+                    <span class="news-tag">已上市</span>
+                    <span class="news-tag">6799元起</span>
+                    <span class="news-tag tech">Panther Lake</span>
+                </div>
+
+                <div class="news-item brand-xiaomi">
+                    <div class="news-brand">REDMI</div>
+                    <div class="news-title">REDMI Book 2026 / Book Pro 2026（4月17日/4月10日开售）</div>
+                    <div class="news-desc">REDMI Book 2026全系酷睿Ultra 5 125H，14"/16"双尺寸，120Hz高刷屏。Book Pro 2026最高可选Ultra X7 358H，99Wh电池。Book 2026起售价5999元（已恢复原价）。对联想小新Air、荣耀MagicBook形成价格竞争。</div>
+                    <span class="news-tag">已开售</span>
+                    <span class="news-tag">5999元起</span>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- 即将发布 -->
+        <div class="card">
+            <div class="card-title"><span class="icon">🔮</span>即将发布</div>
+            <div class="news-grid">
+
+                <div class="news-item brand-mechrevo">
+                    <div class="news-brand">Mechrevo 机械革命</div>
+                    <div class="news-title">耀世Air系列轻薄游戏本（7月10-12日 BW2026发布）</div>
+                    <div class="news-desc">15"级和16"级两个版本，均搭载英特尔第三代酷睿Ultra "Panther Lake"处理器。新耀世16 Air：镁铝合金机身，至高RTX 5070，QHD+ 240Hz 100% DCI-P3，1.65kg/18mm。定位轻薄游戏本，"轻薄得不像游戏本，性能强得不像轻薄本"。</div>
+                    <span class="news-tag">7月10-12日</span>
+                    <span class="news-tag">Panther Lake</span>
+                    <span class="news-tag">1.65kg/18mm</span>
+                </div>
+
+                <div class="news-item brand-honor">
+                    <div class="news-brand">HONOR</div>
+                    <div class="news-title">荣耀三角洲行动联名限量游戏本（发布时间待定）</div>
+                    <div class="news-desc">7月3日透露的限量联名游戏本，外观与细节融入三角洲行动专属元素。具体配置、价格和发布时间待定。对联想拯救者、华硕ROG等游戏本品牌的联名策略形成竞争。</div>
+                    <span class="news-tag">限量联名</span>
+                    <span class="news-tag">三角洲行动</span>
+                    <span class="news-tag">发布时间待定</span>
+                </div>
+
+                <div class="news-item brand-huawei">
+                    <div class="news-brand">HUAWEI</div>
+                    <div class="news-title">华为笔记本9月全品类更新</div>
+                    <div class="news-desc">华为计划9月集中发布全品类新品，笔记本电脑同步更新。关注MateBook系列的新品迭代，特别是鸿蒙PC的后续产品。现有MateBook 14鸿蒙版（麒麟X90）已上市，市场反馈积极。</div>
+                    <span class="news-tag">9月更新</span>
+                    <span class="news-tag">鸿蒙PC</span>
+                    <span class="news-tag">MateBook</span>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- 历史回顾 -->
+        <div class="card">
+            <div class="card-title"><span class="icon">📋</span>历史回顾（4月-6月已发布/开售）</div>
+            <div class="news-grid">
+
+                <div class="news-item brand-hp">
+                    <div class="news-brand">HP / HyperX</div>
+                    <div class="news-title">HyperX暗影精灵PRO 16 新增RTX 5070版本（6月7日）</div>
+                    <div class="news-desc">新增512GB+RTX 5070版本，售价10498元起，国补到手价8998元起。与现有RTX 5060版本（8074元起）形成8000-10500元价格带全覆盖。</div>
+                    <span class="news-tag">6月7日新增配置</span>
+                    <span class="news-tag">10498元起</span>
+                    <span class="news-tag price">国补后8998元</span>
+                </div>
+
+                <div class="news-item brand-asus">
+                    <div class="news-brand">ASUS ROG</div>
+                    <div class="news-title">ROG枪神10系列/枪神10超竞版/魔霸10系列（5月15日发布）</div>
+                    <div class="news-desc">ROG DAY 2026广州站发布。枪神10超竞版核心总功耗高达320W，搭载酷睿Ultra 9 290HX Plus + RTX 5090 + 4K 240Hz Mini LED屏。定位旗舰专业电竞本。</div>
+                    <span class="news-tag">5月15日发布</span>
+                    <span class="news-tag">320W性能释放</span>
+                    <span class="news-tag">RTX 5090</span>
+                </div>
+
+                <div class="news-item brand-asus">
+                    <div class="news-brand">ASUS 天选</div>
+                    <div class="news-title">华硕天选7系列 已开售（5月15日）</div>
+                    <div class="news-desc">天选7/7 Pro/7 Pro Max三款齐发。天选7 Pro：16" 2.5K 300Hz电竞屏，酷睿Ultra 9/锐龙9双平台，RTX 5060/5070，32GB+1TB，90Wh电池，2.25kg。已全面开售。</div>
+                    <span class="news-tag">5月15日已开售</span>
+                    <span class="news-tag">300Hz高刷</span>
+                    <span class="news-tag">Intel+AMD双平台</span>
+                </div>
+
+                <div class="news-item brand-honor">
+                    <div class="news-brand">HONOR</div>
+                    <div class="news-title">荣耀WIN游戏本 H9 已首销（5月6日）</div>
+                    <div class="news-desc">酷睿Ultra 9 290HX + RTX 5070Ti旗舰电竞本，270W散热性能释放。建议零售11499元，国补后9999元。</div>
+                    <span class="news-tag">5月6日已首销</span>
+                    <span class="news-tag price">国补9999元起</span>
+                </div>
+
+                <div class="news-item brand-mechrevo">
+                    <div class="news-brand">Mechrevo 机械革命</div>
+                    <div class="news-title">机械革命无界14 2026 三款新品（4月22日发布）</div>
+                    <div class="news-desc">连发三款无界14 2026新品：酷睿Ultra 7 256V月光白高配、Ultra 5 226V海棠粉新配色、Ultra 5 226V斗战版。国补到手价3654.15元起，主打极致性价比轻薄本。</div>
+                    <span class="news-tag">4月22日发布</span>
+                    <span class="news-tag price">3654元起</span>
+                </div>
+
+                <div class="news-item brand-asus">
+                    <div class="news-brand">ASUS ROG</div>
+                    <div class="news-title">ROG幻系列2026款 开售（4月28日）</div>
+                    <div class="news-desc">全系酷睿Ultra 9 386H处理器。幻14/16 Air轻薄游戏本首发20999元起，幻16双屏版（双2.8K Nebula HDR OLED屏+RTX 5090）同步开售。</div>
+                    <span class="news-tag">4月28日开售</span>
+                    <span class="news-tag">20999元起</span>
+                </div>
+
+                <div class="news-item brand-hp">
+                    <div class="news-brand">HP 星Book</div>
+                    <div class="news-title">惠普星Book 2026系列 发布上市（4月28日）</div>
+                    <div class="news-desc">连发5款：星Book Pro 14（独占锐龙AI 9 HX 475）、星Book 16、星Book Plus 14、星Book X 360 14（AMD锐龙版），以及英特尔版。覆盖轻薄办公、游戏性能、AI创作等多场景。</div>
+                    <span class="news-tag">4月28日发布</span>
+                    <span class="news-tag">独占HX 475</span>
+                </div>
+
+                <div class="news-item brand-thinkpad">
+                    <div class="news-brand">ThinkPad</div>
+                    <div class="news-title">ThinkPad X1 Carbon/X14/X9 三款新品（4月22日发布）</div>
+                    <div class="news-desc">X1 Carbon Aura AI 2026（984g旗舰，国补16499元起）、X14 AI 2026（1.2kg/首款Magic Bay模块ThinkPad）、X9-15p Aura AI 2026（OLED触控，23小时续航）。全系天禧AI 3.7。</div>
+                    <span class="news-tag">4月22日发布</span>
+                    <span class="news-tag">已上架</span>
+                </div>
+
+                <div class="news-item brand-huawei">
+                    <div class="news-brand">HUAWEI</div>
+                    <div class="news-title">华为MateBook 14 鸿蒙版（4月28日开售）</div>
+                    <div class="news-desc">麒麟X90+鸿蒙OS 6.1，6599元起，主流首款鸿蒙PC。已上市销售，关注鸿蒙应用生态适配和市场反馈。</div>
+                    <span class="news-tag">4月28日开售</span>
+                    <span class="news-tag">6599元起</span>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- 价格动态 -->
+        <div class="card">
+            <div class="card-title"><span class="icon">💰</span>价格动态（竞品监测）</div>
+            <div class="news-grid">
+
+                <div class="news-item brand-honor">
+                    <div class="news-brand">HONOR</div>
+                    <div class="news-title">荣耀MagicBook数字系列6280元：暑期轻薄本价格新锚点</div>
+                    <div class="news-desc">MagicBook 16 2026（Ultra 5 336H/32GB/1TB/180Hz/2.5K）京东7699元，叠加满减300+国补15%后实付6280.65元。这一价格直接对标联想小新Air 13（4699元，国补已结束）、华为MateBook D 14（约4999元）、REDMI Book 2026（5999元）。180Hz高刷屏+32GB大内存的组合在同价位具有差异化优势。</div>
+                    <span class="news-tag price">6280元（国补后）</span>
+                    <span class="news-tag">180Hz+32GB</span>
+                    <span class="news-tag">暑期竞争</span>
+                </div>
+
+                <div class="news-item brand-thinkpad">
+                    <div class="news-brand">ThinkPad</div>
+                    <div class="news-title">ThinkPad P1 AI 2026：超便携AI工作站的高端定价</div>
+                    <div class="news-desc">ThinkPad P1 AI 2026定位超便携旗舰AI工作站，1.8kg+572 TOPS GPU算力+RTX PRO 2000专业显卡。面向设计师、工程师等专业用户。在移动工作站领域，P1系列一直以轻薄+高性能著称，2026款进一步强化AI能力。预计售价15000-25000元区间，对戴尔Precision 5000系列、惠普ZBook Power形成竞争。</div>
+                    <span class="news-tag">移动工作站</span>
+                    <span class="news-tag">1.8kg/572 TOPS</span>
+                    <span class="news-tag">RTX PRO 2000</span>
+                </div>
+
+                <div class="news-item brand-mechrevo">
+                    <div class="news-brand">Mechrevo</div>
+                    <div class="news-title">耀世Air系列：轻薄游戏本的新价格带探索</div>
+                    <div class="news-desc">机械革命耀世Air系列（Panther Lake+RTX 5070+1.65kg/18mm）定位"轻薄游戏本"新赛道。在8000-12000元价格带，与联想拯救者Y7000X（9999-11999元）、华硕天选7 Pro（约8999-10999元）形成竞争。机械革命以"极致轻薄+满血性能"为差异化，BW2026现场发布将进一步吸引年轻用户关注。</div>
+                    <span class="news-tag">轻薄游戏本</span>
+                    <span class="news-tag">1.65kg/18mm</span>
+                    <span class="news-tag">RTX 5070</span>
+                </div>
+
+                <div class="news-item brand-lenovo">
+                    <div class="news-brand">行业整体</div>
+                    <div class="news-title">暑期笔电市场：轻薄本vs游戏本双线竞争</div>
+                    <div class="news-desc">7月笔电市场呈现双线竞争格局。轻薄本线：荣耀MagicBook数字系列6280元（国补后）+联想小新Air 4699元+华为MateBook D 4999元，中端轻薄本竞争激烈。游戏本线：机械革命极光X 8999元+耀世Air系列即将发布+联想拯救者Y7000X/Y9000P已上架，8000-12000元游戏本价格带竞争白热化。暑期学生市场将是Q3销量关键窗口。</div>
+                    <span class="news-tag">双线竞争</span>
+                    <span class="news-tag">暑期学生市场</span>
+                    <span class="news-tag">Q3关键窗口</span>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- 行业动态 -->
+        <div class="card">
+            <div class="card-title"><span class="icon">📈</span>行业动态与趋势</div>
+            <ul class="trend-list">
+                <li>
+                    <div class="trend-content">
+                        <div class="trend-title">荣耀MagicBook数字系列2026上市：6280元（国补后）重新定义中端轻薄本价值</div>
+                        <div class="trend-desc">荣耀MagicBook 16 2026以Ultra 5 336H+32GB+1TB+180Hz 2.5K屏幕的组合，叠加国补后6280元的价格，在中端轻薄本市场树立了新价值标杆。32GB大内存和180Hz高刷屏在同价位具有显著差异化优势，直接挑战联想小新Air和华为MateBook D系列。暑期学生市场将是验证这一定价策略的关键窗口。</div>
+                    </div>
+                </li>
+                <li>
+                    <div class="trend-content">
+                        <div class="trend-title">ThinkPad P1 AI 2026：AI工作站从"性能工具"向"智能助手"进化</div>
+                        <div class="trend-desc">ThinkPad P1 AI 2026不仅延续了1.8kg超便携+专业显卡的移动工作站基因，更通过内嵌天禧AI智能体（通过中国信通院认证）实现了AI能力的深度集成。572 TOPS GPU算力为AI推理提供硬件支撑，ISV认证确保专业软件兼容性。这标志着移动工作站从单纯的"性能工具"向"AI智能助手"进化。</div>
+                    </div>
+                </li>
+                <li>
+                    <div class="trend-content">
+                        <div class="trend-title">机械革命耀世Air系列：BW2026发布瞄准Z世代"轻薄游戏本"新赛道</div>
+                        <div class="trend-desc">机械革命选择BW2026（BilibiliWorld）发布耀世Air系列，精准定位Z世代年轻用户。Panther Lake+RTX 5070+1.65kg/18mm的规格组合，在"轻薄"和"性能"之间寻找平衡点。BW展会的选择表明机械革命希望以年轻化的营销方式和产品定位，在游戏本市场开辟"轻薄游戏本"新细分赛道。</div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+    </div><!-- /laptop -->
+
+    <div class="footer">
+        <p>数据来源：公开市场信息整理 | 更新时间：2026年7月6日 09:30</p>
+        <p>监控品牌（平板）：Apple / 华为 / 小米 / 红米 / 荣耀 / OPPO / 一加 / vivo / 联想 / iQOO</p>
+        <p>监控品牌（笔电）：Apple / 华为 / 小米 / 红米 / 荣耀 / 联想 / ThinkPad / ThinkBook / 机械革命 / 华硕 / 惠普 / HyperX</p>
+        <p>&copy; 2026 3C行业周度资讯看板 &middot; 每周一 09:30 更新</p>
+    </div>
+</div>
+
+<script>
+    function switchTab(e, tabName) {
+        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.content').forEach(c => c.classList.remove('active'));
+        e.target.classList.add('active');
+        document.getElementById(tabName).classList.add('active');
+    }
+</script>
+</body>
+</html>
